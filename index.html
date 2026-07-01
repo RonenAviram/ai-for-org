@@ -35,6 +35,15 @@
     /* Fade animations */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+    @keyframes heroFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-fade { opacity: 0; animation: heroFadeIn 0.6s ease-out forwards; }
+    .hero-fade:nth-child(1) { animation-delay: 0.1s; }
+    .hero-fade:nth-child(2) { animation-delay: 0.25s; }
+    .hero-fade:nth-child(3) { animation-delay: 0.4s; }
+    .hero-fade:nth-child(4) { animation-delay: 0.55s; }
+    .hero-fade:nth-child(5) { animation-delay: 0.7s; }
+    .hero-fade:nth-child(6) { animation-delay: 0.85s; }
+    .hero-fade:nth-child(7) { animation-delay: 1.0s; }
 
     /* Screen transitions */
     .screen { display: none; }
@@ -102,38 +111,38 @@
         <!-- Language toggle (hidden) -->
         <button onclick="toggleLang()" id="lang-toggle" class="hidden">English</button>
 
-        <div class="fade-in inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-xs md:text-sm font-medium px-4 py-2 rounded-full mb-8">
+        <div class="hero-fade inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-xs md:text-sm font-medium px-4 py-2 rounded-full mb-8">
           <span>🤖</span>
           <span data-he="AI for Org" data-en="AI for Org">AI for Org</span>
           <span>🤖</span>
         </div>
 
-        <h1 class="fade-in text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8" style="line-height:1.5">
+        <h1 class="hero-fade text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8" style="line-height:1.5">
           <span data-he="מה שישנה את הארגון שלכם" data-en="What will change your organization" style="white-space:nowrap">מה שישנה את הארגון שלכם</span><br>
           <span data-he="זה לא ה-AI." data-en="isn't the AI.">זה לא ה-AI.</span><br>
           <span class="text-[#5b9bd5]" data-he="אלה האנשים." data-en="It's the people.">אלה האנשים.</span>
         </h1>
 
-        <p class="fade-in text-base sm:text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed mb-10" data-he="רוצים לגלות מה אפשר לשנות כבר מחר בבוקר?" data-en="Want to discover what you can change as early as tomorrow morning?">
+        <p class="hero-fade text-base sm:text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed mb-10" data-he="רוצים לגלות מה אפשר לשנות כבר מחר בבוקר?" data-en="Want to discover what you can change as early as tomorrow morning?">
           רוצים לגלות מה אפשר לשנות כבר מחר בבוקר?
         </p>
 
-        <div class="fade-in">
+        <div class="hero-fade">
           <button onclick="startQuiz()" class="group inline-flex items-center gap-2 bg-accent hover:bg-[#2d5a9e] text-white text-base md:text-lg font-bold px-10 md:px-12 py-4 md:py-5 rounded-xl transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5">
             <span data-he="יאללה, ננסה" data-en="Let's try">יאללה, ננסה</span>
             <span class="text-xl flip-arrow">←</span>
           </button>
         </div>
 
-        <p class="fade-in text-white/40 text-xs md:text-sm mt-6" data-he="זמן מענה: פחות מ-2 דק׳" data-en="Takes less than 2 min">זמן מענה: פחות מ-2 דק׳</p>
+        <p class="hero-fade text-white/40 text-xs md:text-sm mt-6" data-he="זמן מענה: פחות מ-2 דק׳" data-en="Takes less than 2 min">זמן מענה: פחות מ-2 דק׳</p>
 
-        <p class="fade-in mt-5">
+        <p class="hero-fade mt-5">
           <button onclick="openCalendlyPopup()" class="text-white/50 hover:text-white/80 text-xs md:text-sm font-medium transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-white/50">
             <span data-he="מעדיפים לדבר ישר? קבעו שיחה" data-en="Prefer to talk directly? Book a call">מעדיפים לדבר ישר? קבעו שיחה</span>
           </button>
         </p>
 
-        <div class="fade-in flex items-center justify-center gap-5 mt-12 md:mt-16">
+        <div class="hero-fade flex items-center justify-center gap-5 mt-12 md:mt-16">
           <button onclick="openAbout()" class="text-white/50 hover:text-white/80 text-xs md:text-sm font-medium transition-colors flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
             <span data-he="מי אני" data-en="About me">מי אני</span>
@@ -624,27 +633,4 @@
         b.classList.toggle('selected', arr.includes(i));
       });
       // Enable/disable continue button
-      const btn = document.getElementById('multi-continue-btn');
-      if (btn) {
-        btn.classList.toggle('opacity-40', arr.length === 0);
-        btn.classList.toggle('cursor-not-allowed', arr.length === 0);
-      }
-    }
-
-    function submitMulti(qId) {
-      if (!Array.isArray(answers[qId]) || answers[qId].length === 0) return;
-      nextStep();
-    }
-
-    function nextStep() {
-      const next = currentStep + 1;
-      if (next >= totalSteps) {
-        sendToSheets();
-        renderAnswersSummary();
-        showScreen('screen-results');
-      } else {
-        renderStep(next);
-      }
-    }
-
-    // ═══ A
+      const btn = doc
