@@ -236,7 +236,7 @@
           <h3 class="text-white text-lg md:text-xl font-bold mb-5 leading-relaxed" data-he="רוצים להעמיק את השיחה&#10;על הארגון הספציפי שלכם?" data-en="Want to dive deeper&#10;into your specific organization?">
             רוצים להעמיק את השיחה<br>על הארגון הספציפי שלכם?
           </h3>
-          <button onclick="openCalendlyPopup()" class="inline-flex items-center gap-2 bg-accent hover:bg-[#2d5a9e] text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl text-base md:text-lg mb-5">
+          <button onclick="openCalendlyPopup(true)" class="inline-flex items-center gap-2 bg-accent hover:bg-[#2d5a9e] text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-accent/30 hover:shadow-xl text-base md:text-lg mb-5">
             <span data-he="קבעו שיחה" data-en="Book a call">קבעו שיחה</span>
             <span class="text-xl flip-arrow">←</span>
           </button>
@@ -339,13 +339,14 @@
       ],
       questions: [
         {
-          id: 'q1', he: 'הדבר שהכי מתסכל אותי בתפקוד היומיומי של הארגון הוא -', en: 'What frustrates me most about daily operations is -',
+          id: 'q1', he: 'הדבר שהכי מתסכל אותי ביום-יום של הארגון הוא -', en: 'What frustrates me most about daily operations is -',
           multi: true,
           options: [
-            { he: 'תלות באנשים ספציפיים שמחזיקים ידע', en: 'Dependency on specific people who hold knowledge' },
+            { he: 'ריכוזיות של ידע אצל אנשים מסוימים בלבד', en: 'Knowledge concentrated in specific people only' },
             { he: 'זמן שמתבזבז על דברים שיכלו להיות אוטומטיים', en: 'Time wasted on things that could be automated' },
-            { he: 'קושי להעביר מידע בין מחלקות/צוותים', en: 'Difficulty transferring information between departments' },
-            { he: 'חוסר יכולת לדעת מה המצב בזמן אמת', en: 'Inability to know the status in real time' }
+            { he: 'קושי בסנכרון ובהעברת מידע בין מחלקות וצוותים', en: 'Difficulty syncing and transferring information between departments and teams' },
+            { he: 'קושי בקבלת תמונת מצב עדכנית בזמן אמת', en: 'Difficulty getting an up-to-date picture in real time' },
+            { he: 'אחר', en: 'Other' }
           ]
         },
         {
@@ -366,32 +367,32 @@
           ]
         },
         {
-          id: 'q4', he: 'האם נעשות בארגון פעולות "סיזיפיות" שחוזרות על עצמן בהיקף גדול?', en: 'Are there repetitive "Sisyphean" tasks done at scale in the organization?',
+          id: 'q4', he: 'האם בארגון מתבצעות משימות חזרתיות או "סיזיפיות" בהיקף נרחב?', en: 'Are there repetitive or "Sisyphean" tasks done at scale in the organization?',
           subtitle_he: 'לדוגמה: פנייה לתורמים במייל, שליחת סקרים, יצירת מצגות, כתיבת הצעות מחיר, ניהול רשימות תפוצה, הפקת דוחות תקופתיים',
           subtitle_en: 'e.g. emailing donors, sending surveys, creating presentations, writing proposals, managing mailing lists, generating reports',
           options: [
-            { he: 'כמעט ולא — רוב הדברים מסודרים או ממוכנים', en: 'Hardly any — most things are organized or automated' },
-            { he: 'יש קצת, אבל זה לא מהותי', en: 'Some, but not significant' },
-            { he: 'כן, לא מעט', en: 'Yes, quite a lot' },
-            { he: 'כן, הרבה מאוד — זה חלק ניכר מהיום של כמה אנשים', en: 'Yes, very much — it\'s a major part of some people\'s day' }
+            { he: 'כמעט ולא – מרבית התהליכים אצלנו ממוחשבים או מנוהלים אוטומטית', en: 'Hardly any — most processes are computerized or managed automatically' },
+            { he: 'קיימות משימות בודדות, אך בהיקף זניח', en: 'A few tasks, but negligible in scope' },
+            { he: 'כן, ישנן לא מעט משימות חזרתיות בשגרת העבודה', en: 'Yes, there are quite a few repetitive tasks in daily work' },
+            { he: 'כן, בהיקף משמעותי – זהו "צוואר בקבוק" מרכזי ביום העבודה של מספר עובדים', en: 'Yes, significantly — it\'s a major bottleneck in several employees\' workday' }
           ]
         },
         {
-          id: 'q5', he: 'להערכתך - כמה זמן בשבוע מבוזבז על הפעולות הללו בכל הארגון?', en: 'In your estimation - how much time per week is wasted on these tasks across the organization?',
+          id: 'q5', he: 'להערכתך, כמה זמן יקר מתבזבז בשבוע על פעולות אלו בארגון?', en: 'In your estimation, how much valuable time is wasted per week on these tasks?',
           options: [
-            { he: 'כמעט אפס', en: 'Almost none' },
-            { he: 'שעה-שעתיים', en: '1-2 hours' },
-            { he: '3-5 שעות', en: '3-5 hours' },
-            { he: 'יותר מ-5 שעות', en: 'More than 5 hours' }
+            { he: 'פחות משעה בשבוע', en: 'Less than an hour per week' },
+            { he: 'שעה-שעתיים בשבוע', en: '1-2 hours per week' },
+            { he: '3-5 שעות בשבוע', en: '3-5 hours per week' },
+            { he: 'מעל ל-5 שעות בשבוע', en: 'More than 5 hours per week' }
           ]
         },
         {
-          id: 'q6', he: 'כמה "צווארי בקבוק" יש בארגון בכל מה שנוגע לקבלת החלטות או קידום משימות?', en: 'How many bottlenecks exist in decision-making or task advancement?',
+          id: 'q6', he: 'באיזו מידה קיימים בארגון "צווארי בקבוק" המשפיעים על קבלת החלטות וקצב העבודה?', en: 'To what extent do bottlenecks exist that affect decision-making and work pace?',
           options: [
-            { he: 'כמעט אין — כל אחד יודע להתקדם עצמאית', en: 'Almost none — everyone can move forward independently' },
-            { he: 'יש אחד-שניים, אבל מסתדרים', en: 'One or two, but manageable' },
-            { he: 'יש כמה, וזה מורגש', en: 'Several, and it\'s noticeable' },
-            { he: 'חייבים את כולם לכל דבר — כמעט שום דבר לא זז בלי אישורים', en: 'Everyone is needed for everything — almost nothing moves without approvals' }
+            { he: 'כמעט ולא – התרבות הארגונית מעודדת עצמאות וקבלת החלטות אוטונומית', en: 'Hardly any — the organizational culture encourages autonomy and independent decision-making' },
+            { he: 'ישנם מוקדים בודדים, אך אנו מצליחים להתגבר עליהם', en: 'A few focal points, but we manage to overcome them' },
+            { he: 'קיימים מספר צווארי בקבוק המשפיעים באופן מורגש על קצב העבודה', en: 'Several bottlenecks that noticeably affect work pace' },
+            { he: 'יש בירוקרטיה וריכוזיות – תהליכים רבים תקועים בהמתנה לאישור', en: 'Bureaucracy and centralization — many processes are stuck waiting for approval' }
           ]
         },
         {
@@ -836,24 +837,4 @@
       document.getElementById('about-drawer').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-    function closeAbout() {
-      document.getElementById('about-overlay').classList.remove('open');
-      document.getElementById('about-drawer').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function openCalendlyPopup() {
-      if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({ url: 'https://calendly.com/ronen_aviram/ai_for_org' });
-      }
-    }
-
-    // ═══ FADE-IN OBSERVER ═══
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  </script>
-</body>
-</html>
+    function closeAbout()
