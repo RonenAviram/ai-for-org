@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Readiness | האם הארגון שלכם מוכן?</title>
-  <meta name="description" content="שאלון קצר שיעזור לכם להבין מה אפשר לשנות בארגון שלכם כבר מחר בבוקר." />
+  <title>Ronen Aviram - AI for Org</title>
+  <meta name="description" content="Ronen Aviram - AI for Org" />
+  <meta property="og:title" content="Ronen Aviram - AI for Org" />
+  <meta property="og:description" content="Ronen Aviram - AI for Org" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ronenaviram.github.io/ai-for-org/" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -633,4 +637,134 @@
         b.classList.toggle('selected', arr.includes(i));
       });
       // Enable/disable continue button
-      const btn = doc
+      const btn = document.getElementById('multi-continue-btn');
+      if (btn) {
+        btn.classList.toggle('opacity-40', arr.length === 0);
+        btn.classList.toggle('cursor-not-allowed', arr.length === 0);
+      }
+    }
+
+    function submitMulti(qId) {
+      if (!Array.isArray(answers[qId]) || answers[qId].length === 0) return;
+      nextStep();
+    }
+
+    function nextStep() {
+      const next = currentStep + 1;
+      if (next >= totalSteps) {
+        sendToSheets();
+        renderAnswersSummary();
+        showScreen('screen-results');
+      } else {
+        renderStep(next);
+      }
+    }
+
+    // ═══ ANSWERS SUMMARY ═══
+    function renderAnswersSummary() {
+      const list = document.getElementById('answers-list');
+      if (!list) return;
+      let html = '';
+
+      // Only quiz questions — no intro or contact fields
+      quizData.questions.forEach((q, qi) => {
+        const qLabel = lang === 'he' ? q.he : q.en;
+        let ansText = '';
+        if (q.multi && Array.isArray(answers[q.id])) {
+          ansText = answers[q.id].map(i => lang === 'he' ? q.options[i].he : q.options[i].en).join(', ');
+        } else if (answers[q.id] !== undefined && q.options[answers[q.id]]) {
+          ansText = lang === 'he' ? q.options[answers[q.id]].he : q.options[answers[q.id]].en;
+        }
+        if (ansText) {
+          html += `<div class="border-b border-gray-100 pb-3">
+            <p class="text-xs text-muted mb-1">${lang === 'he' ? 'שאלה ' : 'Q'}${qi + 1}: ${qLabel}</p>
+            <p class="text-sm font-medium text-navy">${ansText}</p>
+          </div>`;
+        }
+      });
+
+      list.innerHTML = html;
+    }
+
+    function openAnswersModal() {
+      renderAnswersSummary();
+      const modal = document.getElementById('answers-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAnswersModal() {
+      const modal = document.getElementById('answers-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    // Close modal on backdrop click
+    document.getElementById('answers-modal')?.addEventListener('click', function(e) {
+      if (e.target === this) closeAnswersModal();
+    });
+
+    // ═══ GOOGLE SHEETS ═══
+    const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx4ue0sagVNgzBERkjPZIpqngLvSVqJ8ceL045CF-4OSiYWtC5ou3ScoKbO1PwhPnG0Yw/exec';
+
+    function sendToSheets() {
+      if (SHEETS_ENDPOINT === 'YOUR_APPS_SCRIPT_URL_HERE') {
+        console.warn('Sheets endpoint not configured — skipping lead capture');
+        return;
+      }
+
+      // Build answer texts
+      function getAnswerText(q) {
+        const a = answers[q.id];
+        if (a === undefined) return '';
+        if (q.multi && Array.isArray(a)) {
+          return a.map(i => q.options[i]?.he || '').join(' | ');
+        }
+        return q.options[a]?.he || '';
+      }
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        name: answers.name || '',
+        role: answers.role || '',
+        org: answers.org || '',
+        email: answers.email || '',
+        phone: answers.phone || ''
+      };
+
+      quizData.questions.forEach(q => {
+        payload[q.id] = getAnswerText(q);
+      });
+
+      // Fire and forget — don't block UX
+      fetch(SHEETS_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.warn('Lead capture failed:', err));
+    }
+
+    // ═══ CALENDLY ═══
+    function openCalendlyPopup() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/ronen_aviram/ai_for_org?hide_gdpr_banner=1' });
+      }
+    }
+
+    // ═══ ABOUT DRAWER ═══
+    function openAbout() {
+      document.getElementById('about-drawer').classList.add('open');
+      document.getElementById('about-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAbout() {
+      document.getElementById('about-drawer').classList.remove('open');
+      document.getElementById('about-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ═══ FADE IN (hero uses CSS @keyframes, no JS needed) ═══
+  </script>
+</body>
+</html>
