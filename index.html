@@ -837,4 +837,27 @@
       document.getElementById('about-drawer').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-    function closeAbou
+    function closeAbout() {
+      document.getElementById('about-overlay').classList.remove('open');
+      document.getElementById('about-drawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    let calendlyClicked = false;
+
+    function openCalendlyPopup(trackAsLead) {
+      if (trackAsLead) calendlyClicked = true;
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/ronen_aviram/ai_for_org' });
+      }
+    }
+
+    // fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  </script>
+</body>
+</html>
