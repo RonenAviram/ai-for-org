@@ -814,6 +814,7 @@
 
       payload.lang = lang;
       payload.timestamp = new Date().toISOString();
+      payload.calendlyClicked = calendlyClicked;
 
       fetch('https://script.google.com/macros/s/AKfycbz1234placeholder/exec', {
         method: 'POST',
@@ -841,4 +842,18 @@
       document.body.style.overflow = '';
     }
 
-    f
+    function openCalendlyPopup() {
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({ url: 'https://calendly.com/ronen_aviram/ai_for_org' });
+      }
+    }
+
+    // ═══ FADE-IN OBSERVER ═══
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  </script>
+</body>
+</html>
