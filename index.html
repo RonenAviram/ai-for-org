@@ -817,7 +817,7 @@
       payload.timestamp = new Date().toISOString();
       payload.calendlyClicked = calendlyClicked;
 
-      fetch('https://script.google.com/macros/s/AKfycbx4ue0sagVNgzBERkjPZIpqngLvSVqJ8ceL045CF-4OSiYWtC5ou3ScoKbO1PwhPnG0Yw/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbx6cGRWfyXonKIWVMtfYse0Rke_X_Ar14lAvbUFTZqjmptKMPgPKPH04FVIHbVprE3eZg/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
@@ -846,7 +846,20 @@
     let calendlyClicked = false;
 
     function openCalendlyPopup(trackAsLead) {
-      if (trackAsLead) calendlyClicked = true;
+      if (trackAsLead && !calendlyClicked) {
+        calendlyClicked = true;
+        // שליחת עדכון ל-Sheets שהמשתמש לחץ Calendly
+        fetch('https://script.google.com/macros/s/AKfycbx6cGRWfyXonKIWVMtfYse0Rke_X_Ar14lAvbUFTZqjmptKMPgPKPH04FVIHbVprE3eZg/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'calendly_update',
+            email: answers.email || '',
+            phone: answers.phone || ''
+          })
+        }).catch(err => console.log('Calendly update error:', err));
+      }
       if (typeof Calendly !== 'undefined') {
         Calendly.initPopupWidget({ url: 'https://calendly.com/ronen_aviram/ai_for_org' });
       }
