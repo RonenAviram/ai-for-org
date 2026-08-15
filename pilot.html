@@ -163,20 +163,19 @@
   /* benefits */
   .benefits {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 0;
     margin-bottom: 24px;
-  }
-  .ben-row {
-    display: contents;
   }
   .ben {
     border-top: 3px solid #3b6eb5;
-    padding-top: 12px;
-    display: flex;
-    flex-direction: column;
+    padding: 14px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 12px;
+    align-items: baseline;
   }
-  .ben b { font-size: 16px; display: block; margin-bottom: 6px; line-height: 1.35; min-height: 44px; }
+  .ben b { font-size: 16px; line-height: 1.35; white-space: nowrap; }
   .ben span { font-size: 14px; color: #46566e; line-height: 1.55; }
 
   /* investment strip */
@@ -214,6 +213,9 @@
   /* ---------- DESKTOP ---------- */
   @media (min-width: 640px) {
     .cards { flex-direction: row; }
+    .benefits { grid-template-columns: 1fr 1fr; }
+    .ben { display: block; padding: 12px 0 0; }
+    .ben b { display: block; margin-bottom: 6px; white-space: normal; min-height: 44px; }
     body { padding: 24px 0; }
     .page { border-radius: 16px; min-height: auto; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
   }
@@ -280,19 +282,19 @@
     <h2>מה מקבל ארגון שמצטרף לפיילוט</h2>
     <div class="benefits">
       <div class="ben">
-        <b>השפעה אמיתית על המוצר</b>
-        <span>מה שתבקשו ייבנה - ובסדר שתשפיעו עליו.</span>
+        <b>השפעה אמיתית על המוצר —</b>
+        <span>מה שתבקשו ייבנה, ובסדר שתשפיעו עליו.</span>
       </div>
       <div class="ben">
-        <b>ערוץ ישיר אליי</b>
+        <b>ערוץ ישיר אליי —</b>
         <span>במהלך כל תקופת הבנייה.</span>
       </div>
       <div class="ben">
-        <b>ליווי אישי</b>
+        <b>ליווי אישי —</b>
         <span>עד לקבלת מענק ראשון דרך המערכת.</span>
       </div>
       <div class="ben">
-        <b>תנאי מייסדים</b>
+        <b>תנאי מייסדים —</b>
         <span>מחיר מייסדים שנשמר לכם גם אחרי ההשקה המסחרית.</span>
       </div>
     </div>
