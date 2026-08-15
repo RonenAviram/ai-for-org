@@ -54,6 +54,11 @@
     color: #6fa3e8;
     letter-spacing: 0.02em;
   }
+  .sub2-bold {
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+  }
 
   /* ---------- BODY ---------- */
   main { padding: 28px 24px 24px; }
@@ -66,8 +71,8 @@
     margin-bottom: 16px;
   }
 
-  /* product cards */
-  .cards { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  /* product cards - column on mobile, row on desktop */
+  .cards { display: flex; gap: 16px; margin-bottom: 24px; flex-direction: column; }
   .card {
     background: #f4f7fb;
     border-radius: 12px;
@@ -162,11 +167,16 @@
     gap: 16px;
     margin-bottom: 24px;
   }
+  .ben-row {
+    display: contents;
+  }
   .ben {
     border-top: 3px solid #3b6eb5;
     padding-top: 12px;
+    display: flex;
+    flex-direction: column;
   }
-  .ben b { font-size: 16px; display: block; margin-bottom: 6px; line-height: 1.35; }
+  .ben b { font-size: 16px; display: block; margin-bottom: 6px; line-height: 1.35; min-height: 44px; }
   .ben span { font-size: 14px; color: #46566e; line-height: 1.55; }
 
   /* investment strip */
@@ -215,7 +225,7 @@
   <header>
     <h1>הזמנה לפיילוט: סוכן גיוס המשאבים הפרטי שלכם</h1>
     <div class="sub"><span class="up">יותר</span> הזדמנויות. <span class="up">יותר</span> סיכויים. <span class="down">פחות</span> זמן.</div>
-    <div class="sub2">הארגונים שכבר משתמשים ב-AI לגיוס משאבים לא חוזרים אחורה</div>
+    <div class="sub2">הארגונים שכבר משתמשים ב-AI לגיוס משאבים<br><strong class="sub2-bold">לא חוזרים אחורה</strong></div>
   </header>
 
   <main>
