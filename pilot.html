@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הזמנה לפיילוט: סוכן גיוס המשאבים</title>
+<meta property="og:title" content="הזמנה לפיילוט: סוכן גיוס המשאבים הפרטי שלכם">
+<meta property="og:description" content="יותר הזדמנויות. יותר סיכויים. פחות זמן.">
+<meta property="og:type" content="website">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Arial, "Helvetica Neue", sans-serif;
+    direction: rtl;
+    color: #0f1b2d;
+    font-size: 16px;
+    line-height: 1.62;
+    background: #f0f2f5;
+  }
+  .page {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: #0f1b2d;
+    color: #fff;
+    padding: 36px 24px 32px;
+  }
+  h1 {
+    font-size: 26px;
+    line-height: 1.3;
+    font-weight: bold;
+    letter-spacing: -0.01em;
+  }
+  .sub {
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: #8fb4e6;
+    letter-spacing: 0.02em;
+  }
+  .sub .up, .sub .down {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .sub2 {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6fa3e8;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- BODY ---------- */
+  main { padding: 28px 24px 24px; }
+
+  h2 {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: #3b6eb5;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  /* product cards */
+  .cards { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .card {
+    background: #f4f7fb;
+    border-radius: 12px;
+    padding: 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .card .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #3b6eb5; color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    font-size: 14px; font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .card h3 { font-size: 20px; line-height: 1.3; margin-bottom: 8px; }
+  .card p { font-size: 15px; color: #46566e; line-height: 1.6; }
+
+  /* checklist inside cards */
+  .checks {
+    display: flex; gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #d7e0ec;
+  }
+  .checks .col { flex: 1; }
+  .chk {
+    display: flex; align-items: flex-start;
+    font-size: 14px; line-height: 1.4;
+    color: #22334d;
+    margin-bottom: 10px;
+  }
+  .chk:last-child { margin-bottom: 0; }
+  .chk .tick {
+    flex: none;
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    background: #3b6eb5;
+    color: #fff;
+    font-size: 11px; font-weight: bold;
+    margin-left: 8px; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chk.more { color: #7a8798; }
+  .chk.more .tick {
+    background: none;
+    color: #7a8798;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* outcome line */
+  .card-outcome {
+    padding: 14px 16px;
+    margin: 16px -20px 0;
+    background: #eef5ff;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #0f1b2d;
+  }
+  .card-outcome .num-highlight {
+    color: #c8850a;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  .card-outcome .label {
+    color: #3b6eb5;
+    font-weight: bold;
+  }
+
+  /* AI learning strip */
+  .ai-strip {
+    background: linear-gradient(135deg, #eef3fb, #e4edf8);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    border-right: 4px solid #3b6eb5;
+    font-size: 15px;
+    color: #2a3a52;
+    line-height: 1.6;
+  }
+  .ai-strip strong { color: #0f1b2d; }
+
+  /* benefits */
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ben {
+    border-top: 3px solid #3b6eb5;
+    padding-top: 12px;
+  }
+  .ben b { font-size: 16px; display: block; margin-bottom: 6px; line-height: 1.35; }
+  .ben span { font-size: 14px; color: #46566e; line-height: 1.55; }
+
+  /* investment strip */
+  .invest {
+    background: #0f1b2d; color: #fff;
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 24px;
+  }
+  .invest h4 { font-size: 18px; color: #d4a94b; margin-bottom: 10px; font-weight: bold; }
+  .invest p { font-size: 15px; color: #c9d8ea; line-height: 1.65; }
+  .invest strong { color: #fff; }
+
+  /* ---------- BOTTOM BAR ---------- */
+  .cta {
+    background: #3b6eb5; color: #fff;
+    padding: 24px;
+    text-align: center;
+  }
+  .cta-main {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .cta-main .big-num {
+    font-size: 32px;
+  }
+  .cta-limited {
+    font-size: 14px;
+    font-weight: normal;
+    opacity: 0.75;
+    margin-top: 6px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- DESKTOP ---------- */
+  @media (min-width: 640px) {
+    .cards { flex-direction: row; }
+    body { padding: 24px 0; }
+    .page { border-radius: 16px; min-height: auto; overflow: hidden; box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>הזמנה לפיילוט: סוכן גיוס המשאבים הפרטי שלכם</h1>
+    <div class="sub"><span class="up">יותר</span> הזדמנויות. <span class="up">יותר</span> סיכויים. <span class="down">פחות</span> זמן.</div>
+    <div class="sub2">הארגונים שכבר משתמשים ב-AI לגיוס משאבים לא חוזרים אחורה</div>
+  </header>
+
+  <main>
+
+    <h2>מה המוצר עושה</h2>
+    <div class="cards">
+
+      <div class="card">
+        <div class="num">1</div>
+        <h3>מאתר הזדמנויות מימון</h3>
+        <p>סריקה שוטפת, מסוננת לפי הפרופיל של הארגון שלכם, עם ציון התאמה לכל הזדמנות.</p>
+        <div class="checks">
+          <div class="col">
+            <div class="chk"><span class="tick">✓</span>קרנות פילנתרופיות</div>
+            <div class="chk"><span class="tick">✓</span>קולות קוראים</div>
+            <div class="chk"><span class="tick">✓</span>מכרזים ציבוריים</div>
+          </div>
+          <div class="col">
+            <div class="chk"><span class="tick">✓</span>משרדי ממשלה</div>
+            <div class="chk"><span class="tick">✓</span>תורמים פרטיים</div>
+            <div class="chk more"><span class="tick">+</span>מקורות נוספים</div>
+          </div>
+        </div>
+        <div class="card-outcome">בין <span class="num-highlight">3-5</span> הזדמנויות <span class="label">איכותיות</span> חדשות בחודש</div>
+      </div>
+
+      <div class="card">
+        <div class="num">2</div>
+        <h3>מכין את ההגשה</h3>
+        <p>טיוטה מלאה לכל הזדמנות, בנויה מול קריטריוני ההגשה.</p>
+        <div class="checks">
+          <div class="col">
+            <div class="chk"><span class="tick">✓</span>טיוטה מותאמת</div>
+            <div class="chk"><span class="tick">✓</span>צ׳קליסט קריטריונים</div>
+            <div class="chk"><span class="tick">✓</span>התאמה לשפת הקרן</div>
+          </div>
+          <div class="col">
+            <div class="chk"><span class="tick">✓</span>למידה מתוצאות</div>
+            <div class="chk"><span class="tick">✓</span>מעקב סטטוס</div>
+            <div class="chk more"><span class="tick">+</span>יכולות נוספות</div>
+          </div>
+        </div>
+        <div class="card-outcome">חיסכון של <span class="num-highlight">עשרות שעות עבודה</span> בחודש</div>
+      </div>
+
+    </div>
+
+    <div class="ai-strip">
+      <strong>המערכת מבוססת AI:</strong> היא לומדת את הארגון שלכם עם כל הגשה - ומשתפרת. ככל שתתחילו מוקדם, היתרון היחסי שלכם יגדל.
+    </div>
+
+    <h2>מה מקבל ארגון שמצטרף לפיילוט</h2>
+    <div class="benefits">
+      <div class="ben">
+        <b>השפעה אמיתית על המוצר</b>
+        <span>מה שתבקשו ייבנה - ובסדר שתשפיעו עליו.</span>
+      </div>
+      <div class="ben">
+        <b>ערוץ ישיר אליי</b>
+        <span>במהלך כל תקופת הבנייה.</span>
+      </div>
+      <div class="ben">
+        <b>ליווי אישי</b>
+        <span>עד לקבלת מענק ראשון דרך המערכת.</span>
+      </div>
+      <div class="ben">
+        <b>תנאי מייסדים</b>
+        <span>מחיר מייסדים שנשמר לכם גם אחרי ההשקה המסחרית.</span>
+      </div>
+    </div>
+
+    <div class="invest">
+      <h4>ההשקעה והרווח</h4>
+      <p>
+        ההצטרפות לפיילוט כרוכה בהשתתפות חודשית נגישה - <strong>הגשה מוצלחת אחת מכסה את ההשקעה כולה, ומשאירה עודף.</strong>
+      </p>
+    </div>
+
+  </main>
+
+  <div class="cta">
+    <div class="cta-main"><span class="big-num">5</span> מקומות בלבד</div>
+    <div class="cta-limited">הצעה לזמן מוגבל</div>
+  </div>
+
+</div>
+</body>
+</html>
