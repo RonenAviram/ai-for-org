@@ -732,20 +732,312 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
 }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
+/* ===== Stages & Stepper ===== */
+body.stage-1 .sidebar { display: none; }
+.stage { display: none; }
+.stage.active { display: block; animation: fadeUp 0.35s; }
+.stage-wrap { max-width: 1120px; margin: 0 auto; }
+.pf-view[hidden] { display: none; }
+.pf-view { animation: fadeUp 0.35s; }
+
+.stepper { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto 22px; max-width: 1120px; }
+.step {
+  display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 16px; border-radius: 22px;
+  background: var(--surface); border: 1px solid var(--border); font-size: 13px; font-weight: 600;
+  color: var(--text-tertiary); white-space: nowrap; transition: all 0.2s; font-family: 'Heebo', sans-serif;
+}
+.step-num {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;
+}
+.step.active { color: var(--accent); border-color: #C7D2FE; background: var(--accent-light); }
+.step.active .step-num { background: var(--accent); color: #fff; border-color: var(--accent); }
+.step.done { color: var(--green); cursor: pointer; }
+.step.done .step-num { background: var(--green); color: #fff; border-color: var(--green); }
+.step.done:hover { border-color: var(--green-border); background: var(--green-light); }
+.step-line { flex: 0 1 40px; height: 2px; background: var(--border); border-radius: 1px; }
+.step-line.done { background: var(--green-border); }
+
+/* Shared profile-builder pieces */
+.pf-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 20px; }
+.pf-intro { text-align: center; margin-bottom: 20px; }
+.pf-intro h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
+.pf-intro p { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
+.pf-num {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--accent-light); color: var(--accent);
+  font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.pf-card-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.pf-card-sub { font-size: 12px; color: var(--text-tertiary); margin-bottom: 14px; }
+
+/* Intake */
+.intake-id { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 14px; }
+.intake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.intake-grid .span2 { grid-column: span 2; }
+.pf-field label { font-size: 12px; color: var(--text-tertiary); display: block; margin-bottom: 5px; }
+.pf-input {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Heebo', sans-serif;
+  font-size: 14px; background: var(--bg); color: var(--text-primary); direction: rtl;
+}
+.pf-input:focus { outline: none; border-color: #C7D2FE; }
+.pf-input.ltr { direction: ltr; text-align: left; }
+.auto-found {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px;
+  background: var(--green-light); border: 1px solid var(--green-border); color: var(--green); font-size: 13px; font-weight: 500;
+}
+.auto-found i { font-size: 17px; }
+.file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.file-tile { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
+.file-ico { width: 34px; height: 34px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.file-ico.pdf { background: #FEF2F2; color: #DC2626; }
+.file-ico.xls { background: #ECFDF5; color: #059669; }
+.file-ico.ppt { background: #FFF7ED; color: #EA580C; }
+.file-ico.doc { background: #EFF6FF; color: #2563EB; }
+.file-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.file-meta { font-size: 11px; color: var(--text-tertiary); }
+.file-check { margin-right: auto; color: var(--green); font-size: 17px; }
+.file-tile.suggested { background: transparent; border-style: dashed; color: var(--text-tertiary); cursor: pointer; }
+.file-tile.suggested:hover { border-color: #C7D2FE; color: var(--accent); }
+.file-tile.suggested .file-ico { background: transparent; border: 1px dashed var(--border); color: inherit; }
+.file-tile.suggested .file-name { font-weight: 500; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.toggle { width: 38px; height: 22px; border-radius: 11px; background: var(--accent); position: relative; cursor: pointer; flex-shrink: 0; border: none; transition: background 0.2s; }
+.toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: left 0.2s; }
+.toggle.off { background: var(--border); }
+.toggle.off::after { left: 19px; }
+.extra-chips { display: flex; flex-wrap: wrap; gap: 8px; transition: opacity 0.2s; }
+.extra-chips.off { opacity: 0.35; }
+.extra-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 20px;
+  background: var(--accent-light); color: var(--accent); font-size: 13px; font-weight: 500; border: 1px solid #C7D2FE;
+}
+.extra-chip i { font-size: 15px; }
+.extra-chip.more { background: transparent; border-style: dashed; color: var(--text-tertiary); border-color: var(--border); }
+.intake-cta { text-align: center; margin-top: 20px; }
+
+/* Run */
+.run-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; padding: 14px 20px; }
+.run-head-text { flex: 1; min-width: 0; }
+.run-head-text h2 { font-size: 18px; font-weight: 800; }
+.run-head-text p { font-size: 13px; color: var(--text-tertiary); margin-top: 2px; }
+.run-progress { height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; margin-top: 10px; }
+.run-progress span { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 0.4s; }
+.skip-link { font-size: 12px; color: var(--text-tertiary); background: none; border: none; font-family: 'Heebo', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.skip-link:hover { color: var(--accent); }
+.run-grid { display: grid; grid-template-columns: 1fr 310px; gap: 16px; align-items: start; }
+.src-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.src-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; height: 236px; display: flex; flex-direction: column; transition: border-color 0.3s, background 0.3s; position: relative; overflow: hidden; }
+.src-panel .log { flex: 1; min-height: 0; overflow-y: auto; scroll-behavior: smooth; padding-left: 2px; }
+.src-panel.scanning { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,0.08); }
+.src-panel.done { border-color: var(--green-border); }
+.src-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
+.src-ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; background: var(--bg); color: var(--text-tertiary); border: 1px solid var(--border-light); flex-shrink: 0; transition: all 0.3s; }
+.src-panel.scanning .src-ico { background: var(--accent); color: #fff; border-color: var(--accent); }
+.src-panel.done .src-ico { background: var(--green); color: #fff; border-color: var(--green); }
+.src-name { font-size: 14px; font-weight: 700; line-height: 1.3; }
+.src-sub { font-size: 11px; color: var(--text-tertiary); }
+.src-state { margin-right: auto; font-size: 11px; color: var(--text-tertiary); display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.src-panel.scanning .src-state { color: var(--accent); }
+.src-panel.done .src-state { color: var(--green); font-weight: 600; }
+.src-panel.scanning .source-spinner { display: inline-block; }
+.log { display: flex; flex-direction: column; gap: 7px; }
+.log-item { font-size: 12.5px; display: flex; gap: 7px; align-items: flex-start; line-height: 1.45; color: var(--text-primary); animation: fadeUp 0.3s; }
+.log-item > i { font-size: 14px; margin-top: 2px; flex-shrink: 0; color: var(--green); }
+.log-cite { display: block; color: var(--text-tertiary); font-size: 11px; }
+.log-item.conflict { background: var(--amber-light); border: 1px solid var(--amber-border); border-radius: 7px; padding: 7px 9px; }
+.log-item.conflict > i { color: var(--amber); }
+.log-item.gap { background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 7px; padding: 7px 9px; }
+.log-item.gap > i { color: #7C3AED; }
+.log-empty { font-size: 12px; color: var(--text-tertiary); }
+
+.skel { position: sticky; top: 0; }
+.skel-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 7px; margin-bottom: 4px; }
+.skel-title i { color: var(--accent); font-size: 17px; }
+.skel-stats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.skel-stat { font-size: 11px; padding: 2px 9px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border-light); color: var(--text-secondary); }
+.skel-stat b { font-weight: 700; }
+.skel-row { display: flex; align-items: center; gap: 9px; padding: 8px 0; border-bottom: 1px solid var(--border-light); font-size: 12.5px; color: var(--text-secondary); }
+.skel-row:last-child { border-bottom: none; }
+.skel-row > i { font-size: 15px; color: var(--text-tertiary); width: 16px; flex-shrink: 0; }
+.skel-label { width: 118px; flex-shrink: 0; }
+.skel-bar { flex: 1; height: 6px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 3px; overflow: hidden; }
+.skel-bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.4s, background 0.3s; }
+.skel-row.done { color: var(--text-primary); }
+.skel-row.done > i { color: var(--green); }
+.skel-row.done .skel-bar span { background: var(--green); }
+
+/* Profile */
+.prof-hero {
+  background: linear-gradient(135deg, #4F46E5 0%, #6366F1 60%, #818CF8 100%); color: #fff;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: 24px; display: flex; gap: 18px; align-items: flex-start;
+  position: relative; overflow: hidden;
+}
+.prof-hero::after { content: ''; position: absolute; top: -50px; left: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.07); border-radius: 50%; }
+.prof-logo {
+  width: 64px; height: 64px; border-radius: 16px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.35);
+  display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; flex-shrink: 0;
+}
+.prof-hero-body { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.prof-kicker { font-size: 11px; font-weight: 600; opacity: 0.8; display: flex; align-items: center; gap: 4px; margin-bottom: 2px; }
+.prof-hero h2 { font-size: 24px; font-weight: 800; line-height: 1.25; }
+.prof-mission { font-size: 14px; opacity: 0.92; margin: 4px 0 10px; }
+.prof-meta { font-size: 12px; opacity: 0.8; margin-top: 10px; display: flex; gap: 14px; flex-wrap: wrap; }
+.prof-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.prof-provenance {
+  background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 10px 18px; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--text-secondary); margin-bottom: 14px;
+}
+.prof-provenance span { display: inline-flex; align-items: center; gap: 4px; }
+.prof-provenance i { font-size: 14px; color: var(--accent); }
+.prof-provenance .pv-warn i { color: var(--amber); }
+.prof-provenance .pv-q i { color: #7C3AED; }
+
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 12px 12px; text-align: center; box-shadow: var(--shadow-sm); }
+.kpi-num { font-size: 26px; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
+.kpi-label { font-size: 12px; color: var(--text-tertiary); margin: 2px 0 8px; }
+.kpi-chips { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; }
+
+.src-chip {
+  display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; padding: 1px 7px; border-radius: 10px;
+  background: var(--bg); border: 1px solid var(--border-light); color: var(--text-tertiary); position: relative;
+  cursor: help; white-space: nowrap; vertical-align: middle; font-weight: 500; line-height: 1.6;
+}
+.src-chip i { font-size: 11px; }
+.src-chip.warn { background: var(--amber-light); border-color: var(--amber-border); color: var(--amber); }
+.src-chip[data-q]:hover::after, .src-chip[data-q]:focus::after {
+  content: attr(data-q); position: absolute; bottom: calc(100% + 6px); right: 50%; transform: translateX(50%);
+  background: var(--text-primary); color: #fff; font-size: 12px; padding: 8px 10px; border-radius: 8px;
+  width: max-content; max-width: 260px; white-space: normal; line-height: 1.5; z-index: 40; box-shadow: var(--shadow-lg); font-weight: 400;
+}
+
+.prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.prof-sec { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
+.prof-sec.span2 { grid-column: span 2; }
+.prof-sec h3 { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 7px; margin-bottom: 14px; }
+.prof-sec h3 > i { color: var(--accent); font-size: 17px; }
+.prof-sec h3 .h3-note { margin-right: auto; font-size: 11px; font-weight: 500; color: var(--text-tertiary); }
+
+.donut-wrap { display: flex; align-items: center; gap: 20px; }
+.donut { width: 130px; height: 130px; flex-shrink: 0; }
+.legend { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.legend-row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-val { margin-right: auto; font-weight: 700; }
+.legend-sub { font-size: 11px; color: var(--text-tertiary); font-weight: 400; }
+
+.prog { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-light); }
+.prog:last-child { border-bottom: none; padding-bottom: 0; }
+.prog:first-child { padding-top: 0; }
+.prog-ico { width: 36px; height: 36px; border-radius: 9px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.prog-name { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.prog-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 2px; }
+.pill { font-size: 10.5px; font-weight: 600; padding: 1px 8px; border-radius: 10px; }
+.pill-accent { background: var(--accent); color: #fff; }
+.pill-green { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+
+.map-wrap { display: flex; align-items: center; gap: 16px; }
+.map-svg { width: 210px; flex-shrink: 0; border-radius: 8px; background: var(--bg); }
+.map-legend { flex: 1; font-size: 12.5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 10px; }
+.map-legend-row { display: flex; gap: 8px; align-items: flex-start; line-height: 1.45; }
+.map-legend-row b { color: var(--text-primary); }
+.mdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.map-note { font-size: 10.5px; color: var(--text-tertiary); }
+
+.impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.impact { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px; }
+.impact-num { font-size: 24px; font-weight: 800; color: var(--green); line-height: 1.1; }
+.impact-label { font-size: 12px; color: var(--text-secondary); margin: 2px 0 6px; line-height: 1.4; }
+
+.why-list, .goal-list, .limit-list { display: flex; flex-direction: column; gap: 10px; }
+.why { display: flex; gap: 10px; align-items: flex-start; }
+.why-ico { width: 28px; height: 28px; border-radius: 7px; background: var(--green-light); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.why-title { font-size: 13.5px; font-weight: 700; }
+.why-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+
+.goal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+.goal-top .goal-val { font-size: 12px; color: var(--accent); font-weight: 700; white-space: nowrap; }
+.goal-bar { height: 7px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden; }
+.goal-bar span { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.goal-plain { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; font-weight: 600; }
+.goal-plain i { color: var(--accent); font-size: 16px; margin-top: 1px; }
+
+.limit { background: var(--amber-light); border: 1px solid var(--amber-border); border-radius: 8px; padding: 9px 12px; }
+.limit-title { font-size: 13px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.limit-title > i { color: var(--amber); font-size: 15px; }
+.limit-effect { font-size: 12px; color: var(--text-secondary); margin-top: 3px; display: flex; gap: 4px; align-items: center; }
+.limit-effect i { font-size: 13px; color: var(--amber); }
+
+.hist-bar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin: 4px 0 8px; }
+.hist-legend { display: flex; gap: 14px; font-size: 12px; color: var(--text-secondary); margin-bottom: 14px; flex-wrap: wrap; }
+.hist-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.hist-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.hist-fact { background: var(--bg); border: 1px solid var(--border-light); border-radius: 8px; padding: 9px 11px; font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+.hist-fact b { display: block; font-size: 16px; color: var(--text-primary); }
+
+.q-sec { border-color: #DDD6FE; background: linear-gradient(180deg, #FAF8FF 0%, var(--surface) 70%); }
+.q-sec h3 > i { color: #7C3AED; }
+.q { padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+.q:last-child { border-bottom: none; padding-bottom: 0; }
+.q-text { font-size: 14px; font-weight: 700; }
+.q-why { font-size: 12.5px; color: var(--text-secondary); margin: 3px 0 10px; line-height: 1.5; }
+.q-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+.q-opt {
+  min-height: 36px; padding: 6px 16px; border-radius: 18px; border: 1px solid #DDD6FE; background: var(--surface); color: #6D28D9;
+  font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.q-opt:hover { background: #F5F3FF; }
+.q-done { display: none; font-size: 13px; color: var(--green); font-weight: 600; align-items: center; gap: 5px; }
+.q.answered .q-opts { display: none; }
+.q.answered .q-done { display: flex; }
+
+.prof-cta {
+  margin-top: 16px; background: var(--surface); border: 1px solid #C7D2FE; border-radius: var(--radius-lg); padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: var(--shadow-md);
+}
+.prof-cta-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; }
+.prof-cta-text b { color: var(--text-primary); display: block; font-size: 15px; }
+
+/* Sidebar highlight after profile approval */
+.org-banner.just-built { animation: builtGlow 2.2s ease-out; }
+@keyframes builtGlow { 0% { box-shadow: 0 0 0 0 rgba(79,70,229,0.6); transform: scale(1.03); } 40% { box-shadow: 0 0 0 10px rgba(79,70,229,0); transform: scale(1); } 100% { box-shadow: none; } }
+.profile-link { display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%; padding: 6px 0 0; font-size: 12px; color: var(--accent); background: none; border: none; font-family: 'Heebo', sans-serif; cursor: pointer; }
+.profile-link:hover { text-decoration: underline; }
+
 /* Responsive */
+@media (max-width: 960px) {
+  .run-grid { grid-template-columns: 1fr; }
+  .skel { position: static; }
+}
 @media (max-width: 860px) {
   .container { flex-direction: column; }
   .sidebar { width: 100%; border-left: none; border-bottom: 1px solid var(--border); }
   .sources-grid { grid-template-columns: repeat(3, 1fr); }
+  .prof-grid { grid-template-columns: 1fr; }
+  .prof-sec.span2 { grid-column: auto; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .intake-grid, .intake-id, .src-panels { grid-template-columns: 1fr; }
+  .intake-grid .span2 { grid-column: auto; }
+  .src-panel { height: 200px; }
+  .prof-cta { flex-direction: column; align-items: stretch; text-align: center; }
+  .prof-hero { flex-direction: column; gap: 12px; padding: 20px; }
+  .donut-wrap, .map-wrap { flex-direction: column; align-items: stretch; }
+  .donut, .map-svg { margin: 0 auto; }
+  .step:not(.active) .step-label { display: none; }
+  .step:not(.active) { padding: 7px; }
 }
 @media (max-width: 500px) {
   .sources-grid { grid-template-columns: repeat(2, 1fr); }
   .header { padding: 12px 16px; }
   .main { padding: 16px; }
+  .hist-facts, .impact-grid { grid-template-columns: 1fr 1fr; }
+  .run-head { flex-wrap: wrap; }
 }
 </style>
 </head>
-<body>
+<body class="stage-1">
 
 <div class="header">
   <div class="header-brand">
@@ -777,6 +1069,7 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
       <div class="org-detail"><i class="ti ti-coins"></i><span class="label">תקציב:</span> 2.5M ₪ / שנה</div>
       <div class="org-detail"><i class="ti ti-users"></i><span class="label">עובדים:</span> 18</div>
       <div class="org-detail"><i class="ti ti-calendar"></i><span class="label">ותק:</span> 8 שנים</div>
+      <button class="profile-link" onclick="viewProfile()"><i class="ti ti-id" style="font-size:14px;"></i> לפרופיל המלא</button>
     </div>
 
     <div class="improve-section">
@@ -856,7 +1149,404 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
     </div>
   </div>
 
-  <div class="main">
+  <div class="main" id="main">
+    <div class="stepper" id="stepper">
+      <button class="step active" data-step="1" onclick="goStep(1)"><span class="step-num">1</span><span class="step-label">בניית פרופיל</span></button>
+      <span class="step-line"></span>
+      <button class="step" data-step="2" onclick="goStep(2)"><span class="step-num">2</span><span class="step-label">סריקת הזדמנויות</span></button>
+      <span class="step-line"></span>
+      <button class="step" data-step="3"><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+    </div>
+
+    <!-- ===== Stage 1: Profile builder ===== -->
+    <div class="stage active" id="stage1">
+      <div class="stage-wrap">
+
+        <!-- 1a. Intake -->
+        <div class="pf-view" id="pfIntake">
+          <div class="pf-intro">
+            <h2>בואו נכיר את הארגון</h2>
+            <p>הסוכן יאסוף מידע מ-4 סוגי מקורות, יצליב ביניהם ויבנה פרופיל שמולו תדורג כל הזדמנות מימון</p>
+          </div>
+
+          <div class="pf-card" style="margin-bottom:14px;">
+            <div class="intake-id">
+              <div class="pf-field"><label>שם הארגון</label><input class="pf-input" value='עמותת "דרך הבריאות"' readonly></div>
+              <div class="pf-field"><label>מספר עמותה</label><input class="pf-input ltr" value="58-XXXXXXX" readonly></div>
+            </div>
+          </div>
+
+          <div class="intake-grid">
+            <div class="pf-card">
+              <div class="pf-card-title"><span class="pf-num">1</span> אתר הארגון</div>
+              <div class="pf-card-sub">כל דפי האתר: אודות, תכניות, צוות, שותפים ועדכונים</div>
+              <div class="pf-field"><input class="pf-input ltr" value="derechhabriut.org.il" readonly></div>
+            </div>
+
+            <div class="pf-card">
+              <div class="pf-card-title"><span class="pf-num">2</span> דף הארגון בגיידסטאר</div>
+              <div class="pf-card-sub">דיווחים כספיים, מקורות הכנסה, כוח אדם ואישורים</div>
+              <div class="auto-found"><i class="ti ti-circle-check"></i> זוהה אוטומטית לפי מספר העמותה</div>
+            </div>
+
+            <div class="pf-card span2">
+              <div class="pf-card-title"><span class="pf-num">3</span> מסמכים שהארגון מספק</div>
+              <div class="pf-card-sub">המקור העשיר ביותר: כאן נמצאים היעדים, המספרים והלקחים שלא מופיעים ברשת</div>
+              <div class="file-grid">
+                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח שנתי 2025</div><div class="file-meta">PDF · 32 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח כספי מבוקר 2025</div><div class="file-meta">PDF · 18 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico doc"><i class="ti ti-file-type-doc"></i></div><div><div class="file-name">תכנית עבודה 2026</div><div class="file-meta">Word · 14 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">אסטרטגיית גיוס משאבים 2026–2028</div><div class="file-meta">PDF · 22 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח השפעה ומדידה 2025</div><div class="file-meta">PDF · 12 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico ppt"><i class="ti ti-presentation"></i></div><div><div class="file-name">מצגת ארגונית</div><div class="file-meta">PowerPoint · 16 שקפים</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile"><div class="file-ico xls"><i class="ti ti-file-spreadsheet"></i></div><div><div class="file-name">הגשות עבר ותוצאות</div><div class="file-meta">Excel · 20 הגשות</div></div><i class="ti ti-circle-check file-check"></i></div>
+                <div class="file-tile suggested"><div class="file-ico"><i class="ti ti-plus"></i></div><div><div class="file-name">פרוטוקולי ועד מנהל</div><div class="file-meta">מומלץ · לא חובה</div></div></div>
+                <div class="file-tile suggested"><div class="file-ico"><i class="ti ti-plus"></i></div><div><div class="file-name">מכתבי המלצה משותפים</div><div class="file-meta">מומלץ · לא חובה</div></div></div>
+              </div>
+            </div>
+
+            <div class="pf-card span2">
+              <div class="toggle-row">
+                <div>
+                  <div class="pf-card-title"><span class="pf-num">4</span> מקורות פתוחים נוספים</div>
+                  <div class="pf-card-sub" style="margin-bottom:0;">הסוכן מחפש את הארגון ברשת ומצליב עם שאר המקורות</div>
+                </div>
+                <button class="toggle" id="extraToggle" onclick="toggleExtra()" aria-label="מקורות נוספים"></button>
+              </div>
+              <div class="extra-chips" id="extraChips">
+                <span class="extra-chip"><i class="ti ti-news"></i> כתבות בתקשורת</span>
+                <span class="extra-chip"><i class="ti ti-brand-facebook"></i> רשתות חברתיות</span>
+                <span class="extra-chip"><i class="ti ti-building-bank"></i> רשם העמותות</span>
+                <span class="extra-chip more"><i class="ti ti-plus"></i> עוד</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="intake-cta">
+            <button class="scan-btn" onclick="startProfileBuild()">
+              <span class="pulse-dot"></span>
+              <span>בנה פרופיל ארגוני</span>
+              <i class="ti ti-id"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 1b. Agent running -->
+        <div class="pf-view" id="pfRun" hidden>
+          <div class="pf-card run-head">
+            <div class="run-head-text">
+              <h2>הסוכן בונה את הפרופיל של דרך הבריאות</h2>
+              <p id="runStatus">קורא מקורות · מצליב נתונים · מזהה פערים</p>
+              <div class="run-progress"><span id="runProgress"></span></div>
+            </div>
+            <button class="skip-link" onclick="finishProfileBuild()">דלג לפרופיל <i class="ti ti-player-skip-back"></i></button>
+          </div>
+          <div class="run-grid">
+            <div class="src-panels">
+              <div class="src-panel" id="src0">
+                <div class="src-head">
+                  <div class="src-ico"><i class="ti ti-world"></i></div>
+                  <div><div class="src-name">אתר הארגון</div><div class="src-sub">derechhabriut.org.il</div></div>
+                  <div class="src-state"><span class="source-spinner"></span><span class="st">ממתין</span></div>
+                </div>
+                <div class="log"></div>
+              </div>
+              <div class="src-panel" id="src1">
+                <div class="src-head">
+                  <div class="src-ico"><i class="ti ti-search"></i></div>
+                  <div><div class="src-name">גיידסטאר</div><div class="src-sub">ע.ר. <bdi>58-XXXXXXX</bdi></div></div>
+                  <div class="src-state"><span class="source-spinner"></span><span class="st">ממתין</span></div>
+                </div>
+                <div class="log"></div>
+              </div>
+              <div class="src-panel" id="src2">
+                <div class="src-head">
+                  <div class="src-ico"><i class="ti ti-files"></i></div>
+                  <div><div class="src-name">מסמכי הארגון</div><div class="src-sub">7 מסמכים · 134 עמודים</div></div>
+                  <div class="src-state"><span class="source-spinner"></span><span class="st">ממתין</span></div>
+                </div>
+                <div class="log"></div>
+              </div>
+              <div class="src-panel" id="src3">
+                <div class="src-head">
+                  <div class="src-ico"><i class="ti ti-news"></i></div>
+                  <div><div class="src-name">מקורות נוספים</div><div class="src-sub">תקשורת · רשתות · רשם העמותות</div></div>
+                  <div class="src-state"><span class="source-spinner"></span><span class="st">ממתין</span></div>
+                </div>
+                <div class="log"></div>
+              </div>
+            </div>
+
+            <div class="pf-card skel">
+              <div class="skel-title"><i class="ti ti-id"></i> הפרופיל מתמלא</div>
+              <div class="skel-stats">
+                <span class="skel-stat"><b id="cntFound">0</b> ממצאים</span>
+                <span class="skel-stat"><b id="cntConflict">0</b> סתירות</span>
+                <span class="skel-stat"><b id="cntGap">0</b> שאלות פתוחות</span>
+              </div>
+              <div id="skelRows"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1c. Profile -->
+        <div class="pf-view" id="pfProfile" hidden>
+          <div class="prof-hero">
+            <div class="prof-logo">ד</div>
+            <div class="prof-hero-body">
+              <div class="prof-kicker"><i class="ti ti-sparkles"></i> פרופיל ארגוני · נבנה אוטומטית</div>
+              <h2>עמותת "דרך הבריאות"</h2>
+              <div class="prof-mission">"מביאים את שירותי הבריאות אל הקהילות שהמערכת לא מגיעה אליהן"</div>
+              <div class="org-banner-tags">
+                <span class="org-banner-tag">בריאות</span>
+                <span class="org-banner-tag">פריפריה</span>
+                <span class="org-banner-tag">נוער</span>
+                <span class="org-banner-tag">מודל ייחודי</span>
+                <span class="org-banner-tag">דרום</span>
+              </div>
+              <div class="prof-meta">
+                <span><i class="ti ti-hash"></i> ע.ר. <bdi>58-XXXXXXX</bdi></span>
+                <span><i class="ti ti-map-pin"></i> באר שבע</span>
+                <span><i class="ti ti-calendar"></i> נוסדה 2018</span>
+              </div>
+            </div>
+          </div>
+          <div class="prof-provenance">
+            <span><i class="ti ti-stack-2"></i> 4 מקורות</span>
+            <span><i class="ti ti-files"></i> 7 מסמכים</span>
+            <span><i class="ti ti-circle-check"></i> <b id="pvFound">27</b>&nbsp;ממצאים עם מקור</span>
+            <span class="pv-warn"><i class="ti ti-arrows-diff"></i> סתירה אחת נפתרה</span>
+            <span class="pv-q"><i class="ti ti-help-circle"></i> <b id="pvOpen">2</b>&nbsp;שאלות פתוחות</span>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi">
+              <div class="kpi-num">2.5M ₪</div>
+              <div class="kpi-label">תקציב שנתי</div>
+              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="סך הכנסות 2025: 2,518,400 ₪. דוח כספי מבוקר, עמ' 4. תואם לדיווח בגיידסטאר."><i class="ti ti-file-text"></i> דוח כספי</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">18</div>
+              <div class="kpi-label">עובדים בשכר</div>
+              <div class="kpi-chips">
+                <span class="src-chip" tabindex="0" data-q="דיווח כוח אדם לשנת 2025: 18 עובדים בשכר."><i class="ti ti-search"></i> גיידסטאר</span>
+                <span class="src-chip warn" tabindex="0" data-q="בדף 'הצוות שלנו' באתר מופיעים 14 אנשי צוות (הדף לא עודכן). הדיווח לגיידסטאר מ-2025 עדכני יותר, ולכן נבחר."><i class="ti ti-arrows-diff"></i> סתירה נפתרה</span>
+              </div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">8</div>
+              <div class="kpi-label">שנות פעילות</div>
+              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="נרשמה ברשם העמותות ב-2018. סטטוס: פעילה, ללא הערות."><i class="ti ti-building-bank"></i> רשם העמותות</span></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">4,200</div>
+              <div class="kpi-label">מוטבים ב-2025</div>
+              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="&quot;בשנת 2025 קיבלו שירות 4,200 מוטבים ישירים, גידול של 35% לעומת 2024&quot;. דוח שנתי 2025, עמ' 6."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+            </div>
+          </div>
+
+          <div class="prof-grid">
+            <!-- Income -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-chart-donut"></i> מבנה הכנסות 2025 <span class="h3-note"><span class="src-chip" tabindex="0" data-q="דוח כספי מבוקר 2025, ביאור 12 (הכנסות). פילוח הממשלה אומת מול גיידסטאר."><i class="ti ti-file-text"></i> דוח כספי + גיידסטאר</span></span></h3>
+              <div class="donut-wrap">
+                <svg class="donut" viewBox="0 0 42 42" aria-label="מבנה הכנסות">
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--border-light)" stroke-width="6"/>
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="#4F46E5" stroke-width="6" stroke-dasharray="42 58" stroke-dashoffset="25"/>
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="#8B5CF6" stroke-width="6" stroke-dasharray="31 69" stroke-dashoffset="-17"/>
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="#D97706" stroke-width="6" stroke-dasharray="17 83" stroke-dashoffset="-48"/>
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="#059669" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="-65"/>
+                  <text x="21" y="20.5" text-anchor="middle" font-size="5.5" font-weight="800" fill="var(--text-primary)" font-family="Heebo">2.5M</text>
+                  <text x="21" y="26" text-anchor="middle" font-size="3.2" fill="var(--text-tertiary)" font-family="Heebo">₪ בשנה</text>
+                </svg>
+                <div class="legend">
+                  <div class="legend-row"><span class="legend-dot" style="background:#4F46E5"></span>משרדי ממשלה <span class="legend-val">42% <span class="legend-sub">· 1.05M</span></span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#8B5CF6"></span>קרנות <span class="legend-val">31% <span class="legend-sub">· 775K</span></span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#D97706"></span>תרומות <span class="legend-val">17% <span class="legend-sub">· 425K</span></span></div>
+                  <div class="legend-row"><span class="legend-dot" style="background:#059669"></span>רשויות והכנסה עצמית <span class="legend-val">10% <span class="legend-sub">· 250K</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Programs -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-layout-grid"></i> תכניות פעילות</h3>
+              <div class="prog">
+                <div class="prog-ico"><i class="ti ti-route"></i></div>
+                <div>
+                  <div class="prog-name">צוותים ניידים <span class="pill pill-accent">מודל ייחודי</span></div>
+                  <div class="prog-desc">צוות רב-מקצועי (אחות, עו"ס, דיאטנית) מגיע ליישוב קבוע פעמיים בשבוע <span class="src-chip" tabindex="0" data-q="מצגת ארגונית, שקף 5: 'במקום לחכות שיגיעו למרפאה, אנחנו מגיעים אליהם'. מופיע גם באתר, בעמוד 'מה אנחנו עושים'."><i class="ti ti-presentation"></i> מצגת</span></div>
+                </div>
+              </div>
+              <div class="prog">
+                <div class="prog-ico"><i class="ti ti-gender-female"></i></div>
+                <div>
+                  <div class="prog-name">בריאות נשים ונערות</div>
+                  <div class="prog-desc">68% מהמוטבים. ליווי אמהות צעירות ונקודות הקשבה ביישובים <span class="src-chip" tabindex="0" data-q="&quot;68% מהמוטבים שלנו הן נשים ונערות&quot;. דוח שנתי 2025, עמ' 9."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+                </div>
+              </div>
+              <div class="prog">
+                <div class="prog-ico"><i class="ti ti-school"></i></div>
+                <div>
+                  <div class="prog-name">נוער בריא <span class="pill pill-green">מנוע צמיחה</span></div>
+                  <div class="prog-desc">סדנאות בריאות ב-12 בתי ספר, 48 סדנאות בשנה <span class="src-chip" tabindex="0" data-q="אסטרטגיית גיוס 2026–2028, עמ' 7: הנוער מוגדר כתחום הצמיחה המרכזי לשנים הקרובות."><i class="ti ti-file-text"></i> אסטרטגיה</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Geography -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-map-pin"></i> פריסה גאוגרפית</h3>
+              <div class="map-wrap">
+                <svg class="map-svg" viewBox="30 0 165 110" aria-label="מפת פעילות סכמטית">
+                  <polygon points="8,34 12,16 60,5 118,12 182,40 178,72 146,150 113,244 100,210 60,140 30,90" fill="var(--accent-light)" stroke="#C7D2FE" stroke-width="1.5" stroke-linejoin="round"/>
+                  <g fill="#4F46E5">
+                    <circle cx="88" cy="42" r="6"/>
+                    <circle cx="82" cy="25" r="4"/><circle cx="63" cy="35" r="4"/><circle cx="58" cy="21" r="4"/>
+                    <circle cx="124" cy="64" r="4"/><circle cx="109" cy="75" r="4"/>
+                    <circle cx="100" cy="52" r="2.6"/><circle cx="95" cy="60" r="2.6"/><circle cx="106" cy="57" r="2.6"/>
+                    <circle cx="91" cy="67" r="2.6"/><circle cx="114" cy="49" r="2.6"/><circle cx="102" cy="45" r="2.6"/>
+                  </g>
+                  <g fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="3 2">
+                    <circle cx="151" cy="41" r="5"/><circle cx="172" cy="56" r="5"/>
+                  </g>
+                  <g font-family="Heebo" font-size="10" fill="var(--text-secondary)" text-anchor="middle" font-weight="600">
+                    <text x="68" y="52">באר שבע</text>
+                    <text x="144" y="68">דימונה</text>
+                    <text x="151" y="33" fill="#059669">ערד</text>
+                    <text x="170" y="74" fill="#059669">תמר</text>
+                  </g>
+                </svg>
+                <div class="map-legend">
+                  <div class="map-legend-row"><span class="mdot" style="background:#4F46E5"></span><div><b>12 יישובים פעילים</b><br>כולל שכונת נווה זאב בבאר שבע וכפרים בלתי מוכרים <span class="src-chip" tabindex="0" data-q="אתר הארגון, עמוד 'איפה אנחנו': רשימת 12 יישובי פעילות."><i class="ti ti-world"></i> אתר</span></div></div>
+                  <div class="map-legend-row"><span class="mdot" style="border:2px dashed #059669"></span><div><b>הרחבה מתוכננת 2027</b><br>5 יישובים באזור ערד–תמר <span class="src-chip" tabindex="0" data-q="תכנית עבודה 2026, פרק 3: הרחבה ל-5 יישובים באזור ערד–תמר, בכפוף לגיוס 400K ₪."><i class="ti ti-file-text"></i> תכנית עבודה</span></div></div>
+                  <div class="map-note">איור סכמטי</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-chart-bar"></i> תוצאות והשפעה</h3>
+              <div class="impact-grid">
+                <div class="impact"><div class="impact-num">−27%</div><div class="impact-label">פניות למיון באזורי הפעילות</div><span class="src-chip" tabindex="0" data-q="דוח השפעה 2025, עמ' 3: ירידה של 27% בפניות למיון בקרב אוכלוסיית היעד, לעומת שנת הבסיס."><i class="ti ti-file-text"></i> דוח השפעה</span></div>
+                <div class="impact"><div class="impact-num">89%</div><div class="impact-label">שביעות רצון בסקר חיצוני</div><span class="src-chip" tabindex="0" data-q="דוח השפעה 2025, עמ' 5: סקר שביעות רצון שערך גוף מחקר חיצוני."><i class="ti ti-file-text"></i> דוח השפעה</span></div>
+                <div class="impact"><div class="impact-num">×3.4</div><div class="impact-label">גידול בנגישות לשירותי בריאות</div><span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 11: גידול של 340% בנגישות לשירותי בריאות באזורי הפעילות."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+                <div class="impact"><div class="impact-num">+35%</div><div class="impact-label">צמיחה במספר המוטבים בשנה</div><span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 6: מ-3,100 מוטבים ב-2024 ל-4,200 ב-2025."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+              </div>
+            </div>
+
+            <!-- Why funders -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-heart-handshake"></i> למה קרנות יממנו אותנו</h3>
+              <div class="why-list">
+                <div class="why"><div class="why-ico"><i class="ti ti-copy"></i></div><div><div class="why-title">מודל שאפשר לשכפל</div><div class="why-desc">גדל מ-3 ל-12 יישובים בתוך 4 שנים <span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 4: ציר הזמן של ההתרחבות, 2021–2025."><i class="ti ti-file-text"></i> דוח שנתי</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-shield-heart"></i></div><div><div class="why-title">נוכחות בפריפריה בשעת חירום</div><div class="why-desc">הצוותים המשיכו לפעול גם במהלך המלחמה <span class="src-chip" tabindex="0" data-q="כתבה בעיתונות המקומית בנגב (מרץ 2026): 'הצוותים שממשיכים להגיע גם באזעקות'."><i class="ti ti-news"></i> תקשורת</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-chart-arrows"></i></div><div><div class="why-title">השפעה מדודה, לא הצהרתית</div><div class="why-desc">מדידה חיצונית שנתית עם מדדים קשיחים <span class="src-chip" tabindex="0" data-q="דוח השפעה ומדידה 2025: מתודולוגיה, מדדים ותוצאות."><i class="ti ti-file-text"></i> דוח השפעה</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-certificate"></i></div><div><div class="why-title">יציבות וממשל תקין</div><div class="why-desc">8 שנים של ניהול תקין רציף <span class="src-chip" tabindex="0" data-q="גיידסטאר: אישור ניהול תקין 2026 בתוקף. רשם העמותות: פעילה, ללא הערות."><i class="ti ti-search"></i> גיידסטאר</span></div></div></div>
+              </div>
+            </div>
+
+            <!-- Strategy -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-target-arrow"></i> יעדי גיוס 2026–2028</h3>
+              <div class="goal-list">
+                <div>
+                  <div class="goal-top"><span>להגדיל את חלק הקרנות בהכנסות</span><span class="goal-val">31% ← 40%</span></div>
+                  <div class="goal-bar"><span style="width:77%"></span></div>
+                </div>
+                <div>
+                  <div class="goal-top"><span>להקטין את התלות בתקציב ממשלתי</span><span class="goal-val">42% ← 35%</span></div>
+                  <div class="goal-bar"><span style="width:83%;background:#8B5CF6"></span></div>
+                </div>
+                <div class="goal-plain"><i class="ti ti-map-pin-plus"></i><span>הרחבה לאזור ערד–תמר ב-2027 (נדרשים 400K ₪)</span></div>
+                <div class="goal-plain"><i class="ti ti-trending-up"></i><span>נוער כתחום צמיחה: מימון ייעודי לתכנית "נוער בריא" <span class="src-chip" tabindex="0" data-q="אסטרטגיית גיוס משאבים 2026–2028, עמ' 4 ו-7."><i class="ti ti-file-text"></i> אסטרטגיה</span></span></div>
+              </div>
+            </div>
+
+            <!-- Constraints -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-alert-triangle" style="color:var(--amber)"></i> מגבלות כשירות <span class="h3-note">משפיעות על דירוג ההזדמנויות</span></h3>
+              <div class="limit-list">
+                <div class="limit">
+                  <div class="limit-title"><i class="ti ti-building"></i> אין ניסיון בהפעלת מרכז פיזי <span class="src-chip" tabindex="0" data-q="מצגת ארגונית, שקף 5: כל הפעילות ניידת, ללא מבנה קבע."><i class="ti ti-presentation"></i> מצגת</span></div>
+                  <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> מכרזי הפעלה יסומנו כ"דורש שותף"</div>
+                </div>
+                <div class="limit">
+                  <div class="limit-title"><i class="ti ti-user-check"></i> "דרישת ניסיון מוכח": סיבת דחייה חוזרת <span class="src-chip" tabindex="0" data-q="קובץ הגשות עבר, עמודת משוב: 3 מתוך 5 הדחיות נימקו בדרישת ניסיון."><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></div>
+                  <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> טיוטות ידגישו 8 שנות רצף ונתוני השפעה</div>
+                </div>
+                <div class="limit">
+                  <div class="limit-title"><i class="ti ti-coins"></i> יכולת מאצ'ינג עד כ-150K ₪ <span class="src-chip" tabindex="0" data-q="דוח כספי 2025, ביאור 8: יתרות לא מיועדות בהיקף של כ-150K ₪."><i class="ti ti-file-text"></i> דוח כספי</span></div>
+                  <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> קולות קוראים עם מאצ'ינג גבוה יותר ירדו בדירוג</div>
+                </div>
+                <div class="limit">
+                  <div class="limit-title"><i class="ti ti-world-off"></i> אין מימון או שותף בינלאומי <span class="src-chip" tabindex="0" data-q="גיידסטאר, מקורות הכנסה: אין תמיכות מחו&quot;ל ב-3 השנים האחרונות."><i class="ti ti-search"></i> גיידסטאר</span></div>
+                  <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> קולות קוראים אירופיים יוצגו רק עם הצעה לשותפות</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- History -->
+            <div class="prof-sec">
+              <h3><i class="ti ti-history"></i> היסטוריית הגשות <span class="h3-note"><span class="src-chip" tabindex="0" data-q="קובץ 'הגשות עבר ותוצאות': 20 הגשות מהשנים 2023–2026."><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></span></h3>
+              <div class="hist-bar">
+                <span style="width:60%;background:var(--green)"></span>
+                <span style="width:15%;background:var(--amber)"></span>
+                <span style="width:25%;background:var(--red)"></span>
+              </div>
+              <div class="hist-legend">
+                <span><span class="legend-dot" style="background:var(--green)"></span>12 אושרו</span>
+                <span><span class="legend-dot" style="background:var(--amber)"></span>3 חלקית</span>
+                <span><span class="legend-dot" style="background:var(--red)"></span>5 נדחו</span>
+              </div>
+              <div class="hist-facts">
+                <div class="hist-fact"><b>60%</b>שיעור הצלחה</div>
+                <div class="hist-fact"><b>140K ₪</b>מענק ממוצע שאושר</div>
+                <div class="hist-fact"><b>4</b>קרנות שאישרו יותר מפעם אחת</div>
+                <div class="hist-fact"><b>3/5</b>דחיות בגלל דרישת ניסיון</div>
+              </div>
+            </div>
+
+            <!-- Open questions -->
+            <div class="prof-sec span2 q-sec">
+              <h3><i class="ti ti-help-circle"></i> 2 שאלות שהסוכן לא מצא להן תשובה <span class="h3-note">תשובה אחת בלחיצה משפרת את דיוק ההתאמה</span></h3>
+              <div class="q">
+                <div class="q-text">מה העלות השנתית למוטב?</div>
+                <div class="q-why">נדרש בכ-40% מהקולות הקוראים. לפי הדוח הכספי, ההערכה היא כ-600 ₪ למוטב, אבל זה לא מופיע באף מסמך.</div>
+                <div class="q-opts">
+                  <button class="q-opt" onclick="answerQ(this)">כ-600 ₪, נכון</button>
+                  <button class="q-opt" onclick="answerQ(this)">בין 600 ל-900 ₪</button>
+                  <button class="q-opt" onclick="answerQ(this)">עוד לא חישבנו</button>
+                </div>
+                <div class="q-done"><i class="ti ti-circle-check"></i> נשמר בפרופיל</div>
+              </div>
+              <div class="q">
+                <div class="q-text">השותפות עם אוניברסיטת בן-גוריון עדיין פעילה?</div>
+                <div class="q-why">מופיעה באתר ובדוח השנתי של 2023, אבל לא בדוח של 2025. שותפות אקדמית היא יתרון אצל חלק מהקרנות.</div>
+                <div class="q-opts">
+                  <button class="q-opt" onclick="answerQ(this)">כן, פעילה</button>
+                  <button class="q-opt" onclick="answerQ(this)">הסתיימה</button>
+                </div>
+                <div class="q-done"><i class="ti ti-circle-check"></i> נשמר בפרופיל</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prof-cta">
+            <div class="prof-cta-text"><b>זה הבסיס לכל ההתאמות</b>כל הזדמנות מימון תדורג מול הפרופיל הזה, והוא יתעדכן עם כל הגשה ותוצאה.</div>
+            <button class="scan-btn" id="approveBtn" onclick="approveProfile()">
+              <span id="approveLabel">אשר פרופיל והמשך לסריקת הזדמנויות</span>
+              <i class="ti ti-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== Stage 2: Opportunity scan ===== -->
+    <div class="stage" id="stage2">
     <div class="greeting-bar">
       <div class="greeting-icon"><i class="ti ti-sparkles"></i></div>
       <div>
@@ -964,7 +1654,7 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
     <div class="results-bar" id="resultsBar">
       <div>
         <div class="total"><span class="highlight" id="totalScanned">93</span> הזדמנויות נסרקו &larr; <span class="highlight" id="totalRelevant">18</span> רלוונטיות לפרופיל שלכם</div>
-        <div class="filter-info"><i class="ti ti-filter" style="font-size:14px;"></i> סוננו לפי: בריאות קהילתית, פריפריה דרום, מודל ייחודי</div>
+        <div class="filter-info"><i class="ti ti-filter" style="font-size:14px;"></i> סוננו לפי הפרופיל שלכם: בריאות קהילתית, פריפריה דרום, מודל ייחודי</div>
       </div>
     </div>
 
@@ -1132,6 +1822,7 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
       </div>
 
     </div>
+    </div><!-- /stage2 -->
   </div>
 </div>
 
@@ -1538,6 +2229,7 @@ function closeModal(e) {
 function showDraftModal(index) {
   const d = drafts[index];
   if (!d) return;
+  setStep(3);
   const modal = document.getElementById('modalBox');
   modal.classList.remove('modal-narrow');
   document.getElementById('modalTitle').textContent = d.title;
@@ -1673,6 +2365,200 @@ function submitFeedback() {
       document.querySelectorAll('.feedback-status-btn').forEach(b => b.classList.remove('active'));
     }, 2000);
   }, 1500);
+}
+
+/* ===== Stage 1: Profile builder ===== */
+const SKEL_SECTIONS = [
+  { id: 'basics',      label: 'נתונים בסיסיים',   icon: 'ti-id' },
+  { id: 'income',      label: 'מבנה הכנסות',      icon: 'ti-chart-donut' },
+  { id: 'programs',    label: 'תכניות פעילות',    icon: 'ti-layout-grid' },
+  { id: 'geo',         label: 'פריסה גאוגרפית',   icon: 'ti-map-pin' },
+  { id: 'impact',      label: 'תוצאות והשפעה',    icon: 'ti-chart-bar' },
+  { id: 'incentives',  label: 'למה יממנו אותנו',  icon: 'ti-heart-handshake' },
+  { id: 'strategy',    label: 'יעדי גיוס',         icon: 'ti-target-arrow' },
+  { id: 'constraints', label: 'מגבלות כשירות',    icon: 'ti-alert-triangle' },
+  { id: 'history',     label: 'היסטוריית הגשות',  icon: 'ti-history' },
+  { id: 'questions',   label: 'שאלות פתוחות',     icon: 'ti-help-circle' },
+];
+
+// src: 0 website · 1 GuideStar · 2 org documents · 3 extra sources
+const PF_EVENTS = [
+  { t: 500,   src: 0, sec: 'basics',      text: 'ייעוד: "מביאים את שירותי הבריאות אל הקהילות"', cite: 'דף הבית' },
+  { t: 900,   src: 1, sec: 'basics',      text: 'ע.ר. <bdi>58-XXXXXXX</bdi> · נרשמה ב-2018', cite: 'פרטי עמותה' },
+  { t: 1500,  src: 2, sec: 'impact',      text: '4,200 מוטבים ב-2025 (גידול של 35%)', cite: 'דוח שנתי 2025 · עמ\' 6' },
+  { t: 1700,  src: 0, sec: 'programs',    text: '3 תכניות: צוותים ניידים, בריאות נשים, נוער בריא', cite: 'עמוד "מה אנחנו עושים"' },
+  { t: 2100,  src: 1, sec: 'basics',      text: 'מחזור 2025: 2.52M ₪', cite: 'דיווח כספי' },
+  { t: 2500,  src: 3, sec: 'incentives',  text: 'רשם העמותות: פעילה, ללא הערות', cite: 'רשם העמותות' },
+  { t: 2800,  src: 2, sec: 'programs',    text: '68% מהמוטבים הן נשים ונערות', cite: 'דוח שנתי 2025 · עמ\' 9' },
+  { t: 3000,  src: 0, sec: 'geo',         text: 'פעילות ב-12 יישובים בנגב', cite: 'עמוד "איפה אנחנו"' },
+  { t: 3300,  src: 1, sec: 'income',      text: '42% מההכנסות: משרדי ממשלה', cite: 'מקורות הכנסה' },
+  { t: 3900,  src: 2, sec: 'income',      text: 'קרנות 31% · תרומות 17% · הכנסה עצמית 10%', cite: 'דוח כספי מבוקר · ביאור 12' },
+  { t: 4200,  src: 0, sec: 'basics',      text: '14 אנשי צוות בדף "הצוות שלנו"', cite: 'עמוד "הצוות"' },
+  { t: 4700,  src: 1, sec: 'basics',      type: 'conflict', text: 'סתירה: באתר 14 עובדים, בגיידסטאר 18. נבחר 18 (דיווח 2025, עדכני יותר)', cite: 'אתר מול גיידסטאר' },
+  { t: 5000,  src: 3, sec: 'incentives',  text: 'כתבה מקומית: "הצוותים שממשיכים להגיע גם באזעקות"', cite: 'עיתונות מקומית · מרץ 2026' },
+  { t: 5200,  src: 2, sec: 'impact',      text: 'ירידה של 27% בפניות למיון', cite: 'דוח השפעה 2025 · עמ\' 3' },
+  { t: 5600,  src: 0, sec: 'incentives',  text: 'שותפות עם אוניברסיטת בן-גוריון', cite: 'עמוד "שותפים"' },
+  { t: 6000,  src: 1, sec: 'incentives',  text: 'אישור ניהול תקין 2026 בתוקף', cite: 'אישורים' },
+  { t: 6400,  src: 2, sec: 'strategy',    text: 'יעד: חלק הקרנות מ-31% ל-40% עד 2028', cite: 'אסטרטגיית גיוס · עמ\' 4' },
+  { t: 7000,  src: 1, sec: 'constraints', text: 'אין תמיכות מחו"ל ב-3 השנים האחרונות', cite: 'מקורות הכנסה' },
+  { t: 7300,  src: 3, sec: 'basics',      text: 'פייסבוק: 3,400 עוקבים, עדכון שבועי', cite: 'רשתות חברתיות' },
+  { t: 7600,  src: 2, sec: 'geo',         text: 'הרחבה ל-5 יישובים באזור ערד–תמר ב-2027', cite: 'תכנית עבודה 2026 · פרק 3' },
+  { t: 8400,  src: 2, sec: 'impact',      text: '89% שביעות רצון בסקר חיצוני', cite: 'דוח השפעה 2025 · עמ\' 5' },
+  { t: 9000,  src: 2, sec: 'strategy',    text: 'נוער מוגדר כתחום הצמיחה המרכזי', cite: 'אסטרטגיית גיוס · עמ\' 7' },
+  { t: 9500,  src: 3, sec: 'questions',   type: 'gap', text: 'בן-גוריון מוזכרת ב-2023 ולא ב-2025. השותפות עדיין פעילה?', cite: 'אתר מול דוח שנתי' },
+  { t: 9800,  src: 2, sec: 'history',     text: '20 הגשות עבר: 12 אושרו · 3 חלקית · 5 נדחו', cite: 'הגשות עבר.xlsx' },
+  { t: 10700, src: 2, sec: 'constraints', text: '3 מתוך 5 דחיות: "דרישת ניסיון מוכח"', cite: 'הגשות עבר.xlsx · עמודת משוב' },
+  { t: 11500, src: 2, sec: 'constraints', text: 'אין ניסיון בהפעלת מרכז פיזי, פעילות ניידת בלבד', cite: 'מצגת ארגונית · שקף 5' },
+  { t: 12300, src: 2, sec: 'questions',   type: 'gap', text: 'חסר: עלות שנתית למוטב (נדרשת ב-40% מהקולות הקוראים)', cite: 'לא נמצא באף מקור' },
+];
+
+let pfTimers = [];
+let pfBuilt = false;
+let stage2Visited = false;
+
+function setStep(n) {
+  document.querySelectorAll('#stepper .step').forEach(s => {
+    const k = +s.dataset.step;
+    s.classList.toggle('active', k === n);
+    s.classList.toggle('done', k < n || (k === 1 && pfBuilt && n !== 1) || (k === 2 && stage2Visited && n === 1));
+    s.querySelector('.step-num').innerHTML = s.classList.contains('done') ? '<i class="ti ti-check" style="font-size:13px;"></i>' : k;
+  });
+  document.querySelectorAll('#stepper .step-line').forEach((l, i) => l.classList.toggle('done', (i === 0 && pfBuilt) || (i === 1 && n === 3)));
+}
+
+function goStep(n) {
+  if (n === 1 && pfBuilt) viewProfile();
+  if (n === 2 && pfBuilt) approveProfile();
+}
+
+function showStage(n) {
+  document.getElementById('stage1').classList.toggle('active', n === 1);
+  document.getElementById('stage2').classList.toggle('active', n === 2);
+  document.body.classList.toggle('stage-1', n === 1);
+  document.getElementById('main').scrollTop = 0;
+}
+
+function showPfView(id) {
+  ['pfIntake', 'pfRun', 'pfProfile'].forEach(v => document.getElementById(v).hidden = v !== id);
+  document.getElementById('main').scrollTop = 0;
+}
+
+function toggleExtra() {
+  const off = document.getElementById('extraToggle').classList.toggle('off');
+  document.getElementById('extraChips').classList.toggle('off', off);
+}
+
+function buildSkeleton() {
+  document.getElementById('skelRows').innerHTML = SKEL_SECTIONS.map(s =>
+    '<div class="skel-row" id="skel-' + s.id + '"><i class="ti ' + s.icon + '"></i><span class="skel-label">' + s.label + '</span><div class="skel-bar"><span></span></div></div>'
+  ).join('');
+}
+
+function startProfileBuild() {
+  const extraOn = !document.getElementById('extraToggle').classList.contains('off');
+  const events = PF_EVENTS.filter(e => extraOn || e.src !== 3);
+  document.getElementById('src3').style.display = extraOn ? '' : 'none';
+
+  showPfView('pfRun');
+  buildSkeleton();
+  [0, 1, 2, 3].forEach(i => {
+    const p = document.getElementById('src' + i);
+    p.classList.remove('scanning', 'done');
+    p.querySelector('.log').innerHTML = '<div class="log-empty">ממתין לתורו...</div>';
+    p.querySelector('.st').textContent = 'ממתין';
+  });
+  ['cntFound', 'cntConflict', 'cntGap'].forEach(id => document.getElementById(id).textContent = '0');
+  document.getElementById('runProgress').style.width = '0';
+
+  const totals = {}, filled = {};
+  events.forEach(e => { totals[e.sec] = (totals[e.sec] || 0) + 1; });
+  let found = 0, conflicts = 0, gaps = 0;
+
+  // Source panel lifecycle: start just before its first event, finish after its last
+  [0, 1, 2, 3].forEach(i => {
+    const own = events.filter(e => e.src === i);
+    if (!own.length) return;
+    const panel = document.getElementById('src' + i);
+    pfTimers.push(setTimeout(() => {
+      panel.classList.add('scanning');
+      panel.querySelector('.st').textContent = 'קורא...';
+      panel.querySelector('.log').innerHTML = '';
+    }, Math.max(0, own[0].t - 350)));
+    pfTimers.push(setTimeout(() => {
+      panel.classList.remove('scanning');
+      panel.classList.add('done');
+      panel.querySelector('.st').innerHTML = '<i class="ti ti-check" style="font-size:13px;"></i> ' + own.length + ' ממצאים';
+    }, own[own.length - 1].t + 700));
+  });
+
+  events.forEach(e => {
+    pfTimers.push(setTimeout(() => {
+      const icon = e.type === 'conflict' ? 'ti-arrows-diff' : e.type === 'gap' ? 'ti-help-circle' : 'ti-circle-check';
+      const item = document.createElement('div');
+      item.className = 'log-item ' + (e.type || 'ok');
+      item.innerHTML = '<i class="ti ' + icon + '"></i><div>' + e.text + '<span class="log-cite">' + e.cite + '</span></div>';
+      const log = document.querySelector('#src' + e.src + ' .log');
+      log.appendChild(item);
+      log.scrollTop = log.scrollHeight;
+
+      found++;
+      if (e.type === 'conflict') conflicts++;
+      if (e.type === 'gap') gaps++;
+      document.getElementById('cntFound').textContent = found;
+      document.getElementById('cntConflict').textContent = conflicts;
+      document.getElementById('cntGap').textContent = gaps;
+      document.getElementById('runProgress').style.width = Math.round(found / events.length * 100) + '%';
+
+      filled[e.sec] = (filled[e.sec] || 0) + 1;
+      const row = document.getElementById('skel-' + e.sec);
+      row.querySelector('.skel-bar span').style.width = (filled[e.sec] / totals[e.sec] * 100) + '%';
+      if (filled[e.sec] === totals[e.sec]) row.classList.add('done');
+    }, e.t));
+  });
+
+  const end = events[events.length - 1].t;
+  pfTimers.push(setTimeout(() => { document.getElementById('runStatus').textContent = 'מסכם את הפרופיל...'; }, end + 800));
+  pfTimers.push(setTimeout(finishProfileBuild, end + 1800));
+}
+
+function finishProfileBuild() {
+  pfTimers.forEach(clearTimeout);
+  pfTimers = [];
+  pfBuilt = true;
+  document.getElementById('runStatus').textContent = 'קורא מקורות · מצליב נתונים · מזהה פערים';
+  document.getElementById('approveLabel').textContent = 'אשר פרופיל והמשך לסריקת הזדמנויות';
+  showPfView('pfProfile');
+  setStep(1);
+}
+
+function answerQ(btn) {
+  btn.closest('.q').classList.add('answered');
+  const open = document.querySelectorAll('.q:not(.answered)').length;
+  document.getElementById('pvOpen').textContent = open;
+}
+
+function viewProfile() {
+  document.getElementById('approveLabel').textContent = 'חזרה לסריקת הזדמנויות';
+  showStage(1);
+  showPfView('pfProfile');
+  setStep(1);
+}
+
+function approveProfile() {
+  const firstTime = !stage2Visited;
+  stage2Visited = true;
+  showStage(2);
+  setStep(2);
+  if (firstTime) {
+    const banner = document.querySelector('.org-banner');
+    banner.classList.remove('just-built');
+    void banner.offsetWidth;
+    banner.classList.add('just-built');
+    const toast = document.getElementById('scheduleToast');
+    document.getElementById('scheduleToastText').textContent = 'הפרופיל נשמר. כל הזדמנות תדורג מולו';
+    toast.classList.add('visible');
+    setTimeout(() => toast.classList.remove('visible'), 3000);
+  }
 }
 </script>
 </body>
