@@ -615,71 +615,6 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
   max-height: 50vh;
   overflow-y: auto;
 }
-/* Criteria panel */
-.criteria-panel {
-  background: var(--bg);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius);
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  max-height: 50vh;
-  overflow-y: auto;
-}
-.criteria-panel-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.criteria-panel-title i { color: var(--accent); font-size: 16px; }
-.criteria-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-light);
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  opacity: 0;
-  transform: translateX(8px);
-  transition: all 0.3s;
-}
-.criteria-item:last-child { border-bottom: none; }
-.criteria-item.visible { opacity: 1; transform: translateX(0); }
-.criteria-check {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--green-light);
-  border: 1px solid var(--green-border);
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 12px;
-  margin-top: 1px;
-}
-.criteria-summary {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--green);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-.criteria-summary.visible { opacity: 1; }
-.criteria-summary i { font-size: 18px; }
 @media (max-width: 700px) {
   .modal-split { grid-template-columns: 1fr; }
 }
@@ -943,6 +878,69 @@ body.stage-1 .sidebar { display: none; }
 .prof-cta-text { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; }
 .prof-cta-text b { color: var(--text-primary); display: block; font-size: 15px; }
 
+/* ===== Stage 3: Submission request ===== */
+.rq-wrap { max-width: 640px; margin: 0 auto; }
+#rqForm, #rqDone { display: flex; flex-direction: column; gap: 14px; animation: fadeUp 0.35s; }
+#rqForm[hidden], #rqDone[hidden] { display: none; }
+.rq-back { align-self: flex-start; background: none; border: none; font-family: 'Heebo', sans-serif; font-size: 13px; color: var(--text-tertiary); cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 0; }
+.rq-back:hover { color: var(--accent); }
+.rq-from { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 10px 14px; font-size: 13px; color: var(--text-secondary); }
+.rq-from > i { color: var(--accent); font-size: 18px; flex-shrink: 0; }
+.rq-from b { color: var(--text-primary); }
+.rq-match { margin-right: auto; background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); border-radius: 12px; padding: 1px 9px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.rq-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.rq-wrap h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; }
+.rq-quota { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+.rq-chip { font-size: 12.5px; font-weight: 600; background: var(--accent-light); color: var(--accent); border-radius: 20px; padding: 4px 12px; display: inline-flex; align-items: center; gap: 5px; }
+.rq-small, .rq-foot { font-size: 12px; color: var(--text-tertiary); }
+.rq-foot { text-align: center; }
+.rq-lead { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.rq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
+.rq-sec { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.rq-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.rq-opt { font-size: 12px; font-weight: 400; color: var(--text-tertiary); }
+.rq-label { font-size: 12.5px; color: var(--text-tertiary); margin: 10px 0 5px; line-height: 1.5; }
+.rq-input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); font-size: 14px; color: var(--text-primary); line-height: 1.65; min-height: 42px; }
+.rq-input.ltr { direction: ltr; text-align: left; }
+.rq-placeholder { color: var(--text-tertiary); }
+.rq-goal { min-height: 96px; }
+.rq-or { text-align: center; font-size: 12px; color: var(--text-tertiary); margin: 8px 0; }
+.rq-drop { border: 1.5px dashed var(--border); border-radius: 8px; padding: 10px; text-align: center; font-size: 13px; color: var(--text-tertiary); display: flex; align-items: center; justify-content: center; gap: 6px; }
+.rq-files { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.rq-files:empty { display: none; }
+.rq-file { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); font-size: 13px; font-weight: 500; }
+.rq-file i { color: #DC2626; font-size: 17px; }
+.rq-submit { justify-content: center; width: 100%; }
+.rq-done { text-align: center; padding: 26px 20px 20px; }
+.rq-check { width: 56px; height: 56px; border-radius: 50%; background: var(--green-light); border: 1px solid var(--green-border); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 12px; }
+.rq-done h2 { margin-bottom: 6px; }
+.rq-done .rq-lead { text-wrap: balance; }
+.rq-muted { font-size: 13px; color: var(--text-tertiary); margin-top: 4px; }
+.rq-sent { margin-top: 18px; text-align: right; background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px 14px; }
+.rq-sent-title { font-size: 12px; font-weight: 700; color: var(--text-tertiary); margin-bottom: 8px; }
+.rq-grid { display: grid; grid-template-columns: 90px 1fr; gap: 8px 12px; font-size: 13.5px; }
+.rq-grid dt { color: var(--text-tertiary); }
+.rq-grid dd { color: var(--text-primary); font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.rq-grid a { color: var(--accent); }
+.rq-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.rq-chips span i { font-size: 13px; color: #DC2626; vertical-align: -2px; }
+.rq-chips span { font-size: 12px; font-weight: 500; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1px 9px; }
+.rq-info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rq-info { display: flex; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-sm); }
+.rq-info > i { font-size: 20px; color: var(--accent); background: var(--accent-light); width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rq-info-label { font-size: 12px; color: var(--text-tertiary); }
+.rq-info b { font-size: 14px; }
+.rq-timeline { display: flex; flex-direction: column; margin-top: 6px; }
+.rq-tl { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; padding-bottom: 12px; position: relative; }
+.rq-tl:last-child { padding-bottom: 0; }
+.rq-tl:not(:last-child)::before { content: ''; position: absolute; right: 10px; top: 22px; bottom: 0; width: 2px; background: var(--border); }
+.rq-dot { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; background: var(--bg); border: 1px solid var(--border); color: var(--text-tertiary); position: relative; z-index: 1; }
+.rq-tl.ok .rq-dot { background: var(--green); border-color: var(--green); color: #fff; }
+.rq-tl.now .rq-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
+.rq-tl b { display: block; font-size: 13.5px; }
+.rq-tl span { color: var(--text-tertiary); }
+.rq-done-actions { display: flex; justify-content: center; }
+
 /* Sidebar highlight after profile approval */
 .org-banner.just-built { animation: builtGlow 2.2s ease-out; }
 @keyframes builtGlow { 0% { box-shadow: 0 0 0 0 rgba(79,70,229,0.6); transform: scale(1.03); } 40% { box-shadow: 0 0 0 10px rgba(79,70,229,0); transform: scale(1); } 100% { box-shadow: none; } }
@@ -955,8 +953,9 @@ body.stage-1 .sidebar { display: none; }
   .skel { position: static; }
 }
 @media (max-width: 860px) {
-  .container { flex-direction: column; }
-  .sidebar { width: 100%; border-left: none; border-bottom: 1px solid var(--border); }
+  .container { flex-direction: column; height: auto; }
+  .main { order: -1; overflow: visible; }
+  .sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); overflow: visible; }
   .sources-grid { grid-template-columns: repeat(3, 1fr); }
   .prof-grid { grid-template-columns: 1fr; }
   .prof-sec.span2 { grid-column: auto; }
@@ -964,6 +963,7 @@ body.stage-1 .sidebar { display: none; }
 }
 @media (max-width: 640px) {
   .src-panels { grid-template-columns: 1fr; }
+  .rq-info-row { grid-template-columns: 1fr; }
   .run-head { flex-direction: column; align-items: stretch; }
   .run-head .scan-btn { justify-content: center; }
   .run-head .skip-link { align-self: center; }
@@ -1102,7 +1102,7 @@ body.stage-1 .sidebar { display: none; }
       <span class="step-line"></span>
       <button class="step" data-step="2" onclick="goStep(2)"><span class="step-num">2</span><span class="step-label">סריקת הזדמנויות</span></button>
       <span class="step-line"></span>
-      <button class="step" data-step="3"><span class="step-soon">בבנייה</span><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+      <button class="step" data-step="3" onclick="goStep(3)"><span class="step-soon">בבנייה</span><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
     </div>
 
     <!-- ===== Stage 1: Profile builder ===== -->
@@ -1562,7 +1562,7 @@ body.stage-1 .sidebar { display: none; }
           <span class="doc-item doc-missing"><i class="ti ti-x"></i> תקציב מפורט למיזם</span>
         </div>
         <div class="result-actions">
-          <button class="action-btn btn-draft" onclick="showDraftModal(0)"><i class="ti ti-pencil"></i> נסח הגשה</button>
+          <button class="action-btn btn-draft" onclick="openRequest(0)"><i class="ti ti-pencil"></i> נסח הגשה</button>
           <button class="action-btn btn-contact" onclick="showContactModal(0)"><i class="ti ti-mail"></i> צור קשר</button>
           <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
@@ -1595,7 +1595,7 @@ body.stage-1 .sidebar { display: none; }
           <span class="doc-item doc-missing"><i class="ti ti-x"></i> תקציב פרויקט מפורט</span>
         </div>
         <div class="result-actions">
-          <button class="action-btn btn-draft" onclick="showDraftModal(1)"><i class="ti ti-pencil"></i> נסח הגשה</button>
+          <button class="action-btn btn-draft" onclick="openRequest(1)"><i class="ti ti-pencil"></i> נסח הגשה</button>
           <button class="action-btn btn-contact" onclick="showContactModal(1)"><i class="ti ti-mail"></i> צור קשר</button>
           <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
@@ -1657,7 +1657,7 @@ body.stage-1 .sidebar { display: none; }
           <span class="doc-item doc-missing"><i class="ti ti-x"></i> הצעת תקציב (30% מאצ'ינג)</span>
         </div>
         <div class="result-actions">
-          <button class="action-btn btn-draft" onclick="showDraftModal(3)"><i class="ti ti-pencil"></i> נסח הגשה</button>
+          <button class="action-btn btn-draft" onclick="openRequest(3)"><i class="ti ti-pencil"></i> נסח הגשה</button>
           <button class="action-btn btn-contact" onclick="showContactModal(3)"><i class="ti ti-mail"></i> צור קשר</button>
           <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
@@ -1690,7 +1690,7 @@ body.stage-1 .sidebar { display: none; }
           <span class="doc-item doc-missing"><i class="ti ti-x"></i> ניסיון מוכח במרכזים</span>
         </div>
         <div class="result-actions">
-          <button class="action-btn btn-draft" onclick="showDraftModal(4)"><i class="ti ti-pencil"></i> נסח הגשה</button>
+          <button class="action-btn btn-draft" onclick="openRequest(4)"><i class="ti ti-pencil"></i> נסח הגשה</button>
           <button class="action-btn btn-contact" onclick="showContactModal(4)"><i class="ti ti-mail"></i> צור קשר</button>
           <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
@@ -1699,6 +1699,84 @@ body.stage-1 .sidebar { display: none; }
 
     </div>
     </div><!-- /stage2 -->
+
+    <!-- ===== Stage 3: Submission request (mirrors the Drafter intake page) ===== -->
+    <div class="stage" id="stage3">
+      <div class="rq-wrap">
+        <div id="rqForm">
+          <button class="rq-back" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
+          <div class="rq-from"><i class="ti ti-target-arrow"></i><div>נפתח מתוך ההזדמנות: <b id="rqFunderLine"></b></div><span class="rq-match" id="rqMatch"></span></div>
+
+          <div class="rq-head">
+            <h2>בקשה לבניית הגשה</h2>
+            <div class="rq-quota">
+              <span class="rq-chip"><i class="ti ti-calendar"></i> בקשה אחת בשבוע · פנויה עכשיו</span>
+              <span class="rq-small">צריכים יותר? פנו אלינו להגדלת המכסה</span>
+            </div>
+          </div>
+          <p class="rq-lead">ספרו לנו לאן אתם מגישים ומה אתם רוצים להשיג. סוכן ה-AI שלנו יבנה את ההגשה על בסיס החומרים שתצרפו והפרופיל שלכם שכבר שמור אצלנו.</p>
+
+          <div class="rq-card">
+            <div class="rq-sec"><span class="rq-num">1</span> קריטריוני ההגשה</div>
+            <div class="rq-label">שם הגוף שאליו מגישים</div>
+            <div class="rq-input" id="rqFunder"></div>
+            <div class="rq-label">לינק לקול הקורא, או קובץ שמרכז את הדרישות — הנחיות, טופס, קריטריונים</div>
+            <div class="rq-input ltr" id="rqUrl"></div>
+            <div class="rq-or">או</div>
+            <div class="rq-drop"><i class="ti ti-upload"></i> העלאת קובץ (PDF, Word)</div>
+            <div class="rq-files" id="rqCriteriaFiles"></div>
+          </div>
+
+          <div class="rq-card">
+            <div class="rq-sec"><span class="rq-num">2</span> מה אתם רוצים להשיג מההגשה הזו?</div>
+            <div class="rq-label">על מה הכסף ילך, כמה מבקשים, מה חשוב להדגיש. במילים שלכם — יותר פרטים = הגשה ברורה יותר.</div>
+            <div class="rq-input rq-goal" id="rqGoal"></div>
+          </div>
+
+          <div class="rq-card">
+            <div class="rq-sec"><span class="rq-num">3</span> מידע ארגוני נוסף <span class="rq-opt">(לא חובה)</span></div>
+            <div class="rq-label">תקציב, דוח כספי, נתוני פעילות, הגשות קודמות — כל מה שיעזר לסוכן לכתוב מדויק יותר.</div>
+            <div class="rq-drop"><i class="ti ti-paperclip"></i> בחירת קבצים</div>
+            <div class="rq-files" id="rqOrgFiles"></div>
+          </div>
+
+          <button class="scan-btn rq-submit" id="rqSubmit" onclick="submitRequest()"><i class="ti ti-send"></i> שליחת הבקשה</button>
+        </div>
+
+        <div id="rqDone" hidden>
+          <div class="rq-card rq-done">
+            <div class="rq-check"><i class="ti ti-check"></i></div>
+            <h2>קיבלנו את הבקשה</h2>
+            <p class="rq-lead">סוכן ה-AI שלנו כבר מתחיל לבנות עבורכם את ההגשה, ונשלח אותה אליכם במייל ברגע שתהיה מוכנה.</p>
+            <p class="rq-muted">משך הבנייה תלוי במורכבות ההגשה ובמידע שצירפתם.</p>
+            <div class="rq-sent">
+              <div class="rq-sent-title">מה שלחתם</div>
+              <dl class="rq-grid" id="rqSent"></dl>
+            </div>
+          </div>
+
+          <div class="rq-info-row">
+            <div class="rq-info"><i class="ti ti-calendar"></i><div><div class="rq-info-label">הבקשה הבאה</div><b id="rqNext"></b></div></div>
+            <div class="rq-info"><i class="ti ti-mail"></i><div><div class="rq-info-label">עותק של הבקשה</div><b>נשלח למייל שלכם</b></div></div>
+          </div>
+
+          <div class="rq-card">
+            <div class="rq-sec"><i class="ti ti-route" style="color:var(--accent);font-size:17px;"></i> מה קורה עכשיו</div>
+            <div class="rq-timeline">
+              <div class="rq-tl ok"><div class="rq-dot"><i class="ti ti-check"></i></div><div><b>הבקשה התקבלה</b><span>היום</span></div></div>
+              <div class="rq-tl now"><div class="rq-dot"><i class="ti ti-pencil"></i></div><div><b>הסוכן בונה טיוטה</b><span>מול הקריטריונים של הקרן והפרופיל שלכם</span></div></div>
+              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-file-type-doc"></i></div><div><b>טיוטה בקובץ Word מגיעה למייל</b><span>לעריכה ולהגשה</span></div></div>
+              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-brain"></i></div><div><b>מדווחים על התוצאה, והסוכן לומד</b><span>אושרה / חלקית / נדחתה, דרך "דווח על תוצאת הגשה"</span></div></div>
+            </div>
+          </div>
+
+          <div class="rq-done-actions">
+            <button class="schedule-btn" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
+          </div>
+          <p class="rq-foot">צריכים יותר? פנו אלינו להגדלת המכסה</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1710,11 +1788,6 @@ body.stage-1 .sidebar { display: none; }
     <div class="modal-subtitle" id="modalSubtitle"></div>
     <div class="modal-split" id="modalSplit">
       <div class="modal-content" id="modalContent"></div>
-      <div class="criteria-panel" id="criteriaPanel" style="display:none;">
-        <div class="criteria-panel-title"><i class="ti ti-list-check"></i> קריטריונים להערכה</div>
-        <div id="criteriaList"></div>
-        <div class="criteria-summary" id="criteriaSummary"><i class="ti ti-circle-check"></i> <span>כל הקריטריונים מכוסים בטיוטה</span></div>
-      </div>
     </div>
     <div class="modal-actions">
       <button class="modal-btn modal-btn-primary"><i class="ti ti-clipboard"></i> העתק</button>
@@ -1780,212 +1853,33 @@ function showResults() {
   }, 350);
 }
 
-const drafts = [
+// Step 3 demo data: request prefilled from the opportunity the user picked in step 2
+const REQUESTS = [
   {
-    title: 'טיוטת הגשה — קרן משפחת שעשוע',
-    subtitle: 'קול קורא "מעגלי החיים" — תחום בריאות',
-    criteria: [
-      'התייחסות לתחום רלוונטי (ינקות / בריאות / מוגבלות)',
-      'הצגת שינוי מערכתי בשדה השירותים',
-      'מענה חדשני — לא שכפול של הקיים',
-      'נתוני השפעה כמותיים מוכחים',
-      'תקציב בטווח 50K–300K ₪',
-      'התאמה לקידום רווחה ואיכות חיים',
-      'יכולת הרחבה (scalability)',
-      'ניסיון מוכח של הארגון בתחום',
-    ],
-    content: `לכבוד צוות קרן משפחת שעשוע
-תחום "מעגלי החיים"
-
-הנדון: בקשת תמיכה — "גשר הבריאות: חוסן צוותים ובריאות נשים בפריפריה הדרומית"
-
-1. על העמותה
-
-עמותת "דרך הבריאות" (ע.ר. 58-XXXXXXX) הוקמה לפני 8 שנים מתוך הבנה פשוטה וכואבת: תושבי הפריפריה הדרומית לא מגיעים לשירותי הבריאות — כי שירותי הבריאות לא מגיעים אליהם.
-
-פיתחנו מודל שירות שהפך את המשוואה: במקום לחכות שאנשים יגיעו למרפאה, הצוותים שלנו — אחיות, עובדות סוציאליות, דיאטניות ומטפלות — יוצאים אל הקהילות. כל צוות מורכב מ-3-4 אנשי מקצוע שמגיעים ליישוב קבוע פעמיים בשבוע, בונים אמון, מזהים צרכים ומספקים מענה רפואי וחברתי במקום.
-
-היום אנחנו מפעילים 18 צוותים ב-12 יישובים בפריפריה הדרומית — מכפרים בלתי מוכרים בנגב ועד שכונות מצוקה בבאר שבע.
-
-2. הבעיה שאנחנו רואים בשטח
-
-בשמונה שנות פעילות למדנו שני דברים שמשנים את הכל:
-
-האחד — בריאות נשים בפריפריה היא משבר שקט. 68% מהמוטבים שלנו הן נשים ונערות, ואצל רבות מהן אנחנו המגע הראשון עם מערכת הבריאות מזה שנים. נשים שלא ביצעו בדיקות שגרתיות, נערות שאין להן גישה לייעוץ, אמהות צעירות שמגדלות ילדים בלי רשת תמיכה רפואית. זו לא בעיה של חוסר מודעות — זו בעיה של חוסר נגישות.
-
-השני — הצוותים שלנו שוחקים. העבודה בפריפריה, עם אוכלוסיות מורכבות, בתנאים של חוסר תשתיות ולפעמים חוסר ביטחון — גובה מחיר. בשנה האחרונה חווינו 34% תחלופה בקרב אנשי הצוות, ושמענו שוב ושוב: "אנחנו מטפלים בכולם, אבל אף אחד לא מטפל בנו." זה לא רק בעיה שלנו — זה שיקוף של מצב מערכתי שפוגע בכל מי שעובד בטיפול רפואי בפריפריה.
-
-3. המיזם המוצע — "גשר הבריאות"
-
-מיזם בן 18 חודשים בשני מעגלים מקבילים:
-
-מעגל א' — חוסן צוותי טיפול (פנימי):
-בניית תוכנית ליווי שיטתית לצוותי הטיפול שלנו, שתשמש מודל לארגונים אחרים בתחום. התוכנית כוללת:
-- ליווי קבוצתי של פסיכולוגית ארגונית — מפגש שבועי לכל צוות
-- סופרוויז'ן מקצועי — מפגשים דו-שבועיים עם מומחי תוכן בתחומי בריאות האישה, ילדים ונוער
-- מפגשי עמיתים בין-צוותיים — פורום חודשי לשיתוף ידע, אתגרים ופתרונות
-- כלים פרקטיים למניעת שחיקה — סדנאות ב-mindfulness, ניהול גבולות מקצועיים וטכניקות התאוששות
-
-מעגל ב' — בריאות נשים בפריפריה (חיצוני):
-הרחבת השירות הקיים עם מיקוד בבריאות נשים — נערות, צעירות ואמהות:
-- שילוב אחות בריאות האישה בכל צוות נייד (גיוס והכשרה של 6 אחיות)
-- הקמת 4 "נקודות הקשבה" ביישובים — מרחב בטוח לנשים לשיחה ראשונית על בריאות
-- תוכנית "אמא ראשונה" — ליווי אמהות צעירות (עד גיל 25) בשנה הראשונה ללידה, בדגש על בריאות נפשית ובריאות התינוק
-- סדנאות בריאות לנערות בבתי ספר — 12 בתי ספר, 48 סדנאות בשנה
-
-4. למה דווקא עכשיו
-
-המלחמה והמצב הביטחוני בדרום הקשו משמעותית. חלק מהיישובים שאנחנו פועלים בהם פונו, אוכלוסיות עברו טראומה, ודווקא עכשיו הצורך גדל בעוד שהמשאבים קטנו. הצוותים שלנו המשיכו לעבוד גם בתקופות הקשות ביותר, ובחלקם — גם כשהם עצמם היו בסכנה. החוסן שלהם הגיע לקצה.
-
-5. התאמה לקול הקורא "מעגלי החיים"
-
-המיזם נוגע ישירות בשלושת מרחבי ההשפעה של הקרן:
-- בריאות — קידום בריאות נשים ואמהות, חוסן צוותי טיפול
-- ינקות — תוכנית "אמא ראשונה" מלווה את השנה הראשונה ללידה
-- מוגבלות — 15% מהמוטבים שלנו הם משפחות של ילדים עם מוגבלות שלא מקבלים שירותים הולמים ביישובם
-
-המיזם מציע שינוי מערכתי — לא עוד שירות חד-פעמי, אלא מודל שניתן לשכפול בפריפריות אחרות, עם מתודולוגיה מתועדת וכלי מדידה מוכחים.
-
-6. נתוני השפעה (2025)
-
-- 4,200 מוטבים ישירים (גידול של 35% משנה קודמת)
-- 89% שביעות רצון בסקר חיצוני (מכון ברוקדייל)
-- הפחתת 27% בפניות למיון בקרב אוכלוסיית היעד
-- 340% גידול בנגישות לשירותי בריאות באזורי הפעילות
-- 18 צוותים פעילים ב-12 יישובים
-
-7. תקציב
-
-עלות המיזם הכוללת: 380,000 ₪
-סכום מבוקש מהקרן: 250,000 ₪
-מקורות נוספים (מאושרים): 80,000 ₪ — תמיכת משרד הבריאות (קיימת)
-השתתפות עצמית: 50,000 ₪
-
-פירוט:
-- ליווי וסופרוויז'ן לצוותים: 85,000 ₪
-- גיוס והכשרת 6 אחיות בריאות האישה: 120,000 ₪
-- הקמת 4 "נקודות הקשבה": 45,000 ₪
-- תוכנית "אמא ראשונה" (ליווי + חומרים): 60,000 ₪
-- סדנאות נערות (48 סדנאות): 35,000 ₪
-- מדידה, הערכה ותיעוד המודל: 35,000 ₪
-
-8. צוות המיזם
-
-- ד"ר מיכל אברהמי, מנהלת מקצועית — 12 שנות ניסיון בבריאות הציבור בנגב
-- רונית דהן, רכזת צוותים — אחות מוסמכת, 8 שנים בעמותה
-- ד"ר עינת פרידמן, יועצת חיצונית — פסיכולוגית ארגונית, מומחית לשחיקה בצוותי טיפול
-- שותפות מקצועית: מחלקת בריאות הציבור, אוניברסיטת בן-גוריון
-
-9. מדידה והערכה
-
-- סקר חוסן צוותים — לפני, אמצע ואחרי (כלי ProQOL מתורגם)
-- מעקב תחלופת עובדים — יעד: ירידה מ-34% ל-15%
-- מדד נגישות בריאות נשים — מספר נשים שביצעו בדיקות שגרתיות לראשונה
-- ראיונות עומק עם 30 מוטבות — הערכה איכותנית של השינוי
-- תיעוד המודל כ-playbook להפצה לארגונים אחרים
-
-אנחנו לא רק רוצים לשפר את השירות שלנו. אנחנו רוצים להוכיח שאפשר — שגם בפריפריה, גם עם משאבים מוגבלים, אפשר לתת שירות בריאות ברמה שאף אחד לא צריך להתבייש בה. ושהאנשים שנותנים את השירות הזה ראויים לטיפול לא פחות מהאנשים שמקבלים אותו.
-
-נשמח מאוד להציג את התכנית המלאה בפגישה אישית.
-
-בברכה,
-[שם מנהל/ת העמותה]
-עמותת "דרך הבריאות"
-טלפון: XXX-XXXXXXX
-דוא"ל: info@derechhabriut.org.il`
+    funder: 'קרן משפחת שעשוע', call: 'קול קורא "מעגלי החיים"', match: 96,
+    url: 'https://www.shashua-foundation.org.il/Application', criteriaFiles: [],
+    goal: 'מבקשים 250,000 ₪ ל-18 חודשים: שילוב אחות בריאות האישה בכל צוות נייד ותכנית חוסן לצוותים. להדגיש את הירידה של 27% בפניות למיון ואת זה שהמודל גדל מ-3 ל-12 יישובים.',
+    orgFiles: ['תקציב מיזם גשר הבריאות.pdf', 'דוח השפעה 2025.pdf'],
   },
   {
-    title: 'טיוטת הגשה — קרן רש"י',
-    subtitle: 'מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות',
-    criteria: [
-      'פעילות בקרב אוכלוסיות מוחלשות',
-      'מודל חדשני עם פוטנציאל הרחבה',
-      'נתוני השפעה כמותיים',
-      'התאמה לאזור גיאוגרפי (דרום)',
-      'תקציב פרויקט מפורט',
-      'ניסיון מוכח של 3+ שנים',
-    ],
-    content: `לכבוד צוות המענקים, קרן רש"י
-
-שלום רב,
-
-עמותת "דרך הבריאות" מבקשת להציג בפניכם את תכנית "גשר הבריאות" — מודל חדשני לשירותי בריאות קהילתיים בפריפריה הדרומית.
-
-למה אנחנו פונים לקרן רש"י:
-הקרן תמכה בשנתיים האחרונות ב-4 פרויקטי בריאות בדרום, ואנו רואים בגישתכם — תמיכה במודלים חדשניים עם פוטנציאל להרחבה — התאמה מדויקת לעבודתנו.
-
-תוצאות מוכחות:
-- גידול של 340% בנגישות לשירותי בריאות באזורי פעילות
-- 4,200 מוטבים ב-2025 (גידול של 35% משנה קודמת)
-- מודל שכפול מוכן — הורחב מ-3 ל-12 יישובים בתוך 4 שנים
-
-סכום מבוקש: 250,000 ₪
-ייעוד: הרחבה ל-5 יישובים חדשים באזור ערד-תמר
-
-נשמח להציג את התכנית באופן אישי.
-
-בברכה,
-[שם מנהל/ת הגיוס]
-עמותת "דרך הבריאות"`
+    funder: 'קרן רש"י', call: 'מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות', match: 91,
+    url: '', criteriaFiles: ['הנחיות להגשה 2026.pdf'],
+    goal: 'מבקשים 250,000 ₪ להרחבה ל-5 יישובים באזור ערד–תמר. להדגיש את נתוני ההשפעה הכמותיים ואת הצמיחה מ-3 ל-12 יישובים בתוך 4 שנים.',
+    orgFiles: ['תכנית עבודה 2026.pdf'],
   },
   null,
   {
-    title: 'טיוטת הגשה — קרן תובענות ייצוגיות',
-    subtitle: 'פרויקט בריאות ציבורית לאוכלוסיות מוחלשות',
-    criteria: [
-      'התאמה לנושא התביעה הייצוגית',
-      'פרויקט עם תועלת ציבורית מוכחת',
-      'תקציב כולל מאצ\'ינג (30%)',
-      'ניסיון מוכח בתחום',
-      'יכולת דיווח וביצוע',
-      'אישור ניהול תקין בתוקף',
-    ],
-    content: `לכבוד הוועדה לחלוקת כספים שנפסקו כסעד בתובענות ייצוגיות
-האפוטרופוס הכללי, משרד המשפטים
-
-הנדון: בקשה לתמיכה — פרויקט נגישות לשירותי בריאות בפריפריה הדרומית
-
-עמותת "דרך הבריאות" מגישה בקשה לתמיכה במסגרת הקול הקורא לפרויקטי נגישות לשירותי בריאות.
-
-הפרויקט המוצע:
-הרחבת שירותי הבריאות הקהילתיים הניידים לאזורים נוספים בפריפריה הדרומית שבהם אין גישה סבירה לשירותי בריאות.
-
-ניסיון מוכח:
-העמותה מפעילה 8 שנים מודל של צוותים ניידים רב-מקצועיים, עם תוצאות מוכחות של 340% שיפור בנגישות.
-
-תקציב כולל: 500,000 ₪
-סכום מבוקש (70%): 350,000 ₪
-מאצ'ינג (30%): 150,000 ₪ — ממקורות עצמיים ותמיכות נוספות
-
-בכבוד רב,
-[שם מנהל/ת הגיוס]
-עמותת "דרך הבריאות"`
+    funder: 'קרן תובענות ייצוגיות', call: 'פרויקט בריאות ציבורית לאוכלוסיות מוחלשות', match: 85,
+    url: '', criteriaFiles: ['קול קורא - נגישות לשירותי בריאות.pdf'],
+    goal: 'מבקשים 350,000 ₪ (70% מהתקציב) להרחבת הצוותים הניידים לאזורים בלי גישה לשירותי בריאות. המאצ׳ינג (30%) ממקורות עצמיים ומתמיכת משרד הבריאות.',
+    orgFiles: ['דוח כספי מבוקר 2025.pdf'],
   },
   {
-    title: 'טיוטת הגשה — עיריית באר שבע',
-    subtitle: 'מכרז הפעלת מרכז בריאות קהילתי שכונת נווה זאב',
-    criteria: [
-      'ניסיון בהפעלת שירותי בריאות',
-      'היכרות עם אוכלוסיית השכונה',
-      'עמידה בדרישות מחזור כספי',
-      'יכולת הפעלת מרכז פיזי',
-      'ערבות בנקאית',
-      'אישורים רגולטוריים נדרשים',
-    ],
-    content: `לכבוד מחלקת רכש ומכרזים, עיריית באר שבע
-
-הנדון: הצעה למכרז — הפעלת מרכז בריאות קהילתי בנווה זאב
-
-עמותת "דרך הבריאות" מגישה בזאת את הצעתה להפעלת מרכז הבריאות הקהילתי בשכונת נווה זאב.
-
-יתרון ייחודי — פעילות קיימת בשכונה:
-העמותה מפעילה כבר 3 שנים צוותים ניידים בשכונת נווה זאב, ומכירה לעומק את צרכי האוכלוסייה. המעבר למרכז פיזי ישלים את הפעילות הקיימת.
-
-הערת מערכת: למכרז זה נדרש ניסיון מוכח בהפעלת מרכזים פיזיים. מומלץ לבחון שותפות עם ארגון בעל ניסיון רלוונטי (למשל: עמותת "בריאות לכל" או "שירותי רווחה — דרום").
-
-בברכה,
-[שם מנהל/ת הגיוס]`
-  }
+    funder: 'עיריית באר שבע', call: 'מכרז הפעלת מרכז בריאות קהילתי — נווה זאב', match: 79,
+    url: '', criteriaFiles: ['מסמכי המכרז.pdf'],
+    goal: 'הגשה בשותפות עם ארגון בעל ניסיון בהפעלת מרכזים פיזיים. להדגיש 3 שנות פעילות קיימת בשכונה והיכרות עם האוכלוסייה.',
+    orgFiles: [],
+  },
 ];
 
 const contacts = [
@@ -2102,38 +1996,62 @@ function closeModal(e) {
   }
 }
 
-function showDraftModal(index) {
-  const d = drafts[index];
-  if (!d) return;
+let currentRequest = null;
+
+// Hebrew names ending in digits flip around the extension ("pdf.2025"); the PDF icon already shows the type
+const fileLabel = name => name.replace(/\.pdf$/i, '');
+
+function openRequest(index) {
+  const r = REQUESTS[index];
+  if (!r) return;
+  currentRequest = r;
+  const fileRow = name => '<div class="rq-file"><i class="ti ti-file-type-pdf"></i> ' + fileLabel(name) + '</div>';
+  document.getElementById('rqFunderLine').textContent = r.funder + ' — ' + r.call;
+  document.getElementById('rqMatch').textContent = r.match + '% התאמה';
+  document.getElementById('rqFunder').textContent = r.funder;
+  const url = document.getElementById('rqUrl');
+  url.textContent = r.url || 'https://';
+  url.classList.toggle('rq-placeholder', !r.url);
+  document.getElementById('rqCriteriaFiles').innerHTML = r.criteriaFiles.map(fileRow).join('');
+  document.getElementById('rqGoal').textContent = r.goal;
+  document.getElementById('rqOrgFiles').innerHTML = r.orgFiles.map(fileRow).join('');
+  const btn = document.getElementById('rqSubmit');
+  btn.disabled = false;
+  btn.innerHTML = '<i class="ti ti-send"></i> שליחת הבקשה';
+  document.getElementById('rqForm').hidden = false;
+  document.getElementById('rqDone').hidden = true;
+  showStage(3);
   setStep(3);
-  const modal = document.getElementById('modalBox');
-  modal.classList.remove('modal-narrow');
-  document.getElementById('modalTitle').textContent = d.title;
-  document.getElementById('modalSubtitle').textContent = d.subtitle;
-  const el = document.getElementById('modalContent');
-  el.textContent = '';
+  scrollToMainOnMobile();
+}
 
-  // Setup criteria panel
-  const panel = document.getElementById('criteriaPanel');
-  const list = document.getElementById('criteriaList');
-  const summary = document.getElementById('criteriaSummary');
-  list.innerHTML = '';
-  summary.classList.remove('visible');
+// On narrow screens the page itself scrolls (main area first, sidebar below)
+function scrollToMainOnMobile() {
+  if (window.innerWidth <= 860) window.scrollTo(0, 0);
+}
 
-  if (d.criteria && d.criteria.length > 0) {
-    panel.style.display = '';
-    d.criteria.forEach(c => {
-      const item = document.createElement('div');
-      item.className = 'criteria-item';
-      item.innerHTML = '<div class="criteria-check"><i class="ti ti-check" style="font-size:12px;"></i></div><span>' + c + '</span>';
-      list.appendChild(item);
-    });
-  } else {
-    panel.style.display = 'none';
-  }
-
-  document.getElementById('modalOverlay').classList.add('visible');
-  typeText(el, d.content, 0, d.criteria ? d.criteria.length : 0);
+function submitRequest() {
+  const r = currentRequest;
+  const btn = document.getElementById('rqSubmit');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="ti ti-loader-2" style="animation:spin 1s linear infinite;"></i> שולחים…';
+  setTimeout(() => {
+    let criteria = '';
+    if (r.url) {
+      const u = new URL(r.url);
+      criteria = '<dt>קריטריונים</dt><dd><a dir="ltr">' + u.host + (u.pathname.length > 1 ? '/…' : '') + '</a></dd>';
+    }
+    const files = r.criteriaFiles.concat(r.orgFiles);
+    document.getElementById('rqSent').innerHTML =
+      '<dt>גוף מממן</dt><dd>' + r.funder + '</dd>' + criteria +
+      (files.length ? '<dt>קבצים</dt><dd class="rq-chips">' + files.map(f => '<span><i class="ti ti-file-type-pdf"></i> ' + fileLabel(f) + '</span>').join('') + '</dd>' : '');
+    const next = new Date(Date.now() + 7 * 864e5);
+    document.getElementById('rqNext').textContent = next.toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long' });
+    document.getElementById('rqForm').hidden = true;
+    document.getElementById('rqDone').hidden = false;
+    document.getElementById('main').scrollTop = 0;
+    scrollToMainOnMobile();
+  }, 1100);
 }
 
 function showContactModal(index) {
@@ -2143,48 +2061,18 @@ function showContactModal(index) {
   modal.classList.add('modal-narrow');
   document.getElementById('modalTitle').textContent = c.title;
   document.getElementById('modalSubtitle').textContent = c.subtitle;
-  document.getElementById('criteriaPanel').style.display = 'none';
   const el = document.getElementById('modalContent');
   el.textContent = '';
   document.getElementById('modalOverlay').classList.add('visible');
-  typeText(el, c.content, 0, 0);
+  typeText(el, c.content, 0);
 }
 
-function typeText(el, text, i, totalCriteria) {
+function typeText(el, text, i) {
   if (!document.getElementById('modalOverlay').classList.contains('visible')) return;
   if (i < text.length) {
-    const chunk = text.substring(i, Math.min(i + 3, text.length));
-    el.textContent += chunk;
+    el.textContent += text.substring(i, Math.min(i + 3, text.length));
     el.scrollTop = el.scrollHeight;
-
-    // Progressively reveal criteria
-    if (totalCriteria > 0) {
-      const progress = i / text.length;
-      const criteriaItems = document.querySelectorAll('#criteriaList .criteria-item');
-      const showCount = Math.floor(progress * totalCriteria);
-      criteriaItems.forEach((item, idx) => {
-        if (idx < showCount && !item.classList.contains('visible')) {
-          item.classList.add('visible');
-        }
-      });
-    }
-
-    setTimeout(() => typeText(el, text, i + 3, totalCriteria), 12);
-  } else {
-    // Done typing — reveal all remaining criteria + summary
-    if (totalCriteria > 0) {
-      const criteriaItems = document.querySelectorAll('#criteriaList .criteria-item');
-      let delay = 0;
-      criteriaItems.forEach(item => {
-        if (!item.classList.contains('visible')) {
-          setTimeout(() => item.classList.add('visible'), delay);
-          delay += 120;
-        }
-      });
-      setTimeout(() => {
-        document.getElementById('criteriaSummary').classList.add('visible');
-      }, delay + 300);
-    }
+    setTimeout(() => typeText(el, text, i + 3), 12);
   }
 }
 
@@ -2305,13 +2193,16 @@ function setStep(n) {
 function goStep(n) {
   if (n === 1 && pfBuilt) viewProfile();
   if (n === 2 && pfBuilt) approveProfile();
+  if (n === 3 && currentRequest) { showStage(3); setStep(3); }
 }
 
 function showStage(n) {
   document.getElementById('stage1').classList.toggle('active', n === 1);
   document.getElementById('stage2').classList.toggle('active', n === 2);
+  document.getElementById('stage3').classList.toggle('active', n === 3);
   document.body.classList.toggle('stage-1', n === 1);
   document.getElementById('main').scrollTop = 0;
+  window.scrollTo(0, 0);
 }
 
 function showPfView(id) {
