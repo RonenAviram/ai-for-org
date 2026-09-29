@@ -1439,7 +1439,7 @@ body.stage-1 .sidebar { display: none; }
       </button>
       <button class="schedule-btn" id="scheduleBtn" onclick="toggleSchedule()">
         <i class="ti ti-clock-hour-9"></i>
-        <span>תזמן סריקה יומית</span>
+        <span>תזמן סריקה</span>
       </button>
     </div>
 
@@ -2198,12 +2198,12 @@ function toggleSchedule() {
 
   if (scheduled) {
     btn.classList.add('active');
-    btn.innerHTML = '<i class="ti ti-clock-check"></i><span>סריקה יומית ב-09:00</span>';
-    toastText.textContent = 'סריקה יומית תוזמנה — כל בוקר ב-09:00 יגיע סיכום למייל';
+    btn.innerHTML = '<i class="ti ti-clock-check"></i><span>סריקה שבועית · ראשון 09:00</span>';
+    toastText.textContent = 'סריקה שבועית תוזמנה — כל יום ראשון ב-09:00 יגיע סיכום למייל';
   } else {
     btn.classList.remove('active');
-    btn.innerHTML = '<i class="ti ti-clock-hour-9"></i><span>תזמן סריקה יומית</span>';
-    toastText.textContent = 'סריקה יומית בוטלה';
+    btn.innerHTML = '<i class="ti ti-clock-hour-9"></i><span>תזמן סריקה</span>';
+    toastText.textContent = 'סריקה שבועית בוטלה';
     toast.querySelector('i').style.color = 'var(--amber)';
   }
 
