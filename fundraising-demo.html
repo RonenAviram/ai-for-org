@@ -760,66 +760,16 @@ body.stage-1 .sidebar { display: none; }
 
 /* Shared profile-builder pieces */
 .pf-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 20px; }
-.pf-intro { text-align: center; margin-bottom: 20px; }
-.pf-intro h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.3px; }
-.pf-intro p { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
-.pf-num {
-  width: 24px; height: 24px; border-radius: 50%; background: var(--accent-light); color: var(--accent);
-  font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.pf-card-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-.pf-card-sub { font-size: 12px; color: var(--text-tertiary); margin-bottom: 14px; }
-
-/* Intake */
-.intake-id { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 14px; }
-.intake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.intake-grid .span2 { grid-column: span 2; }
-.pf-field label { font-size: 12px; color: var(--text-tertiary); display: block; margin-bottom: 5px; }
-.pf-input {
-  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Heebo', sans-serif;
-  font-size: 14px; background: var(--bg); color: var(--text-primary); direction: rtl;
-}
-.pf-input:focus { outline: none; border-color: #C7D2FE; }
-.pf-input.ltr { direction: ltr; text-align: left; }
-.auto-found {
-  display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px;
-  background: var(--green-light); border: 1px solid var(--green-border); color: var(--green); font-size: 13px; font-weight: 500;
-}
-.auto-found i { font-size: 17px; }
-.file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
-.file-tile { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
-.file-ico { width: 34px; height: 34px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.file-ico.pdf { background: #FEF2F2; color: #DC2626; }
-.file-ico.xls { background: #ECFDF5; color: #059669; }
-.file-ico.ppt { background: #FFF7ED; color: #EA580C; }
-.file-ico.doc { background: #EFF6FF; color: #2563EB; }
-.file-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
-.file-meta { font-size: 11px; color: var(--text-tertiary); }
-.file-check { margin-right: auto; color: var(--green); font-size: 17px; }
-.file-tile.suggested { background: transparent; border-style: dashed; color: var(--text-tertiary); cursor: pointer; }
-.file-tile.suggested:hover { border-color: #C7D2FE; color: var(--accent); }
-.file-tile.suggested .file-ico { background: transparent; border: 1px dashed var(--border); color: inherit; }
-.file-tile.suggested .file-name { font-weight: 500; }
-.toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-.toggle { width: 38px; height: 22px; border-radius: 11px; background: var(--accent); position: relative; cursor: pointer; flex-shrink: 0; border: none; transition: background 0.2s; }
-.toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: left 0.2s; }
-.toggle.off { background: var(--border); }
-.toggle.off::after { left: 19px; }
-.extra-chips { display: flex; flex-wrap: wrap; gap: 8px; transition: opacity 0.2s; }
-.extra-chips.off { opacity: 0.35; }
-.extra-chip {
-  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 20px;
-  background: var(--accent-light); color: var(--accent); font-size: 13px; font-weight: 500; border: 1px solid #C7D2FE;
-}
-.extra-chip i { font-size: 15px; }
-.extra-chip.more { background: transparent; border-style: dashed; color: var(--text-tertiary); border-color: var(--border); }
-.intake-cta { text-align: center; margin-top: 20px; }
 
 /* Run */
 .run-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; padding: 14px 20px; }
 .run-head-text { flex: 1; min-width: 0; }
 .run-head-text h2 { font-size: 18px; font-weight: 800; }
 .run-head-text p { font-size: 13px; color: var(--text-tertiary); margin-top: 2px; }
+.run-head .run-progress, .run-head .skip-link { display: none; }
+.run-head.running .run-progress, .run-head.running .skip-link { display: block; }
+.run-head.running .skip-link { display: inline-flex; }
+.run-head.running #buildBtn { display: none; }
 .run-progress { height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; margin-top: 10px; }
 .run-progress span { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 0.4s; }
 .skip-link { font-size: 12px; color: var(--text-tertiary); background: none; border: none; font-family: 'Heebo', sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
@@ -900,16 +850,11 @@ body.stage-1 .sidebar { display: none; }
 
 .src-chip {
   display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; padding: 1px 7px; border-radius: 10px;
-  background: var(--bg); border: 1px solid var(--border-light); color: var(--text-tertiary); position: relative;
-  cursor: help; white-space: nowrap; vertical-align: middle; font-weight: 500; line-height: 1.6;
+  background: var(--bg); border: 1px solid var(--border-light); color: var(--text-tertiary);
+  white-space: nowrap; vertical-align: middle; font-weight: 500; line-height: 1.6;
 }
 .src-chip i { font-size: 11px; }
 .src-chip.warn { background: var(--amber-light); border-color: var(--amber-border); color: var(--amber); }
-.src-chip[data-q]:hover::after, .src-chip[data-q]:focus::after {
-  content: attr(data-q); position: absolute; bottom: calc(100% + 6px); right: 50%; transform: translateX(50%);
-  background: var(--text-primary); color: #fff; font-size: 12px; padding: 8px 10px; border-radius: 8px;
-  width: max-content; max-width: 260px; white-space: normal; line-height: 1.5; z-index: 40; box-shadow: var(--shadow-lg); font-weight: 400;
-}
 
 .prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .prof-sec { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
@@ -980,16 +925,7 @@ body.stage-1 .sidebar { display: none; }
 .q { padding: 12px 0; border-bottom: 1px solid var(--border-light); }
 .q:last-child { border-bottom: none; padding-bottom: 0; }
 .q-text { font-size: 14px; font-weight: 700; }
-.q-why { font-size: 12.5px; color: var(--text-secondary); margin: 3px 0 10px; line-height: 1.5; }
-.q-opts { display: flex; gap: 8px; flex-wrap: wrap; }
-.q-opt {
-  min-height: 36px; padding: 6px 16px; border-radius: 18px; border: 1px solid #DDD6FE; background: var(--surface); color: #6D28D9;
-  font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-}
-.q-opt:hover { background: #F5F3FF; }
-.q-done { display: none; font-size: 13px; color: var(--green); font-weight: 600; align-items: center; gap: 5px; }
-.q.answered .q-opts { display: none; }
-.q.answered .q-done { display: flex; }
+.q-why { font-size: 12.5px; color: var(--text-secondary); margin-top: 3px; line-height: 1.5; }
 
 .prof-cta {
   margin-top: 16px; background: var(--surface); border: 1px solid #C7D2FE; border-radius: var(--radius-lg); padding: 16px 20px;
@@ -1018,8 +954,7 @@ body.stage-1 .sidebar { display: none; }
   .kpi-row { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .intake-grid, .intake-id, .src-panels { grid-template-columns: 1fr; }
-  .intake-grid .span2 { grid-column: auto; }
+  .src-panels { grid-template-columns: 1fr; }
   .src-panel { height: 200px; }
   .prof-cta { flex-direction: column; align-items: stretch; text-align: center; }
   .prof-hero { flex-direction: column; gap: 12px; padding: 20px; }
@@ -1162,83 +1097,19 @@ body.stage-1 .sidebar { display: none; }
     <div class="stage active" id="stage1">
       <div class="stage-wrap">
 
-        <!-- 1a. Intake -->
-        <div class="pf-view" id="pfIntake">
-          <div class="pf-intro">
-            <h2>בואו נכיר את הארגון</h2>
-            <p>הסוכן יאסוף מידע מ-4 סוגי מקורות, יצליב ביניהם ויבנה פרופיל שמולו תדורג כל הזדמנות מימון</p>
-          </div>
-
-          <div class="pf-card" style="margin-bottom:14px;">
-            <div class="intake-id">
-              <div class="pf-field"><label>שם הארגון</label><input class="pf-input" value='עמותת "דרך הבריאות"' readonly></div>
-              <div class="pf-field"><label>מספר עמותה</label><input class="pf-input ltr" value="58-XXXXXXX" readonly></div>
+        <!-- 1b. Agent running -->
+        <div class="pf-view" id="pfRun">
+          <div class="pf-card run-head" id="runHead">
+            <div class="run-head-text">
+              <h2 id="runTitle">הפרופיל הארגוני של דרך הבריאות</h2>
+              <p id="runStatus">הסוכן יאסוף מידע מ-4 מקורות, יצליב ביניהם ויבנה את הפרופיל שמולו תדורג כל הזדמנות</p>
+              <div class="run-progress"><span id="runProgress"></span></div>
             </div>
-          </div>
-
-          <div class="intake-grid">
-            <div class="pf-card">
-              <div class="pf-card-title"><span class="pf-num">1</span> אתר הארגון</div>
-              <div class="pf-card-sub">כל דפי האתר: אודות, תכניות, צוות, שותפים ועדכונים</div>
-              <div class="pf-field"><input class="pf-input ltr" value="derechhabriut.org.il" readonly></div>
-            </div>
-
-            <div class="pf-card">
-              <div class="pf-card-title"><span class="pf-num">2</span> דף הארגון בגיידסטאר</div>
-              <div class="pf-card-sub">דיווחים כספיים, מקורות הכנסה, כוח אדם ואישורים</div>
-              <div class="auto-found"><i class="ti ti-circle-check"></i> זוהה אוטומטית לפי מספר העמותה</div>
-            </div>
-
-            <div class="pf-card span2">
-              <div class="pf-card-title"><span class="pf-num">3</span> מסמכים שהארגון מספק</div>
-              <div class="pf-card-sub">המקור העשיר ביותר: כאן נמצאים היעדים, המספרים והלקחים שלא מופיעים ברשת</div>
-              <div class="file-grid">
-                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח שנתי 2025</div><div class="file-meta">PDF · 32 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח כספי מבוקר 2025</div><div class="file-meta">PDF · 18 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico doc"><i class="ti ti-file-type-doc"></i></div><div><div class="file-name">תכנית עבודה 2026</div><div class="file-meta">Word · 14 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">אסטרטגיית גיוס משאבים 2026–2028</div><div class="file-meta">PDF · 22 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico pdf"><i class="ti ti-file-type-pdf"></i></div><div><div class="file-name">דוח השפעה ומדידה 2025</div><div class="file-meta">PDF · 12 עמודים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico ppt"><i class="ti ti-presentation"></i></div><div><div class="file-name">מצגת ארגונית</div><div class="file-meta">PowerPoint · 16 שקפים</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile"><div class="file-ico xls"><i class="ti ti-file-spreadsheet"></i></div><div><div class="file-name">הגשות עבר ותוצאות</div><div class="file-meta">Excel · 20 הגשות</div></div><i class="ti ti-circle-check file-check"></i></div>
-                <div class="file-tile suggested"><div class="file-ico"><i class="ti ti-plus"></i></div><div><div class="file-name">פרוטוקולי ועד מנהל</div><div class="file-meta">מומלץ · לא חובה</div></div></div>
-                <div class="file-tile suggested"><div class="file-ico"><i class="ti ti-plus"></i></div><div><div class="file-name">מכתבי המלצה משותפים</div><div class="file-meta">מומלץ · לא חובה</div></div></div>
-              </div>
-            </div>
-
-            <div class="pf-card span2">
-              <div class="toggle-row">
-                <div>
-                  <div class="pf-card-title"><span class="pf-num">4</span> מקורות פתוחים נוספים</div>
-                  <div class="pf-card-sub" style="margin-bottom:0;">הסוכן מחפש את הארגון ברשת ומצליב עם שאר המקורות</div>
-                </div>
-                <button class="toggle" id="extraToggle" onclick="toggleExtra()" aria-label="מקורות נוספים"></button>
-              </div>
-              <div class="extra-chips" id="extraChips">
-                <span class="extra-chip"><i class="ti ti-news"></i> כתבות בתקשורת</span>
-                <span class="extra-chip"><i class="ti ti-brand-facebook"></i> רשתות חברתיות</span>
-                <span class="extra-chip"><i class="ti ti-building-bank"></i> רשם העמותות</span>
-                <span class="extra-chip more"><i class="ti ti-plus"></i> עוד</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="intake-cta">
-            <button class="scan-btn" onclick="startProfileBuild()">
+            <button class="scan-btn" id="buildBtn" onclick="startProfileBuild()">
               <span class="pulse-dot"></span>
               <span>בנה פרופיל ארגוני</span>
               <i class="ti ti-id"></i>
             </button>
-          </div>
-        </div>
-
-        <!-- 1b. Agent running -->
-        <div class="pf-view" id="pfRun" hidden>
-          <div class="pf-card run-head">
-            <div class="run-head-text">
-              <h2>הסוכן בונה את הפרופיל של דרך הבריאות</h2>
-              <p id="runStatus">קורא מקורות · מצליב נתונים · מזהה פערים</p>
-              <div class="run-progress"><span id="runProgress"></span></div>
-            </div>
             <button class="skip-link" onclick="finishProfileBuild()">דלג לפרופיל <i class="ti ti-player-skip-back"></i></button>
           </div>
           <div class="run-grid">
@@ -1282,7 +1153,7 @@ body.stage-1 .sidebar { display: none; }
               <div class="skel-stats">
                 <span class="skel-stat"><b id="cntFound">0</b> ממצאים</span>
                 <span class="skel-stat"><b id="cntConflict">0</b> סתירות</span>
-                <span class="skel-stat"><b id="cntGap">0</b> שאלות פתוחות</span>
+                <span class="skel-stat"><b id="cntGap">0</b> לבירור</span>
               </div>
               <div id="skelRows"></div>
             </div>
@@ -1316,39 +1187,39 @@ body.stage-1 .sidebar { display: none; }
             <span><i class="ti ti-files"></i> 7 מסמכים</span>
             <span><i class="ti ti-circle-check"></i> <b id="pvFound">27</b>&nbsp;ממצאים עם מקור</span>
             <span class="pv-warn"><i class="ti ti-arrows-diff"></i> סתירה אחת נפתרה</span>
-            <span class="pv-q"><i class="ti ti-help-circle"></i> <b id="pvOpen">2</b>&nbsp;שאלות פתוחות</span>
+            <span class="pv-q"><i class="ti ti-help-circle"></i> 2 נקודות לבירור</span>
           </div>
 
           <div class="kpi-row">
             <div class="kpi">
               <div class="kpi-num">2.5M ₪</div>
               <div class="kpi-label">תקציב שנתי</div>
-              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="סך הכנסות 2025: 2,518,400 ₪. דוח כספי מבוקר, עמ' 4. תואם לדיווח בגיידסטאר."><i class="ti ti-file-text"></i> דוח כספי</span></div>
+              <div class="kpi-chips"><span class="src-chip"><i class="ti ti-file-text"></i> דוח כספי</span></div>
             </div>
             <div class="kpi">
               <div class="kpi-num">18</div>
               <div class="kpi-label">עובדים בשכר</div>
               <div class="kpi-chips">
-                <span class="src-chip" tabindex="0" data-q="דיווח כוח אדם לשנת 2025: 18 עובדים בשכר."><i class="ti ti-search"></i> גיידסטאר</span>
-                <span class="src-chip warn" tabindex="0" data-q="בדף 'הצוות שלנו' באתר מופיעים 14 אנשי צוות (הדף לא עודכן). הדיווח לגיידסטאר מ-2025 עדכני יותר, ולכן נבחר."><i class="ti ti-arrows-diff"></i> סתירה נפתרה</span>
+                <span class="src-chip"><i class="ti ti-search"></i> גיידסטאר</span>
+                <span class="src-chip warn"><i class="ti ti-arrows-diff"></i> סתירה נפתרה</span>
               </div>
             </div>
             <div class="kpi">
               <div class="kpi-num">8</div>
               <div class="kpi-label">שנות פעילות</div>
-              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="נרשמה ברשם העמותות ב-2018. סטטוס: פעילה, ללא הערות."><i class="ti ti-building-bank"></i> רשם העמותות</span></div>
+              <div class="kpi-chips"><span class="src-chip"><i class="ti ti-building-bank"></i> רשם העמותות</span></div>
             </div>
             <div class="kpi">
               <div class="kpi-num">4,200</div>
               <div class="kpi-label">מוטבים ב-2025</div>
-              <div class="kpi-chips"><span class="src-chip" tabindex="0" data-q="&quot;בשנת 2025 קיבלו שירות 4,200 מוטבים ישירים, גידול של 35% לעומת 2024&quot;. דוח שנתי 2025, עמ' 6."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+              <div class="kpi-chips"><span class="src-chip"><i class="ti ti-file-text"></i> דוח שנתי</span></div>
             </div>
           </div>
 
           <div class="prof-grid">
             <!-- Income -->
             <div class="prof-sec">
-              <h3><i class="ti ti-chart-donut"></i> מבנה הכנסות 2025 <span class="h3-note"><span class="src-chip" tabindex="0" data-q="דוח כספי מבוקר 2025, ביאור 12 (הכנסות). פילוח הממשלה אומת מול גיידסטאר."><i class="ti ti-file-text"></i> דוח כספי + גיידסטאר</span></span></h3>
+              <h3><i class="ti ti-chart-donut"></i> מבנה הכנסות 2025 <span class="h3-note"><span class="src-chip"><i class="ti ti-file-text"></i> דוח כספי + גיידסטאר</span></span></h3>
               <div class="donut-wrap">
                 <svg class="donut" viewBox="0 0 42 42" aria-label="מבנה הכנסות">
                   <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--border-light)" stroke-width="6"/>
@@ -1375,21 +1246,21 @@ body.stage-1 .sidebar { display: none; }
                 <div class="prog-ico"><i class="ti ti-route"></i></div>
                 <div>
                   <div class="prog-name">צוותים ניידים <span class="pill pill-accent">מודל ייחודי</span></div>
-                  <div class="prog-desc">צוות רב-מקצועי (אחות, עו"ס, דיאטנית) מגיע ליישוב קבוע פעמיים בשבוע <span class="src-chip" tabindex="0" data-q="מצגת ארגונית, שקף 5: 'במקום לחכות שיגיעו למרפאה, אנחנו מגיעים אליהם'. מופיע גם באתר, בעמוד 'מה אנחנו עושים'."><i class="ti ti-presentation"></i> מצגת</span></div>
+                  <div class="prog-desc">צוות רב-מקצועי (אחות, עו"ס, דיאטנית) מגיע ליישוב קבוע פעמיים בשבוע <span class="src-chip"><i class="ti ti-presentation"></i> מצגת</span></div>
                 </div>
               </div>
               <div class="prog">
                 <div class="prog-ico"><i class="ti ti-gender-female"></i></div>
                 <div>
                   <div class="prog-name">בריאות נשים ונערות</div>
-                  <div class="prog-desc">68% מהמוטבים. ליווי אמהות צעירות ונקודות הקשבה ביישובים <span class="src-chip" tabindex="0" data-q="&quot;68% מהמוטבים שלנו הן נשים ונערות&quot;. דוח שנתי 2025, עמ' 9."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+                  <div class="prog-desc">68% מהמוטבים. ליווי אמהות צעירות ונקודות הקשבה ביישובים <span class="src-chip"><i class="ti ti-file-text"></i> דוח שנתי</span></div>
                 </div>
               </div>
               <div class="prog">
                 <div class="prog-ico"><i class="ti ti-school"></i></div>
                 <div>
                   <div class="prog-name">נוער בריא <span class="pill pill-green">מנוע צמיחה</span></div>
-                  <div class="prog-desc">סדנאות בריאות ב-12 בתי ספר, 48 סדנאות בשנה <span class="src-chip" tabindex="0" data-q="אסטרטגיית גיוס 2026–2028, עמ' 7: הנוער מוגדר כתחום הצמיחה המרכזי לשנים הקרובות."><i class="ti ti-file-text"></i> אסטרטגיה</span></div>
+                  <div class="prog-desc">סדנאות בריאות ב-12 בתי ספר, 48 סדנאות בשנה <span class="src-chip"><i class="ti ti-file-text"></i> אסטרטגיה</span></div>
                 </div>
               </div>
             </div>
@@ -1418,8 +1289,8 @@ body.stage-1 .sidebar { display: none; }
                   </g>
                 </svg>
                 <div class="map-legend">
-                  <div class="map-legend-row"><span class="mdot" style="background:#4F46E5"></span><div><b>12 יישובים פעילים</b><br>כולל שכונת נווה זאב בבאר שבע וכפרים בלתי מוכרים <span class="src-chip" tabindex="0" data-q="אתר הארגון, עמוד 'איפה אנחנו': רשימת 12 יישובי פעילות."><i class="ti ti-world"></i> אתר</span></div></div>
-                  <div class="map-legend-row"><span class="mdot" style="border:2px dashed #059669"></span><div><b>הרחבה מתוכננת 2027</b><br>5 יישובים באזור ערד–תמר <span class="src-chip" tabindex="0" data-q="תכנית עבודה 2026, פרק 3: הרחבה ל-5 יישובים באזור ערד–תמר, בכפוף לגיוס 400K ₪."><i class="ti ti-file-text"></i> תכנית עבודה</span></div></div>
+                  <div class="map-legend-row"><span class="mdot" style="background:#4F46E5"></span><div><b>12 יישובים פעילים</b><br>כולל שכונת נווה זאב בבאר שבע וכפרים בלתי מוכרים <span class="src-chip"><i class="ti ti-world"></i> אתר</span></div></div>
+                  <div class="map-legend-row"><span class="mdot" style="border:2px dashed #059669"></span><div><b>הרחבה מתוכננת 2027</b><br>5 יישובים באזור ערד–תמר <span class="src-chip"><i class="ti ti-file-text"></i> תכנית עבודה</span></div></div>
                   <div class="map-note">איור סכמטי</div>
                 </div>
               </div>
@@ -1429,10 +1300,10 @@ body.stage-1 .sidebar { display: none; }
             <div class="prof-sec">
               <h3><i class="ti ti-chart-bar"></i> תוצאות והשפעה</h3>
               <div class="impact-grid">
-                <div class="impact"><div class="impact-num">−27%</div><div class="impact-label">פניות למיון באזורי הפעילות</div><span class="src-chip" tabindex="0" data-q="דוח השפעה 2025, עמ' 3: ירידה של 27% בפניות למיון בקרב אוכלוסיית היעד, לעומת שנת הבסיס."><i class="ti ti-file-text"></i> דוח השפעה</span></div>
-                <div class="impact"><div class="impact-num">89%</div><div class="impact-label">שביעות רצון בסקר חיצוני</div><span class="src-chip" tabindex="0" data-q="דוח השפעה 2025, עמ' 5: סקר שביעות רצון שערך גוף מחקר חיצוני."><i class="ti ti-file-text"></i> דוח השפעה</span></div>
-                <div class="impact"><div class="impact-num">×3.4</div><div class="impact-label">גידול בנגישות לשירותי בריאות</div><span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 11: גידול של 340% בנגישות לשירותי בריאות באזורי הפעילות."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
-                <div class="impact"><div class="impact-num">+35%</div><div class="impact-label">צמיחה במספר המוטבים בשנה</div><span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 6: מ-3,100 מוטבים ב-2024 ל-4,200 ב-2025."><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+                <div class="impact"><div class="impact-num">−27%</div><div class="impact-label">פניות למיון באזורי הפעילות</div><span class="src-chip"><i class="ti ti-file-text"></i> דוח השפעה</span></div>
+                <div class="impact"><div class="impact-num">89%</div><div class="impact-label">שביעות רצון בסקר חיצוני</div><span class="src-chip"><i class="ti ti-file-text"></i> דוח השפעה</span></div>
+                <div class="impact"><div class="impact-num">×3.4</div><div class="impact-label">גידול בנגישות לשירותי בריאות</div><span class="src-chip"><i class="ti ti-file-text"></i> דוח שנתי</span></div>
+                <div class="impact"><div class="impact-num">+35%</div><div class="impact-label">צמיחה במספר המוטבים בשנה</div><span class="src-chip"><i class="ti ti-file-text"></i> דוח שנתי</span></div>
               </div>
             </div>
 
@@ -1440,10 +1311,10 @@ body.stage-1 .sidebar { display: none; }
             <div class="prof-sec">
               <h3><i class="ti ti-heart-handshake"></i> למה קרנות יממנו אותנו</h3>
               <div class="why-list">
-                <div class="why"><div class="why-ico"><i class="ti ti-copy"></i></div><div><div class="why-title">מודל שאפשר לשכפל</div><div class="why-desc">גדל מ-3 ל-12 יישובים בתוך 4 שנים <span class="src-chip" tabindex="0" data-q="דוח שנתי 2025, עמ' 4: ציר הזמן של ההתרחבות, 2021–2025."><i class="ti ti-file-text"></i> דוח שנתי</span></div></div></div>
-                <div class="why"><div class="why-ico"><i class="ti ti-shield-heart"></i></div><div><div class="why-title">נוכחות בפריפריה בשעת חירום</div><div class="why-desc">הצוותים המשיכו לפעול גם במהלך המלחמה <span class="src-chip" tabindex="0" data-q="כתבה בעיתונות המקומית בנגב (מרץ 2026): 'הצוותים שממשיכים להגיע גם באזעקות'."><i class="ti ti-news"></i> תקשורת</span></div></div></div>
-                <div class="why"><div class="why-ico"><i class="ti ti-chart-arrows"></i></div><div><div class="why-title">השפעה מדודה, לא הצהרתית</div><div class="why-desc">מדידה חיצונית שנתית עם מדדים קשיחים <span class="src-chip" tabindex="0" data-q="דוח השפעה ומדידה 2025: מתודולוגיה, מדדים ותוצאות."><i class="ti ti-file-text"></i> דוח השפעה</span></div></div></div>
-                <div class="why"><div class="why-ico"><i class="ti ti-certificate"></i></div><div><div class="why-title">יציבות וממשל תקין</div><div class="why-desc">8 שנים של ניהול תקין רציף <span class="src-chip" tabindex="0" data-q="גיידסטאר: אישור ניהול תקין 2026 בתוקף. רשם העמותות: פעילה, ללא הערות."><i class="ti ti-search"></i> גיידסטאר</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-copy"></i></div><div><div class="why-title">מודל שאפשר לשכפל</div><div class="why-desc">גדל מ-3 ל-12 יישובים בתוך 4 שנים <span class="src-chip"><i class="ti ti-file-text"></i> דוח שנתי</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-shield-heart"></i></div><div><div class="why-title">נוכחות בפריפריה בשעת חירום</div><div class="why-desc">הצוותים המשיכו לפעול גם במהלך המלחמה <span class="src-chip"><i class="ti ti-news"></i> תקשורת</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-chart-arrows"></i></div><div><div class="why-title">השפעה מדודה, לא הצהרתית</div><div class="why-desc">מדידה חיצונית שנתית עם מדדים קשיחים <span class="src-chip"><i class="ti ti-file-text"></i> דוח השפעה</span></div></div></div>
+                <div class="why"><div class="why-ico"><i class="ti ti-certificate"></i></div><div><div class="why-title">יציבות וממשל תקין</div><div class="why-desc">8 שנים של ניהול תקין רציף <span class="src-chip"><i class="ti ti-search"></i> גיידסטאר</span></div></div></div>
               </div>
             </div>
 
@@ -1460,7 +1331,7 @@ body.stage-1 .sidebar { display: none; }
                   <div class="goal-bar"><span style="width:83%;background:#8B5CF6"></span></div>
                 </div>
                 <div class="goal-plain"><i class="ti ti-map-pin-plus"></i><span>הרחבה לאזור ערד–תמר ב-2027 (נדרשים 400K ₪)</span></div>
-                <div class="goal-plain"><i class="ti ti-trending-up"></i><span>נוער כתחום צמיחה: מימון ייעודי לתכנית "נוער בריא" <span class="src-chip" tabindex="0" data-q="אסטרטגיית גיוס משאבים 2026–2028, עמ' 4 ו-7."><i class="ti ti-file-text"></i> אסטרטגיה</span></span></div>
+                <div class="goal-plain"><i class="ti ti-trending-up"></i><span>נוער כתחום צמיחה: מימון ייעודי לתכנית "נוער בריא" <span class="src-chip"><i class="ti ti-file-text"></i> אסטרטגיה</span></span></div>
               </div>
             </div>
 
@@ -1469,19 +1340,19 @@ body.stage-1 .sidebar { display: none; }
               <h3><i class="ti ti-alert-triangle" style="color:var(--amber)"></i> מגבלות כשירות <span class="h3-note">משפיעות על דירוג ההזדמנויות</span></h3>
               <div class="limit-list">
                 <div class="limit">
-                  <div class="limit-title"><i class="ti ti-building"></i> אין ניסיון בהפעלת מרכז פיזי <span class="src-chip" tabindex="0" data-q="מצגת ארגונית, שקף 5: כל הפעילות ניידת, ללא מבנה קבע."><i class="ti ti-presentation"></i> מצגת</span></div>
+                  <div class="limit-title"><i class="ti ti-building"></i> אין ניסיון בהפעלת מרכז פיזי <span class="src-chip"><i class="ti ti-presentation"></i> מצגת</span></div>
                   <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> מכרזי הפעלה יסומנו כ"דורש שותף"</div>
                 </div>
                 <div class="limit">
-                  <div class="limit-title"><i class="ti ti-user-check"></i> "דרישת ניסיון מוכח": סיבת דחייה חוזרת <span class="src-chip" tabindex="0" data-q="קובץ הגשות עבר, עמודת משוב: 3 מתוך 5 הדחיות נימקו בדרישת ניסיון."><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></div>
+                  <div class="limit-title"><i class="ti ti-user-check"></i> "דרישת ניסיון מוכח": סיבת דחייה חוזרת <span class="src-chip"><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></div>
                   <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> טיוטות ידגישו 8 שנות רצף ונתוני השפעה</div>
                 </div>
                 <div class="limit">
-                  <div class="limit-title"><i class="ti ti-coins"></i> יכולת מאצ'ינג עד כ-150K ₪ <span class="src-chip" tabindex="0" data-q="דוח כספי 2025, ביאור 8: יתרות לא מיועדות בהיקף של כ-150K ₪."><i class="ti ti-file-text"></i> דוח כספי</span></div>
+                  <div class="limit-title"><i class="ti ti-coins"></i> יכולת מאצ'ינג עד כ-150K ₪ <span class="src-chip"><i class="ti ti-file-text"></i> דוח כספי</span></div>
                   <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> קולות קוראים עם מאצ'ינג גבוה יותר ירדו בדירוג</div>
                 </div>
                 <div class="limit">
-                  <div class="limit-title"><i class="ti ti-world-off"></i> אין מימון או שותף בינלאומי <span class="src-chip" tabindex="0" data-q="גיידסטאר, מקורות הכנסה: אין תמיכות מחו&quot;ל ב-3 השנים האחרונות."><i class="ti ti-search"></i> גיידסטאר</span></div>
+                  <div class="limit-title"><i class="ti ti-world-off"></i> אין מימון או שותף בינלאומי <span class="src-chip"><i class="ti ti-search"></i> גיידסטאר</span></div>
                   <div class="limit-effect"><i class="ti ti-arrow-back-up"></i> קולות קוראים אירופיים יוצגו רק עם הצעה לשותפות</div>
                 </div>
               </div>
@@ -1489,7 +1360,7 @@ body.stage-1 .sidebar { display: none; }
 
             <!-- History -->
             <div class="prof-sec">
-              <h3><i class="ti ti-history"></i> היסטוריית הגשות <span class="h3-note"><span class="src-chip" tabindex="0" data-q="קובץ 'הגשות עבר ותוצאות': 20 הגשות מהשנים 2023–2026."><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></span></h3>
+              <h3><i class="ti ti-history"></i> היסטוריית הגשות <span class="h3-note"><span class="src-chip"><i class="ti ti-file-spreadsheet"></i> הגשות עבר</span></span></h3>
               <div class="hist-bar">
                 <span style="width:60%;background:var(--green)"></span>
                 <span style="width:15%;background:var(--amber)"></span>
@@ -1510,33 +1381,22 @@ body.stage-1 .sidebar { display: none; }
 
             <!-- Open questions -->
             <div class="prof-sec span2 q-sec">
-              <h3><i class="ti ti-help-circle"></i> 2 שאלות שהסוכן לא מצא להן תשובה <span class="h3-note">תשובה אחת בלחיצה משפרת את דיוק ההתאמה</span></h3>
+              <h3><i class="ti ti-help-circle"></i> 2 נקודות לבירור בפגישת האונבורדינג <span class="h3-note">לא נמצאה להן תשובה באף מקור</span></h3>
               <div class="q">
                 <div class="q-text">מה העלות השנתית למוטב?</div>
                 <div class="q-why">נדרש בכ-40% מהקולות הקוראים. לפי הדוח הכספי, ההערכה היא כ-600 ₪ למוטב, אבל זה לא מופיע באף מסמך.</div>
-                <div class="q-opts">
-                  <button class="q-opt" onclick="answerQ(this)">כ-600 ₪, נכון</button>
-                  <button class="q-opt" onclick="answerQ(this)">בין 600 ל-900 ₪</button>
-                  <button class="q-opt" onclick="answerQ(this)">עוד לא חישבנו</button>
-                </div>
-                <div class="q-done"><i class="ti ti-circle-check"></i> נשמר בפרופיל</div>
               </div>
               <div class="q">
                 <div class="q-text">השותפות עם אוניברסיטת בן-גוריון עדיין פעילה?</div>
                 <div class="q-why">מופיעה באתר ובדוח השנתי של 2023, אבל לא בדוח של 2025. שותפות אקדמית היא יתרון אצל חלק מהקרנות.</div>
-                <div class="q-opts">
-                  <button class="q-opt" onclick="answerQ(this)">כן, פעילה</button>
-                  <button class="q-opt" onclick="answerQ(this)">הסתיימה</button>
-                </div>
-                <div class="q-done"><i class="ti ti-circle-check"></i> נשמר בפרופיל</div>
               </div>
             </div>
           </div>
 
           <div class="prof-cta">
-            <div class="prof-cta-text"><b>זה הבסיס לכל ההתאמות</b>כל הזדמנות מימון תדורג מול הפרופיל הזה, והוא יתעדכן עם כל הגשה ותוצאה.</div>
+            <div class="prof-cta-text"><b>זה הבסיס לכל ההתאמות</b>טיוטה ראשונה שהסוכן בנה לבד. היא מחודדת יחד איתכם בפגישת האונבורדינג, ומולה תדורג כל הזדמנות מימון.</div>
             <button class="scan-btn" id="approveBtn" onclick="approveProfile()">
-              <span id="approveLabel">אשר פרופיל והמשך לסריקת הזדמנויות</span>
+              <span id="approveLabel">המשך לסריקת הזדמנויות</span>
               <i class="ti ti-arrow-left"></i>
             </button>
           </div>
@@ -2378,7 +2238,7 @@ const SKEL_SECTIONS = [
   { id: 'strategy',    label: 'יעדי גיוס',         icon: 'ti-target-arrow' },
   { id: 'constraints', label: 'מגבלות כשירות',    icon: 'ti-alert-triangle' },
   { id: 'history',     label: 'היסטוריית הגשות',  icon: 'ti-history' },
-  { id: 'questions',   label: 'שאלות פתוחות',     icon: 'ti-help-circle' },
+  { id: 'questions',   label: 'נקודות לבירור',    icon: 'ti-help-circle' },
 ];
 
 // src: 0 website · 1 GuideStar · 2 org documents · 3 extra sources
@@ -2439,36 +2299,32 @@ function showStage(n) {
 }
 
 function showPfView(id) {
-  ['pfIntake', 'pfRun', 'pfProfile'].forEach(v => document.getElementById(v).hidden = v !== id);
+  ['pfRun', 'pfProfile'].forEach(v => document.getElementById(v).hidden = v !== id);
   document.getElementById('main').scrollTop = 0;
 }
 
-function toggleExtra() {
-  const off = document.getElementById('extraToggle').classList.toggle('off');
-  document.getElementById('extraChips').classList.toggle('off', off);
-}
-
-function buildSkeleton() {
+// Empty initial state: source panels waiting, skeleton rows unfilled
+function resetProfileRun() {
   document.getElementById('skelRows').innerHTML = SKEL_SECTIONS.map(s =>
     '<div class="skel-row" id="skel-' + s.id + '"><i class="ti ' + s.icon + '"></i><span class="skel-label">' + s.label + '</span><div class="skel-bar"><span></span></div></div>'
   ).join('');
-}
-
-function startProfileBuild() {
-  const extraOn = !document.getElementById('extraToggle').classList.contains('off');
-  const events = PF_EVENTS.filter(e => extraOn || e.src !== 3);
-  document.getElementById('src3').style.display = extraOn ? '' : 'none';
-
-  showPfView('pfRun');
-  buildSkeleton();
   [0, 1, 2, 3].forEach(i => {
     const p = document.getElementById('src' + i);
     p.classList.remove('scanning', 'done');
-    p.querySelector('.log').innerHTML = '<div class="log-empty">ממתין לתורו...</div>';
+    p.querySelector('.log').innerHTML = '<div class="log-empty">ממתין לסריקה</div>';
     p.querySelector('.st').textContent = 'ממתין';
   });
   ['cntFound', 'cntConflict', 'cntGap'].forEach(id => document.getElementById(id).textContent = '0');
   document.getElementById('runProgress').style.width = '0';
+}
+resetProfileRun();
+
+function startProfileBuild() {
+  const events = PF_EVENTS;
+  resetProfileRun();
+  document.getElementById('runHead').classList.add('running');
+  document.getElementById('runTitle').textContent = 'הסוכן בונה את הפרופיל של דרך הבריאות';
+  document.getElementById('runStatus').textContent = 'קורא מקורות · מצליב נתונים · מזהה פערים';
 
   const totals = {}, filled = {};
   events.forEach(e => { totals[e.sec] = (totals[e.sec] || 0) + 1; });
@@ -2525,16 +2381,10 @@ function finishProfileBuild() {
   pfTimers.forEach(clearTimeout);
   pfTimers = [];
   pfBuilt = true;
-  document.getElementById('runStatus').textContent = 'קורא מקורות · מצליב נתונים · מזהה פערים';
-  document.getElementById('approveLabel').textContent = 'אשר פרופיל והמשך לסריקת הזדמנויות';
+  document.getElementById('runHead').classList.remove('running');
+  document.getElementById('approveLabel').textContent = 'המשך לסריקת הזדמנויות';
   showPfView('pfProfile');
   setStep(1);
-}
-
-function answerQ(btn) {
-  btn.closest('.q').classList.add('answered');
-  const open = document.querySelectorAll('.q:not(.answered)').length;
-  document.getElementById('pvOpen').textContent = open;
 }
 
 function viewProfile() {
