@@ -890,12 +890,7 @@ body.stage-1 .sidebar { display: none; }
 .rq-from > i { color: var(--accent); font-size: 18px; flex-shrink: 0; }
 .rq-from b { color: var(--text-primary); }
 .rq-match { margin-right: auto; background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); border-radius: 12px; padding: 1px 9px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
-.rq-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
 .rq-wrap h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; }
-.rq-quota { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
-.rq-chip { font-size: 12.5px; font-weight: 600; background: var(--accent-light); color: var(--accent); border-radius: 20px; padding: 4px 12px; display: inline-flex; align-items: center; gap: 5px; }
-.rq-small, .rq-foot { font-size: 12px; color: var(--text-tertiary); }
-.rq-foot { text-align: center; }
 .rq-lead { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
 .rq-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
 .rq-sec { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -927,7 +922,7 @@ body.stage-1 .sidebar { display: none; }
 .rq-chips { display: flex; flex-wrap: wrap; gap: 5px; }
 .rq-chips span i { font-size: 13px; color: #DC2626; vertical-align: -2px; }
 .rq-chips span { font-size: 12px; font-weight: 500; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1px 9px; }
-.rq-info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rq-info-row { display: grid; grid-template-columns: 1fr; gap: 10px; }
 .rq-info { display: flex; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-sm); }
 .rq-info > i { font-size: 20px; color: var(--accent); background: var(--accent-light); width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .rq-info-label { font-size: 12px; color: var(--text-tertiary); }
@@ -965,7 +960,6 @@ body.stage-1 .sidebar { display: none; }
 }
 @media (max-width: 640px) {
   .src-panels { grid-template-columns: 1fr; }
-  .rq-info-row { grid-template-columns: 1fr; }
   .run-head { flex-direction: column; align-items: stretch; }
   .run-head .scan-btn { justify-content: center; }
   .run-head .skip-link { align-self: center; }
@@ -1709,13 +1703,7 @@ body.stage-1 .sidebar { display: none; }
           <button class="rq-back" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
           <div class="rq-from"><i class="ti ti-target-arrow"></i><div>נפתח מתוך ההזדמנות: <b id="rqFunderLine"></b></div><span class="rq-match" id="rqMatch"></span></div>
 
-          <div class="rq-head">
-            <h2>בקשה לבניית הגשה</h2>
-            <div class="rq-quota">
-              <span class="rq-chip"><i class="ti ti-calendar"></i> בקשה אחת בשבוע · פנויה עכשיו</span>
-              <span class="rq-small">צריכים יותר? פנו אלינו להגדלת המכסה</span>
-            </div>
-          </div>
+          <h2>בקשה לבניית הגשה</h2>
           <p class="rq-lead">ספרו לנו לאן אתם מגישים ומה אתם רוצים להשיג. סוכן ה-AI שלנו יבנה את ההגשה על בסיס החומרים שתצרפו והפרופיל שלכם שכבר שמור אצלנו.</p>
 
           <div class="rq-card">
@@ -1758,7 +1746,6 @@ body.stage-1 .sidebar { display: none; }
           </div>
 
           <div class="rq-info-row">
-            <div class="rq-info"><i class="ti ti-calendar"></i><div><div class="rq-info-label">הבקשה הבאה</div><b id="rqNext"></b></div></div>
             <div class="rq-info"><i class="ti ti-mail"></i><div><div class="rq-info-label">עותק של הבקשה</div><b>נשלח למייל שלכם</b></div></div>
           </div>
 
@@ -1775,7 +1762,6 @@ body.stage-1 .sidebar { display: none; }
           <div class="rq-done-actions">
             <button class="schedule-btn" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
           </div>
-          <p class="rq-foot">צריכים יותר? פנו אלינו להגדלת המכסה</p>
         </div>
       </div>
     </div>
@@ -2047,8 +2033,6 @@ function submitRequest() {
     document.getElementById('rqSent').innerHTML =
       '<dt>גוף מממן</dt><dd>' + r.funder + '</dd>' + criteria +
       (files.length ? '<dt>קבצים</dt><dd class="rq-chips">' + files.map(f => '<span><i class="ti ti-file-type-pdf"></i> ' + fileLabel(f) + '</span>').join('') + '</dd>' : '');
-    const next = new Date(Date.now() + 7 * 864e5);
-    document.getElementById('rqNext').textContent = next.toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long' });
     document.getElementById('rqForm').hidden = true;
     document.getElementById('rqDone').hidden = false;
     document.getElementById('main').scrollTop = 0;
