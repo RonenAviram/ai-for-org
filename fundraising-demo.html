@@ -687,7 +687,9 @@ body.stage-1 .sidebar { display: none; }
 }
 .step.active { color: var(--accent); border-color: #C7D2FE; background: var(--accent-light); }
 .step.active .step-num { background: var(--accent); color: #fff; border-color: var(--accent); }
-.step.done { color: var(--green); cursor: pointer; }
+.step { cursor: pointer; }
+.step.done { color: var(--green); }
+.step:not(.active):hover { border-color: #C7D2FE; }
 .step.done .step-num { background: var(--green); color: #fff; border-color: var(--green); }
 .step.done:hover { border-color: var(--green-border); background: var(--green-light); }
 .step { position: relative; }
@@ -2190,10 +2192,19 @@ function setStep(n) {
   document.querySelectorAll('#stepper .step-line').forEach((l, i) => l.classList.toggle('done', (i === 0 && pfBuilt) || (i === 1 && n === 3)));
 }
 
+// Every step is reachable from the stepper at any time (presenter can jump around the demo)
 function goStep(n) {
-  if (n === 1 && pfBuilt) viewProfile();
-  if (n === 2 && pfBuilt) approveProfile();
-  if (n === 3 && currentRequest) { showStage(3); setStep(3); }
+  if (n === 1) {
+    if (pfBuilt) return viewProfile();
+    showStage(1);
+    setStep(1);
+  }
+  if (n === 2) approveProfile();
+  if (n === 3) {
+    if (!currentRequest) return openRequest(0);
+    showStage(3);
+    setStep(3);
+  }
 }
 
 function showStage(n) {
