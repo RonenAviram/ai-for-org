@@ -740,7 +740,7 @@ body.stage-1 .sidebar { display: none; }
 .pf-view[hidden] { display: none; }
 .pf-view { animation: fadeUp 0.35s; }
 
-.stepper { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto 22px; max-width: 1120px; }
+.stepper { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 8px auto 22px; max-width: 1120px; }
 .step {
   display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 16px; border-radius: 22px;
   background: var(--surface); border: 1px solid var(--border); font-size: 13px; font-weight: 600;
@@ -755,6 +755,11 @@ body.stage-1 .sidebar { display: none; }
 .step.done { color: var(--green); cursor: pointer; }
 .step.done .step-num { background: var(--green); color: #fff; border-color: var(--green); }
 .step.done:hover { border-color: var(--green-border); background: var(--green-light); }
+.step { position: relative; }
+.step-soon {
+  position: absolute; top: -9px; left: 50%; transform: translateX(-50%); background: var(--amber-light); color: var(--amber);
+  border: 1px solid var(--amber-border); font-size: 10px; font-weight: 700; padding: 0 8px; border-radius: 8px; line-height: 16px; white-space: nowrap;
+}
 .step-line { flex: 0 1 40px; height: 2px; background: var(--border); border-radius: 1px; }
 .step-line.done { background: var(--green-border); }
 
@@ -959,6 +964,9 @@ body.stage-1 .sidebar { display: none; }
 }
 @media (max-width: 640px) {
   .src-panels { grid-template-columns: 1fr; }
+  .run-head { flex-direction: column; align-items: stretch; }
+  .run-head .scan-btn { justify-content: center; }
+  .run-head .skip-link { align-self: center; }
   .src-panel { height: 200px; }
   .prof-cta { flex-direction: column; align-items: stretch; text-align: center; }
   .prof-hero { flex-direction: column; gap: 12px; padding: 20px; }
@@ -1094,7 +1102,7 @@ body.stage-1 .sidebar { display: none; }
       <span class="step-line"></span>
       <button class="step" data-step="2" onclick="goStep(2)"><span class="step-num">2</span><span class="step-label">סריקת הזדמנויות</span></button>
       <span class="step-line"></span>
-      <button class="step" data-step="3"><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+      <button class="step" data-step="3"><span class="step-soon">בבנייה</span><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
     </div>
 
     <!-- ===== Stage 1: Profile builder ===== -->
