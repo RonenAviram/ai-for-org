@@ -936,7 +936,13 @@ body.stage-1 .sidebar { display: none; }
 .rq-tl.now .rq-dot { background: var(--accent); border-color: var(--accent); color: #fff; }
 .rq-tl b { display: block; font-size: 13.5px; }
 .rq-tl span { color: var(--text-tertiary); }
-.rq-done-actions { display: flex; justify-content: center; }
+.rq-done-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.bts-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius); padding: 10px 18px; font: 600 14px 'Heebo', sans-serif; cursor: pointer; box-shadow: var(--shadow-md); }
+.bts-btn:hover { background: var(--accent-hover); }
+.bts-btn[hidden] { display: none; }
+/* Step 4 — behind the scenes: how the draft is built (fundraising-behind-scenes.html, scales itself to the frame) */
+body.stage-4 .sidebar { display: none; }
+.bts-frame { width: 100%; border: 0; display: block; border-radius: var(--radius-lg); background: var(--bg); }
 
 /* Sidebar highlight after profile approval */
 .org-banner.just-built { animation: builtGlow 2.2s ease-out; }
@@ -1098,7 +1104,9 @@ body.stage-1 .sidebar { display: none; }
       <span class="step-line"></span>
       <button class="step" data-step="2" onclick="goStep(2)"><span class="step-num">2</span><span class="step-label">סריקת הזדמנויות</span></button>
       <span class="step-line"></span>
-      <button class="step" data-step="3" onclick="goStep(3)"><span class="step-soon">בבנייה</span><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+      <button class="step" data-step="3" onclick="goStep(3)"><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+      <span class="step-line"></span>
+      <button class="step" data-step="4" onclick="goStep(4)"><span class="step-num">4</span><span class="step-label">מאחורי הקלעים</span></button>
     </div>
 
     <!-- ===== Stage 1: Profile builder ===== -->
@@ -1760,10 +1768,16 @@ body.stage-1 .sidebar { display: none; }
           </div>
 
           <div class="rq-done-actions">
+            <button class="bts-btn" id="btsBtn" onclick="goStep(4)"><i class="ti ti-eye"></i> מאחורי הקלעים: בניית ההגשה</button>
             <button class="schedule-btn" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- ===== Stage 4: Behind the scenes ===== -->
+    <div class="stage" id="stage4">
+      <iframe class="bts-frame" id="btsFrame" title="מאחורי הקלעים: בניית ההגשה"></iframe>
     </div>
   </div>
 </div>
@@ -2033,12 +2047,21 @@ function submitRequest() {
     document.getElementById('rqSent').innerHTML =
       '<dt>גוף מממן</dt><dd>' + r.funder + '</dd>' + criteria +
       (files.length ? '<dt>קבצים</dt><dd class="rq-chips">' + files.map(f => '<span><i class="ti ti-file-type-pdf"></i> ' + fileLabel(f) + '</span>').join('') + '</dd>' : '');
+    document.getElementById('btsBtn').hidden = r !== REQUESTS[0]; // behind-the-scenes view is built for the Shashua request
     document.getElementById('rqForm').hidden = true;
     document.getElementById('rqDone').hidden = false;
     document.getElementById('main').scrollTop = 0;
     scrollToMainOnMobile();
   }, 1100);
 }
+
+// Step 4 frame fills the space under the stepper; the page inside scales itself to fit
+function sizeBtsFrame() {
+  const f = document.getElementById('btsFrame');
+  if (!document.getElementById('stage4').classList.contains('active')) return;
+  f.style.height = Math.max(420, window.innerHeight - f.getBoundingClientRect().top - 30) + 'px';
+}
+window.addEventListener('resize', sizeBtsFrame);
 
 function showContactModal(index) {
   const c = contacts[index];
@@ -2173,7 +2196,7 @@ function setStep(n) {
     s.classList.toggle('done', k < n || (k === 1 && pfBuilt && n !== 1) || (k === 2 && stage2Visited && n === 1));
     s.querySelector('.step-num').innerHTML = s.classList.contains('done') ? '<i class="ti ti-check" style="font-size:13px;"></i>' : k;
   });
-  document.querySelectorAll('#stepper .step-line').forEach((l, i) => l.classList.toggle('done', (i === 0 && pfBuilt) || (i === 1 && n === 3)));
+  document.querySelectorAll('#stepper .step-line').forEach((l, i) => l.classList.toggle('done', (i === 0 && pfBuilt) || (i === 1 && n >= 3) || (i === 2 && n === 4)));
 }
 
 // Every step is reachable from the stepper at any time (presenter can jump around the demo)
@@ -2189,12 +2212,20 @@ function goStep(n) {
     showStage(3);
     setStep(3);
   }
+  if (n === 4) {
+    showStage(4);
+    setStep(4);
+    document.getElementById('btsFrame').src = 'fundraising-behind-scenes.html'; // fresh load = idle state
+    requestAnimationFrame(sizeBtsFrame);
+  }
 }
 
 function showStage(n) {
   document.getElementById('stage1').classList.toggle('active', n === 1);
   document.getElementById('stage2').classList.toggle('active', n === 2);
   document.getElementById('stage3').classList.toggle('active', n === 3);
+  document.getElementById('stage4').classList.toggle('active', n === 4);
+  document.body.classList.toggle('stage-4', n === 4);
   document.body.classList.toggle('stage-1', n === 1);
   document.getElementById('main').scrollTop = 0;
   window.scrollTo(0, 0);
