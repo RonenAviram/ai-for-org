@@ -377,6 +377,9 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 @keyframes inGlowP { 0%, 4% { stroke: var(--S); } 9%, 30% { stroke: var(--Mt); } 40%, 100% { stroke: var(--S); } }
 @keyframes outGlowP { 0%, 60% { stroke: var(--S); fill: #fff; } 66%, 88% { stroke: var(--W); fill: var(--Ws); } 96%, 100% { stroke: var(--S); fill: #fff; } }
 .bar .brand img { border-radius: 8px; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35); }
+
+.mc-m { display: none; }
+@media (max-width: 720px) { .mc-d { display: none; } .mc-m { display: inline; } }
 </style>
 </head>
 <body>
@@ -390,7 +393,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     <nav class="bar-links">
       <a class="hide-m" href="#demo">איך זה עובד</a>
       <a class="hide-m" href="#try">נסו בעצמכם</a>
-      <a href="#pricing">מחיר</a>
+      <a class="hide-m" href="#pricing">מחיר</a>
       <a class="hide-m" href="#faq">שאלות</a>
       <a class="hide-m" href="#about">מי אני</a>
       <a class="btn-sm" href="#pricing">להצטרפות</a>
@@ -576,7 +579,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 </footer>
 
 <dialog class="modal" id="modal" aria-label="חלון">
-  <button class="modal-close" type="button" onclick="closeModal()">סגירה</button>
+  <button class="modal-close" type="button" onclick="closeModal()"><span class="mc-d">סגירה</span><span class="mc-m">חזרה לאתר</span></button>
   <iframe id="modal-frame" title=""></iframe>
 </dialog>
 

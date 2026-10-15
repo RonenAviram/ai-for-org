@@ -986,6 +986,17 @@ body.stage-4 .sidebar { display: none; }
   .run-head { flex-wrap: wrap; }
 }
 .embedded .header { display: none; }
+
+/* phones: a simpler demo (Ronen, 15.10.2026) */
+@media (max-width: 760px) {
+  .stepper .step:not(.active), .stepper .step-line { display: none; }
+  .stepper .step.active .step-num { display: none; }
+  .stepper .step.active { padding: 7px 18px; pointer-events: none; }
+  .next-bar { display: none !important; }
+  #scheduleBtn { display: none; }
+  .run-head .scan-btn { width: 100%; }
+  body.stage-3 .sidebar { display: none; }
+}
 </style>
 </head>
 <body class="stage-1">
@@ -1691,7 +1702,7 @@ body.stage-4 .sidebar { display: none; }
     <div class="stage" id="stage3">
       <div class="rq-wrap">
         <div id="rqForm">
-          <button class="rq-back" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
+          <button class="rq-back" onclick="goStep(2)"><i class="ti ti-arrow-left"></i> חזרה להזדמנויות</button>
           <div class="rq-from"><i class="ti ti-target-arrow"></i><div>נפתח מתוך ההזדמנות: <b id="rqFunderLine"></b></div><span class="rq-match" id="rqMatch"></span></div>
 
           <h2>בקשה לבניית הגשה</h2>
@@ -1752,7 +1763,7 @@ body.stage-4 .sidebar { display: none; }
 
           <div class="rq-done-actions">
             <button class="bts-btn" id="btsBtn" onclick="goStep(4)"><i class="ti ti-eye"></i> מאחורי הקלעים: בניית ההגשה</button>
-            <button class="schedule-btn" onclick="goStep(2)"><i class="ti ti-arrow-right"></i> חזרה להזדמנויות</button>
+            <button class="schedule-btn" onclick="goStep(2)"><i class="ti ti-arrow-left"></i> חזרה להזדמנויות</button>
           </div>
         </div>
       </div>
@@ -2027,7 +2038,9 @@ function submitRequest() {
   btn.innerHTML = '<i class="ti ti-loader-2" style="animation:spin 1s linear infinite;"></i> שולחים…';
   setTimeout(() => {
     // The first request has its behind-the-scenes view: go straight there, no confirmation page.
-    if (r === REQUESTS[0]) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-send"></i> שליחת הבקשה'; goStep(4); document.getElementById('main').scrollTop = 0; return; }
+    // On phones there is no behind-the-scenes view: every request ends on the summary screen.
+    const phone = window.matchMedia('(max-width: 760px)').matches;
+    if (r === REQUESTS[0] && !phone) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-send"></i> שליחת הבקשה'; goStep(4); document.getElementById('main').scrollTop = 0; return; }
     let criteria = '';
     if (r.url) {
       const u = new URL(r.url);
@@ -2037,7 +2050,7 @@ function submitRequest() {
     document.getElementById('rqSent').innerHTML =
       '<dt>גוף מממן</dt><dd>' + r.funder + '</dd>' + criteria +
       (files.length ? '<dt>קבצים</dt><dd class="rq-chips">' + files.map(f => '<span><i class="ti ti-file-type-pdf"></i> ' + fileLabel(f) + '</span>').join('') + '</dd>' : '');
-    document.getElementById('btsBtn').hidden = r !== REQUESTS[0]; // behind-the-scenes view is built for the first request
+    document.getElementById('btsBtn').hidden = r !== REQUESTS[0] || phone; // behind-the-scenes view is built for the first request
     document.getElementById('rqForm').hidden = true;
     document.getElementById('rqDone').hidden = false;
     document.getElementById('main').scrollTop = 0;
@@ -2217,6 +2230,7 @@ function showStage(n) {
   document.getElementById('stage4').classList.toggle('active', n === 4);
   document.body.classList.toggle('stage-4', n === 4);
   document.body.classList.toggle('stage-1', n === 1);
+  document.body.classList.toggle('stage-3', n === 3);
   document.getElementById('main').scrollTop = 0;
   window.scrollTo(0, 0);
 }
