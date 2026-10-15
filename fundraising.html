@@ -92,7 +92,8 @@ h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; line-height: 1.25; tex
 .window-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: #D5D8DF; display: block; }
 .window-bar a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .window iframe { display: block; width: 100%; height: 760px; border: 0; }
-@media (max-width: 720px) { .window iframe { height: 620px; } }
+@media (max-width: 720px) { #try .window { display: none; } }
+.video-window video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #F8F9FB; }
 .demo-full-m { display: none; }
 @media (max-width: 720px) { .demo-full-m { display: flex; width: 100%; margin-top: 12px; } }
 .demo-hint { text-align: center; color: var(--ink-3); font-size: 14px; margin-top: 12px; }
@@ -219,7 +220,8 @@ section, [id] { scroll-margin-top: 68px; }
       <b><span>AI</span> Fundraising Agent</b>
     </a>
     <nav class="bar-links">
-      <a class="hide-m" href="#demo">דמו</a>
+      <a class="hide-m" href="#demo">איך זה עובד</a>
+      <a class="hide-m" href="#try">דמו</a>
       <a href="#pricing">מחיר</a>
       <a class="hide-m" href="#faq">שאלות</a>
       <a class="btn-sm" href="#pricing">להצטרפות</a>
@@ -245,15 +247,17 @@ section, [id] { scroll-margin-top: 68px; }
 
 <section id="demo" class="demo-section">
   <div class="wrap">
-    <div class="window">
+    <div class="window video-window">
       <div class="window-bar">
         <span class="dots"><i></i><i></i><i></i></span>
-        <span>דמו אינטראקטיבי · ארגון לדוגמה</span>
-        <a href="fundraising-demo.html" target="_blank" rel="noopener">מסך מלא</a>
+        <span>ככה זה עובד · ארגון לדוגמה</span>
+        <a href="#try">לנסות בעצמכם</a>
       </div>
-      <iframe src="fundraising-demo.html" title="דמו: סוכני AI לגיוס משאבים" loading="lazy"></iframe>
+      <video id="process-video" poster="assets/process-poster.jpg" muted loop playsinline preload="metadata" aria-label="סרטון: המערכת לומדת את הארגון, בונה פרופיל, מוצאת הזדמנויות, מכינה טיוטות ולומדת מכל הגשה">
+        <source src="assets/process-video.webm" type="video/webm">
+        <source src="assets/process-video.mp4" type="video/mp4">
+      </video>
     </div>
-    <a class="btn btn-ghost demo-full-m" href="fundraising-demo.html" target="_blank" rel="noopener">בנייד: לפתיחת הדמו במסך מלא</a>
   </div>
 </section>
 
@@ -296,7 +300,22 @@ section, [id] { scroll-margin-top: 68px; }
   </div>
 </section>
 
-<section id="pricing" class="alt">
+<section id="try" class="alt">
+  <div class="wrap">
+    <h2>נסו בעצמכם</h2>
+    <div class="window">
+      <div class="window-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span>דמו אינטראקטיבי · ארגון לדוגמה</span>
+        <a href="fundraising-demo.html" target="_blank" rel="noopener">מסך מלא</a>
+      </div>
+      <iframe src="fundraising-demo.html" title="דמו אינטראקטיבי: סוכני AI לגיוס משאבים" loading="lazy"></iframe>
+    </div>
+    <a class="btn btn-ghost demo-full-m" href="fundraising-demo.html" target="_blank" rel="noopener">לפתיחת הדמו במסך מלא</a>
+  </div>
+</section>
+
+<section id="pricing">
   <div class="wrap">
     <h2>בוחרים מסלול</h2>
     <div class="plans">
@@ -352,7 +371,7 @@ section, [id] { scroll-margin-top: 68px; }
   </div>
 </section>
 
-<section id="about">
+<section id="about" class="alt">
   <div class="wrap">
     <div class="about">
       <img src="assets/ronen.jpg" alt="רונן אבירם">
@@ -373,7 +392,7 @@ section, [id] { scroll-margin-top: 68px; }
   </div>
 </section>
 
-<section id="faq" class="alt">
+<section id="faq">
   <div class="wrap faq">
     <h2>שאלות ותשובות</h2>
     <details><summary>מה ההבדל ממאגר קרנות?</summary><p>מאגר קרנות הוא רשימה קבועה, ואתם מחפשים ומסננים בעצמכם. כאן סוכני ה-AI מחפשים בשבילכם כל שבוע: באתרי קרנות, בקולות קוראים, במשרדי ממשלה וברשויות, וגם במאגרים פתוחים. ובמקום רשימה, מקבלים רק את מה שמתאים לכם, עם מה לעשות ועד מתי.</p></details>
@@ -391,7 +410,7 @@ section, [id] { scroll-margin-top: 68px; }
   </div>
 </section>
 
-<section id="signup">
+<section id="signup" class="alt">
   <div class="wrap">
     <h2>שיחת היכרות קצרה</h2>
     <div class="form-card">
@@ -448,6 +467,14 @@ section, [id] { scroll-margin-top: 68px; }
   const CALENDLY_URL = 'https://calendly.com/ronen_aviram/ai_for_org';
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Process video: plays (muted) only while on screen; with reduced motion it waits for a click.
+  const pv = document.getElementById('process-video');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    pv.controls = true;
+  } else {
+    new IntersectionObserver(([e]) => { e.isIntersecting ? pv.play().catch(() => { pv.controls = true; }) : pv.pause(); }, { threshold: 0.4 }).observe(pv);
+  }
 
   // Where the lead came from (?utm_source=...&ref=...), so each webinar or partner link can be told apart.
   const params = new URLSearchParams(location.search);
