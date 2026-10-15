@@ -219,27 +219,30 @@ section, [id] { scroll-margin-top: 68px; }
 .flow .wire.loop { stroke: #A5B4FC; stroke-dasharray: 4 7; }
 .flow .node rect { fill: #fff; stroke: #E2E5EB; stroke-width: 2; }
 .flow text { font-family: 'Heebo', sans-serif; text-anchor: middle; direction: rtl; }
-.flow .t { font-size: 21px; font-weight: 700; fill: var(--ink); }
+.flow .t { font-size: 20px; font-weight: 700; fill: var(--ink); }
 .flow .t.sm { font-size: 15px; }
-.flow .s { font-size: 15px; fill: var(--ink-2); }
+.flow .s { font-size: 14px; fill: var(--ink-2); }
 .flow .ht { font-size: 26px; font-weight: 800; fill: #fff; }
 .flow .loop-t { font-size: 16px; font-weight: 700; fill: var(--accent); }
+.flow .loop-pill rect { fill: #fff; stroke: #C7D2FE; stroke-width: 1.5; }
+.flow-m .loop-t { font-size: 15px; }
 .flow .dot { fill: var(--accent); }
 .flow .dot.g { fill: var(--green); }
 .flow .dot.l { fill: #818CF8; }
-.flow .halo { fill: #EEF2FF; transform-box: fill-box; transform-origin: center; animation: halo 8s infinite; }
+.flow .halo { fill: #C7D2FE; transform-box: fill-box; transform-origin: center; animation: halo 8s infinite; }
 .flow .in rect { animation: inGlow 8s infinite; }
 .flow .n2 rect { animation-delay: .48s; }
 .flow .n3 rect { animation-delay: .96s; }
+.flow .o3 rect { animation-delay: .96s; }
 .flow .out rect { animation: outGlow 8s infinite; }
 .flow .o2 rect { animation-delay: .48s; }
 @keyframes inGlow { 0%, 4% { stroke: #E2E5EB; } 9%, 30% { stroke: var(--accent); } 40%, 100% { stroke: #E2E5EB; } }
 @keyframes outGlow { 0%, 60% { stroke: #E2E5EB; fill: #fff; } 66%, 88% { stroke: var(--green); fill: var(--green-soft); } 96%, 100% { stroke: #E2E5EB; fill: #fff; } }
 @keyframes halo { 0%, 32% { opacity: .35; transform: scale(.9); } 42%, 52% { opacity: 1; transform: scale(1.06); } 62%, 100% { opacity: .35; transform: scale(.9); } }
-@media (prefers-reduced-motion: reduce) { .flow .dot { display: none; } .flow .halo, .flow rect { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .flow .dot { display: none; } .flow .halo, .flow .in rect, .flow .out rect { animation: none; } }
 
 /* try it yourself */
-.try { margin-top: 48px; }
+.try { margin-top: 24px; }
 .try-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 760px) { .try-cards { grid-template-columns: 1fr; } }
 .try-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; text-decoration: none; color: var(--ink); transition: border-color .15s, box-shadow .15s; }
@@ -273,12 +276,12 @@ section, [id] { scroll-margin-top: 68px; }
 
 <div class="hero">
   <div class="wrap">
-    <span class="pill"><span class="dot"></span> מחזור מייסדים · 25 מקומות</span>
+    <span class="pill"><span class="dot"></span> מחיר מייסדים · 15 מקומות בלבד</span>
     <h1>סוכני AI לגיוס משאבים<br><span>שעובדים בשבילכם <bdi dir="ltr">24/7</bdi></span></h1>
-    <p class="lead">הסוכנים סורקים קרנות, קולות קוראים, משרדי ממשלה ורשויות, בודקים כל הזדמנות מול הארגון שלכם, ושולחים רק את מה שבאמת מתאים: מה לעשות ועד מתי.</p>
+    <p class="lead">הסוכנים סורקים קרנות, קולות קוראים, משרדי ממשלה ורשויות, בארץ ובחו״ל, בודקים כל הזדמנות מול הארגון שלכם, ומביאים עד אליכם את ההזדמנויות בעלות סיכויי הקבלה הגבוהים ביותר.</p>
     <div class="ctas">
       <a class="btn btn-primary" href="#signup">לקביעת שיחת היכרות קצרה</a>
-      <a class="btn btn-ghost" href="#demo">לדמו
+      <a class="btn btn-ghost" href="#demo">איך זה עובד
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
       </a>
     </div>
@@ -287,64 +290,57 @@ section, [id] { scroll-margin-top: 68px; }
 
 <section id="demo" class="demo-section">
   <div class="wrap">
-    <div class="flow" role="img" aria-label="הארגון שלכם, דרישות המממן והיעד שלכם נכנסים לסוכני ה-AI. יוצאות הזדמנויות שמתאימות וטיוטת הגשה, והמערכת לומדת מכל הגשה.">
+    <h2>איך זה עובד</h2>
+    <div class="flow" role="img" aria-label="פרופיל הארגון, דרישות הגוף המממן וסכום היעד נכנסים לסוכני ה-AI. יוצאות הזדמנויות מותאמות, טיוטת הגשה ותובנות אסטרטגיות, ומערכת ה-AI לומדת מכל הגשה.">
       <!-- desktop: inputs on the right, outputs on the left -->
-      <svg class="flow-d" viewBox="0 0 1040 500" aria-hidden="true">
-        <defs>
-          <radialGradient id="hubG" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient>
-          <marker id="arrD" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker>
-        </defs>
-        <!-- learning loop: outputs back to the organisation -->
-        <path id="dLoop" class="wire loop" d="M150,128 C150,30 520,14 900,14 C960,14 960,40 960,78" marker-end="url(#arrD)"/>
-        <text class="loop-t" x="520" y="34">לומדים מכל הגשה</text>
-        <!-- wires -->
-        <path id="dIn1" class="wire" d="M790,118 C700,118 690,248 602,248"/>
-        <path id="dIn2" class="wire" d="M790,248 L602,248"/>
-        <path id="dIn3" class="wire" d="M790,378 C700,378 690,248 602,248"/>
-        <path id="dOut1" class="wire" d="M438,248 C360,248 350,172 270,172"/>
-        <path id="dOut2" class="wire" d="M438,248 C360,248 350,324 270,324"/>
-        <!-- inputs -->
-        <g class="node in n1"><rect x="790" y="78" width="230" height="80" rx="16"/><text class="t" x="905" y="113">הארגון שלכם</text><text class="s" x="905" y="140">פעילות, השפעה, מממנים</text></g>
-        <g class="node in n2"><rect x="790" y="208" width="230" height="80" rx="16"/><text class="t" x="905" y="243">דרישות המממן</text><text class="s" x="905" y="270">קריטריונים, סכומים, דדליין</text></g>
-        <g class="node in n3"><rect x="790" y="338" width="230" height="80" rx="16"/><text class="t" x="905" y="373">היעד שלכם</text><text class="s" x="905" y="400">כמה, למה ועד מתי</text></g>
-        <!-- hub -->
-        <g class="hub"><circle class="halo" cx="520" cy="248" r="104"/><circle cx="520" cy="248" r="82" fill="url(#hubG)"/>
-          <text class="ht" x="520" y="242">סוכני</text><text class="ht" x="520" y="272">ה-AI</text></g>
-        <!-- outputs -->
-        <g class="node out o1"><rect x="20" y="128" width="250" height="88" rx="16"/><text class="t" x="145" y="165">הזדמנויות שמתאימות</text><text class="s" x="145" y="192">מה לעשות ועד מתי</text></g>
-        <g class="node out o2"><rect x="20" y="280" width="250" height="88" rx="16"/><text class="t" x="145" y="317">טיוטת הגשה</text><text class="s" x="145" y="344">בוורד, מה שחסר מסומן</text></g>
-        <!-- particles -->
-        <circle class="dot" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.06;0.32;1" calcMode="linear"><mpath href="#dIn1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.06;0.31;0.33;1"/></circle>
-        <circle class="dot" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.12;0.34;1" calcMode="linear"><mpath href="#dIn2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.12;0.33;0.35;1"/></circle>
-        <circle class="dot" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.18;0.36;1" calcMode="linear"><mpath href="#dIn3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.18;0.35;0.37;1"/></circle>
-        <circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.48;0.64;1" calcMode="linear"><mpath href="#dOut1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.48;0.63;0.65;1"/></circle>
-        <circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.70;1" calcMode="linear"><mpath href="#dOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.69;0.71;1"/></circle>
-        <circle class="dot l" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.76;0.97;1" calcMode="linear"><mpath href="#dLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.76;0.96;0.98;1"/></circle>
-      </svg>
-      <!-- mobile: top to bottom -->
-      <svg class="flow-m" viewBox="0 0 360 600" aria-hidden="true">
-        <defs><radialGradient id="hubGM" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrM" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker></defs>
-        <path id="mLoop" class="wire loop" d="M88,484 C88,560 340,560 340,470 L340,130 C340,112 330,104 318,104" marker-end="url(#arrM)"/>
-        <text class="loop-t" x="214" y="580">לומדים מכל הגשה</text>
-        <path id="mIn1" class="wire" d="M286,104 C286,170 180,170 180,196"/>
-        <path id="mIn2" class="wire" d="M170,104 L180,196"/>
-        <path id="mIn3" class="wire" d="M54,104 C54,170 180,170 180,196"/>
-        <path id="mOut1" class="wire" d="M180,320 C180,360 260,360 260,400"/>
-        <path id="mOut2" class="wire" d="M180,320 C180,360 100,360 100,400"/>
-        <g class="node in n1"><rect x="236" y="40" width="104" height="64" rx="14"/><text class="t sm" x="288" y="78">הארגון שלכם</text></g>
-        <g class="node in n2"><rect x="122" y="40" width="104" height="64" rx="14"/><text class="t sm" x="174" y="78">דרישות המממן</text></g>
-        <g class="node in n3"><rect x="8" y="40" width="104" height="64" rx="14"/><text class="t sm" x="60" y="78">היעד שלכם</text></g>
-        <g class="hub"><circle class="halo" cx="180" cy="258" r="78"/><circle cx="180" cy="258" r="62" fill="url(#hubGM)"/>
-          <text class="ht" x="180" y="252">סוכני</text><text class="ht" x="180" y="280">ה-AI</text></g>
-        <g class="node out o1"><rect x="190" y="400" width="160" height="84" rx="14"/><text class="t sm" x="270" y="436">הזדמנויות</text><text class="t sm" x="270" y="460">שמתאימות</text></g>
-        <g class="node out o2"><rect x="10" y="400" width="160" height="84" rx="14"/><text class="t sm" x="90" y="436">טיוטת</text><text class="t sm" x="90" y="460">הגשה</text></g>
-        <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.06;0.32;1" calcMode="linear"><mpath href="#mIn1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.06;0.31;0.33;1"/></circle>
-        <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.12;0.34;1" calcMode="linear"><mpath href="#mIn2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.12;0.33;0.35;1"/></circle>
-        <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.18;0.36;1" calcMode="linear"><mpath href="#mIn3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.18;0.35;0.37;1"/></circle>
-        <circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.48;0.64;1" calcMode="linear"><mpath href="#mOut1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.48;0.63;0.65;1"/></circle>
-        <circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.70;1" calcMode="linear"><mpath href="#mOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.69;0.71;1"/></circle>
-        <circle class="dot l" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.76;0.97;1" calcMode="linear"><mpath href="#mLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.76;0.96;0.98;1"/></circle>
-      </svg>
+      <svg class="flow-d" viewBox="0 0 1040 540" aria-hidden="true"><defs><radialGradient id="hubG" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
+<path id="dLoop" class="wire loop" d="M150,92 C150,40 200,30 300,30 L820,30 C890,30 905,40 905,86" marker-end="url(#arrD)"/>
+<g class="loop-pill"><rect x="438" y="12" width="164" height="36" rx="18"/><text class="loop-t" x="520" y="36">↻ מערכת AI לומדת</text></g>
+<path id="dIn1" class="wire" d="M780,134.0 C700,134.0 690,270 606,270" marker-end="url(#arrW)"/>
+<path id="dIn2" class="wire" d="M780,270.0 C700,270.0 690,270 606,270" marker-end="url(#arrW)"/>
+<path id="dIn3" class="wire" d="M780,406.0 C700,406.0 690,270 606,270" marker-end="url(#arrW)"/>
+<path id="dOut1" class="wire" d="M434,270 C360,270 350,136.0 284,136.0" marker-end="url(#arrW)"/>
+<path id="dOut2" class="wire" d="M434,270 C360,270 350,270.0 284,270.0" marker-end="url(#arrW)"/>
+<path id="dOut3" class="wire" d="M434,270 C360,270 350,404.0 284,404.0" marker-end="url(#arrW)"/>
+<g class="node in n1"><rect x="780" y="90" width="250" height="88" rx="16"/><text class="t" x="905.0" y="128.0">פרופיל הארגון</text><text class="s" x="905.0" y="154.0">פעילות, אימפקט, ייחוד</text></g>
+<g class="node in n2"><rect x="780" y="226" width="250" height="88" rx="16"/><text class="t" x="905.0" y="264.0">דרישות הגוף המממן</text><text class="s" x="905.0" y="290.0">קריטריונים, סכומים, דדליין</text></g>
+<g class="node in n3"><rect x="780" y="362" width="250" height="88" rx="16"/><text class="t" x="905.0" y="400.0">סכום היעד</text><text class="s" x="905.0" y="426.0">כמה, למה, ולמה דווקא אתם</text></g>
+<g class="hub"><circle class="halo" cx="520" cy="270" r="106"/><circle cx="520" cy="270" r="84" fill="url(#hubG)"/><text class="ht" x="520" y="263">סוכני</text><text class="ht" x="520" y="294">ה-AI</text></g>
+<g class="node out o1"><rect x="10" y="92" width="270" height="88" rx="16"/><text class="t" x="145.0" y="130.0">הזדמנויות מותאמות</text><text class="s" x="145.0" y="156.0">להגשה · דורש התאמה · צפוי להיפתח</text></g>
+<g class="node out o2"><rect x="10" y="226" width="270" height="88" rx="16"/><text class="t" x="145.0" y="264.0">טיוטת הגשה</text><text class="s" x="145.0" y="290.0">ניתנת לעריכה, חוסכת עבודה ידנית</text></g>
+<g class="node out o3"><rect x="10" y="360" width="270" height="88" rx="16"/><text class="t" x="145.0" y="398.0">תובנות אסטרטגיות</text><text class="s" x="145.0" y="424.0">גופים וקרנות שעוד לא הכרתם</text></g>
+<circle class="dot " r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.04;0.30;1" calcMode="linear"><mpath href="#dIn1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.04;0.29;0.31;1"/></circle>
+<circle class="dot " r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.10;0.32;1" calcMode="linear"><mpath href="#dIn2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.10;0.31;0.33;1"/></circle>
+<circle class="dot " r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.16;0.34;1" calcMode="linear"><mpath href="#dIn3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.16;0.33;0.35;1"/></circle>
+<circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.46;0.60;1" calcMode="linear"><mpath href="#dOut1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.46;0.59;0.61;1"/></circle>
+<circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.50;0.64;1" calcMode="linear"><mpath href="#dOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.50;0.63;0.65;1"/></circle>
+<circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.68;1" calcMode="linear"><mpath href="#dOut3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.67;0.69;1"/></circle>
+<circle class="dot l" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.74;0.96;1" calcMode="linear"><mpath href="#dLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.74;0.95;0.97;1"/></circle>
+</svg>
+<svg class="flow-m" viewBox="0 0 360 640" aria-hidden="true"><defs><radialGradient id="hubGM" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrWM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
+<path id="mLoop" class="wire loop" d="M176,520 C176,575 200,585 250,585 L330,585 C352,585 356,570 356,550 L356,40 C356,24 340,18 320,18 L300,18 C296,18 296,30 296,44" marker-end="url(#arrM)"/>
+<g class="loop-pill"><rect x="96" y="568" width="164" height="34" rx="17"/><text class="loop-t" x="178" y="591">↻ מערכת AI לומדת</text></g>
+<path id="mIn1" class="wire" d="M296.0,126 C296.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
+<path id="mOut1" class="wire" d="M180,356 C180,390 296.0,390 296.0,426" marker-end="url(#arrWM)"/>
+<path id="mIn2" class="wire" d="M176.0,126 C176.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
+<path id="mOut2" class="wire" d="M180,356 C180,390 176.0,390 176.0,426" marker-end="url(#arrWM)"/>
+<path id="mIn3" class="wire" d="M56.0,126 C56.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
+<path id="mOut3" class="wire" d="M180,356 C180,390 56.0,390 56.0,426" marker-end="url(#arrWM)"/>
+<g class="node in n1"><rect x="244" y="44" width="104" height="82" rx="16"/><text class="t sm" x="296.0" y="81.0">פרופיל</text><text class="t sm" x="296.0" y="102.0">הארגון</text></g>
+<g class="node in n2"><rect x="124" y="44" width="104" height="82" rx="16"/><text class="t sm" x="176.0" y="81.0">דרישות</text><text class="t sm" x="176.0" y="102.0">הגוף המממן</text></g>
+<g class="node in n3"><rect x="4" y="44" width="104" height="82" rx="16"/><text class="t sm" x="56.0" y="81.0">סכום</text><text class="t sm" x="56.0" y="102.0">היעד</text></g>
+<g class="hub"><circle class="halo" cx="180" cy="290" r="80"/><circle cx="180" cy="290" r="64" fill="url(#hubGM)"/><text class="ht" x="180" y="284">סוכני</text><text class="ht" x="180" y="312">ה-AI</text></g>
+<g class="node out o1"><rect x="244" y="430" width="104" height="90" rx="16"/><text class="t sm" x="296.0" y="471.0">הזדמנויות</text><text class="t sm" x="296.0" y="492.0">מותאמות</text></g>
+<g class="node out o2"><rect x="124" y="430" width="104" height="90" rx="16"/><text class="t sm" x="176.0" y="471.0">טיוטת</text><text class="t sm" x="176.0" y="492.0">הגשה</text></g>
+<g class="node out o3"><rect x="4" y="430" width="104" height="90" rx="16"/><text class="t sm" x="56.0" y="471.0">תובנות</text><text class="t sm" x="56.0" y="492.0">אסטרטגיות</text></g>
+<circle class="dot " r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.04;0.30;1" calcMode="linear"><mpath href="#mIn1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.04;0.29;0.31;1"/></circle>
+<circle class="dot " r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.10;0.32;1" calcMode="linear"><mpath href="#mIn2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.10;0.31;0.33;1"/></circle>
+<circle class="dot " r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.16;0.34;1" calcMode="linear"><mpath href="#mIn3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.16;0.33;0.35;1"/></circle>
+<circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.46;0.60;1" calcMode="linear"><mpath href="#mOut1"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.46;0.59;0.61;1"/></circle>
+<circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.50;0.64;1" calcMode="linear"><mpath href="#mOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.50;0.63;0.65;1"/></circle>
+<circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.68;1" calcMode="linear"><mpath href="#mOut3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.67;0.69;1"/></circle>
+<circle class="dot l" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.74;0.96;1" calcMode="linear"><mpath href="#mLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.74;0.95;0.97;1"/></circle>
+</svg>
     </div>
 
     <div id="try" class="try">
