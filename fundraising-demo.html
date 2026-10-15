@@ -581,6 +581,7 @@ body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--tex
   backdrop-filter: blur(4px);
 }
 .modal-overlay.visible { display: flex; animation: fadeUp 0.25s; }
+.modal-overlay { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .modal {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1544,7 +1545,7 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">קרן משפחת נחליאלי — קול קורא "מעגלי החיים": בריאות, ינקות ומוגבלות</div>
+            <div class="result-title">קרן משפחת שעשוע — קול קורא "מעגלי החיים": בריאות, ינקות ומוגבלות</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-messages"></i> ערוץ טלגרם "שימושי לשלישי"</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">50,000–300,000 &#8362;</span></span>
@@ -1840,8 +1841,8 @@ function showResults() {
 // Step 3 demo data: request prefilled from the opportunity the user picked in step 2
 const REQUESTS = [
   {
-    funder: 'קרן משפחת נחליאלי', call: 'קול קורא "מעגלי החיים"', match: 96,
-    url: 'https://nahliely-fund.example/apply', criteriaFiles: [],
+    funder: 'קרן משפחת שעשוע', call: 'קול קורא "מעגלי החיים"', match: 96,
+    url: 'https://www.shashua-foundation.org.il/Application', criteriaFiles: [],
     goal: 'מבקשים 250,000 ₪ ל-18 חודשים: שילוב אחות בריאות האישה בכל צוות נייד ותכנית חוסן לצוותים. להדגיש את הירידה של 27% בפניות למיון ואת זה שהמודל גדל מ-3 ל-12 יישובים.',
     orgFiles: ['תקציב מיזם גשר הבריאות.pdf', 'דוח השפעה 2025.pdf'],
   },
@@ -1873,11 +1874,11 @@ const REQUESTS = [
 
 const contacts = [
   {
-    title: 'יצירת קשר — קרן משפחת נחליאלי',
+    title: 'יצירת קשר — קרן משפחת שעשוע',
     subtitle: 'קול קורא "מעגלי החיים"',
-    content: `פרטי קשר: קרן משפחת נחליאלי
-אתר: nahliely-fund.example
-טופס הגשה: nahliely-fund.example/apply
+    content: `פרטי קשר: קרן משפחת שעשוע
+אתר: shashua-foundation.org.il
+טופס הגשה: shashua-foundation.org.il/Application
 
 הערת מערכת: הקרן קיימה וובינר מקוון למענה על שאלות. מומלץ לבדוק באתר האם ההקלטה זמינה לצפייה.
 
@@ -2352,26 +2353,46 @@ function approveProfile() {
 <style>
 .coach { position: fixed; z-index: 9000; max-width: 280px; background: #1A1D23; color: #fff; font: 600 15px/1.45 'Heebo', sans-serif; padding: 12px 16px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); direction: rtl; text-align: right; }
 .coach::before { content: ''; position: absolute; top: -7px; right: var(--tip, 50%); width: 14px; height: 14px; background: #1A1D23; transform: translateX(50%) rotate(45deg); border-radius: 2px; }
+.coach.above::before { top: auto; bottom: -7px; }
 .coach small { display: block; color: #A5B4FC; font-weight: 700; font-size: 12px; margin-bottom: 2px; }
 .coach-target { position: relative; z-index: 2; animation: coachPulse 1.6s infinite; }
 @keyframes coachPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(79,70,229,.55); } 60% { box-shadow: 0 0 0 12px rgba(79,70,229,0); } }
 .next-bar { position: fixed; z-index: 9000; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #C7D2FE; box-shadow: 0 12px 34px rgba(79,70,229,.18); border-radius: 16px; padding: 12px 14px 12px 18px; font: 600 15px 'Heebo', sans-serif; color: #1A1D23; direction: rtl; max-width: calc(100vw - 24px); }
 .next-bar a { flex: none; background: #4F46E5; color: #fff; text-decoration: none; font-weight: 700; padding: 10px 18px; border-radius: 12px; }
+@media (max-width: 560px) { .next-bar { left: 12px; right: 12px; transform: none; flex-direction: column; align-items: stretch; text-align: center; } }
 </style>
 <script>
 /* Guided entry from the landing page: fundraising-demo.html#profile | #scan | #submit */
 (function () {
   const STEPS = ['profile', 'scan', 'submit'];
-  const entry = location.hash.slice(1);
-  if (!STEPS.includes(entry)) return;
-  const idx = STEPS.indexOf(entry);
-  let bubble = null, target = null;
+  const first = location.hash.slice(1);
+  if (!STEPS.includes(first)) return;
+  let idx = 0, bubble = null, target = null;
+  const timers = [];
 
   function clearCoach() {
     if (bubble) bubble.remove();
     if (target) target.classList.remove('coach-target');
     bubble = target = null;
   }
+  // The bubble follows its button every frame, hides when the button is off screen or gone,
+  // and any click anywhere dismisses it (the next bubble comes from the flow itself).
+  function track() {
+    if (!bubble || !target) return;
+    const r = target.getBoundingClientRect();
+    const shown = target.offsetParent !== null && r.bottom > 0 && r.top < innerHeight;
+    bubble.style.visibility = shown ? 'visible' : 'hidden';
+    if (shown) {
+      const left = Math.max(12, Math.min(innerWidth - bubble.offsetWidth - 12, r.left + r.width / 2 - bubble.offsetWidth / 2));
+      const below = r.bottom + 14 + bubble.offsetHeight < innerHeight - 90;
+      bubble.classList.toggle('above', !below);
+      bubble.style.left = left + 'px';
+      bubble.style.top = (below ? r.bottom + 14 : r.top - 14 - bubble.offsetHeight) + 'px';
+      bubble.style.setProperty('--tip', Math.max(16, Math.min(bubble.offsetWidth - 16, left + bubble.offsetWidth - (r.left + r.width / 2))) + 'px');
+    }
+    requestAnimationFrame(track);
+  }
+  document.addEventListener('pointerdown', (e) => { if (bubble && !bubble.contains(e.target)) clearCoach(); }, true);
   function coach(sel, text) {
     clearCoach();
     const t = document.querySelector(sel);
@@ -2382,61 +2403,58 @@ function approveProfile() {
     bubble.className = 'coach';
     bubble.innerHTML = '<small>שלב ' + (idx + 1) + ' מתוך 3</small>' + text;
     document.body.appendChild(bubble);
-    const place = () => {
-      if (!bubble) return;
-      const r = t.getBoundingClientRect();
-      const left = Math.max(12, Math.min(innerWidth - bubble.offsetWidth - 12, r.left + r.width / 2 - bubble.offsetWidth / 2));
-      bubble.style.left = left + 'px';
-      bubble.style.top = (r.bottom + 14) + 'px';
-      bubble.style.setProperty('--tip', Math.max(16, Math.min(bubble.offsetWidth - 16, left + bubble.offsetWidth - (r.left + r.width / 2))) + 'px');
-    };
-    place(); setTimeout(place, 400);
-    addEventListener('resize', place);
-    document.querySelector('.main').addEventListener('scroll', place, { passive: true });
-    t.addEventListener('click', clearCoach, { once: true });
+    requestAnimationFrame(track);
   }
-  function nextBar(text, label, href) {
-    const old = document.querySelector('.next-bar'); if (old) old.remove();
+  function clearBar() { const old = document.querySelector('.next-bar'); if (old) old.remove(); }
+  function nextBar(text, label, go) {
+    clearBar();
     const b = document.createElement('div');
     b.className = 'next-bar';
     b.innerHTML = '<span>' + text + '</span>';
     const a = document.createElement('a');
-    a.textContent = label; a.href = href;
-    if (href.startsWith('#')) a.addEventListener('click', e => { e.preventDefault(); location.hash = href; location.reload(); });
-    else a.target = '_top';
+    a.textContent = label; a.href = '#';
+    a.addEventListener('click', (e) => { e.preventDefault(); go(); });
     b.appendChild(a); document.body.appendChild(b);
   }
+  function signup() {
+    if (window.self !== window.top) window.parent.postMessage('demo-signup', '*');
+    else location.href = 'fundraising.html#signup';
+  }
   // Run fn once when test() becomes true.
-  function when(test, fn) { const iv = setInterval(() => { if (test()) { clearInterval(iv); fn(); } }, 300); }
-  const visible = sel => { const el = document.querySelector(sel); return !!(el && el.offsetParent !== null); };
+  function when(test, fn) { const iv = setInterval(() => { if (test()) { clearInterval(iv); fn(); } }, 300); timers.push(iv); }
+  const visible = (sel) => { const el = document.querySelector(sel); return !!(el && el.offsetParent !== null); };
 
-  window.addEventListener('load', () => {
-    if (entry === 'profile') {
+  // Each step starts in place (no page reload), so "next" never sends the visitor back.
+  function run(step) {
+    timers.forEach(clearInterval); timers.length = 0;
+    clearCoach(); clearBar();
+    idx = STEPS.indexOf(step);
+    if (step === 'profile') {
+      goStep(1);
       coach('#buildBtn', 'לחצו כאן, וצפו בסוכני ה-AI לומדים ארגון לדוגמה מארבעה מקורות.');
       when(() => visible('#toProfileBtn'), () => {
         coach('#toProfileBtn', 'הפרופיל מוכן. לחצו כדי לראות מה הסוכנים הבינו על הארגון.');
-        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן במערכת. עכשיו היא יכולה לחפש עבורכם הזדמנויות.', 'לשלב הבא: סריקת הזדמנויות', '#scan'), { once: true });
+        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן במערכת. עכשיו היא יכולה לחפש עבורכם הזדמנויות.', 'לשלב הבא: סריקת הזדמנויות', () => run('scan')), { once: true });
       });
     }
-    if (entry === 'scan') {
+    if (step === 'scan') {
       goStep(2);
       setTimeout(() => coach('#scanBtn', 'לחצו לסריקה. הסוכנים בודקים עשרות מקורות מול הפרופיל של הארגון.'), 300);
       when(() => visible('.result-card .btn-draft'), () => {
-        setTimeout(() => {
-          coach('.result-card .btn-draft', 'אלה ההזדמנויות שמתאימות, עם הסבר למה. לחצו כדי לבקש טיוטת הגשה.');
-          nextBar('מצאנו הזדמנויות. עכשיו בונים הגשה.', 'לשלב הבא: בניית ההגשה', '#submit');
-        }, 600);
+        setTimeout(() => coach('.result-card .btn-draft', 'אלה ההזדמנויות שמתאימות, עם הסבר למה. לחצו כדי לבקש טיוטת הגשה.'), 600);
+        when(() => visible('#rqSubmit'), () => run('submit'));
       });
     }
-    if (entry === 'submit') {
-      openRequest(0);
+    if (step === 'submit') {
+      if (!visible('#rqSubmit')) openRequest(0);
       setTimeout(() => coach('#rqSubmit', 'זו בקשת הגשה, כבר מלאה בשבילכם. לחצו לשליחה.'), 300);
       when(() => visible('#btsBtn'), () => {
         coach('#btsBtn', 'הבקשה נשלחה. לחצו כדי לראות איך הטיוטה נבנית.');
-        document.getElementById('btsBtn').addEventListener('click', () => nextBar('רוצים את זה לארגון שלכם?', 'לקביעת שיחת היכרות', 'fundraising.html#signup'), { once: true });
+        document.getElementById('btsBtn').addEventListener('click', () => nextBar('רוצים את זה לארגון שלכם?', 'לקביעת שיחת היכרות', signup), { once: true });
       });
     }
-  });
+  }
+  window.addEventListener('load', () => run(first));
 })();
 </script>
 </body>
