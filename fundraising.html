@@ -223,6 +223,9 @@ section, [id] { scroll-margin-top: 68px; }
 .flow .t.sm { font-size: 15px; }
 .flow .s { font-size: 14px; fill: var(--ink-2); }
 .flow .ht { font-size: 26px; font-weight: 800; fill: #fff; }
+.flow-m .ht { font-size: 23px; }
+.flow .spark path { fill: #fff; }
+.flow .spark .spark2 { fill: #C7D2FE; }
 .flow .loop-t { font-size: 16px; font-weight: 700; fill: var(--accent); }
 .flow .loop-pill rect { fill: #fff; stroke: #C7D2FE; stroke-width: 1.5; }
 .flow-m .loop-t { font-size: 15px; }
@@ -296,7 +299,7 @@ section, [id] { scroll-margin-top: 68px; }
       <!-- desktop: inputs on the right, outputs on the left -->
       <svg class="flow-d" viewBox="0 0 1040 540" aria-hidden="true"><defs><radialGradient id="hubG" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
 <path id="dLoop" class="wire loop" d="M150,92 C150,40 200,30 300,30 L820,30 C890,30 905,40 905,86" marker-end="url(#arrD)"/>
-<g class="loop-pill"><rect x="438" y="12" width="164" height="36" rx="18"/><text class="loop-t" x="520" y="36">↻ מערכת AI לומדת</text></g>
+<g class="loop-pill"><rect x="438" y="12" width="164" height="36" rx="18"/><text class="loop-t" x="520" y="36">מערכת AI לומדת</text></g>
 <path id="dIn1" class="wire" d="M780,134.0 C700,134.0 690,270 606,270" marker-end="url(#arrW)"/>
 <path id="dIn2" class="wire" d="M780,270.0 C700,270.0 690,270 606,270" marker-end="url(#arrW)"/>
 <path id="dIn3" class="wire" d="M780,406.0 C700,406.0 690,270 606,270" marker-end="url(#arrW)"/>
@@ -306,7 +309,7 @@ section, [id] { scroll-margin-top: 68px; }
 <g class="node in n1"><rect x="780" y="90" width="250" height="88" rx="16"/><text class="t" x="905.0" y="128.0">פרופיל הארגון</text><text class="s" x="905.0" y="154.0">פעילות, אימפקט, ייחוד</text></g>
 <g class="node in n2"><rect x="780" y="226" width="250" height="88" rx="16"/><text class="t" x="905.0" y="264.0">דרישות הגוף המממן</text><text class="s" x="905.0" y="290.0">קריטריונים, סכומים, דדליין</text></g>
 <g class="node in n3"><rect x="780" y="362" width="250" height="88" rx="16"/><text class="t" x="905.0" y="400.0">סכום היעד</text><text class="s" x="905.0" y="426.0">כמה, למה, ולמה דווקא אתם</text></g>
-<g class="hub"><circle class="halo" cx="520" cy="270" r="106"/><circle cx="520" cy="270" r="84" fill="url(#hubG)"/><text class="ht" x="520" y="263">סוכני</text><text class="ht" x="520" y="294">ה-AI</text></g>
+<g class="hub"><circle class="halo" cx="520" cy="270" r="106"/><circle cx="520" cy="270" r="84" fill="url(#hubG)"/><g class="spark" transform="translate(520,226)"><path d="M0,-17 C1.6320000000000001,-5.44 5.44,-1.6320000000000001 17,0 C5.44,1.6320000000000001 1.6320000000000001,5.44 0,17 C-1.6320000000000001,5.44 -5.44,1.6320000000000001 -17,0 C-5.44,-1.6320000000000001 -1.6320000000000001,-5.44 0,-17 Z"/><path class="spark2" transform="translate(16.15,-14.45)" d="M0,-7.65 C0.7343999999999999,-2.448 2.448,-0.7343999999999999 7.65,0 C2.448,0.7343999999999999 0.7343999999999999,2.448 0,7.65 C-0.7343999999999999,2.448 -2.448,0.7343999999999999 -7.65,0 C-2.448,-0.7343999999999999 -0.7343999999999999,-2.448 0,-7.65 Z"/></g><text class="ht" x="520" y="280">סוכני</text><text class="ht" x="520" y="309">ה-AI</text></g>
 <g class="node out o1"><rect x="10" y="92" width="270" height="88" rx="16"/><text class="t" x="145.0" y="130.0">הזדמנויות מותאמות</text><text class="s" x="145.0" y="156.0">להגשה · דורש התאמה · צפוי להיפתח</text></g>
 <g class="node out o2"><rect x="10" y="226" width="270" height="88" rx="16"/><text class="t" x="145.0" y="264.0">טיוטת הגשה</text><text class="s" x="145.0" y="290.0">ניתנת לעריכה, חוסכת עבודה ידנית</text></g>
 <g class="node out o3"><rect x="10" y="360" width="270" height="88" rx="16"/><text class="t" x="145.0" y="398.0">תובנות אסטרטגיות</text><text class="s" x="145.0" y="424.0">גופים וקרנות שעוד לא הכרתם</text></g>
@@ -320,7 +323,7 @@ section, [id] { scroll-margin-top: 68px; }
 </svg>
 <svg class="flow-m" viewBox="0 0 360 640" aria-hidden="true"><defs><radialGradient id="hubGM" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrWM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
 <path id="mLoop" class="wire loop" d="M176,520 C176,575 200,585 250,585 L330,585 C352,585 356,570 356,550 L356,40 C356,24 340,18 320,18 L300,18 C296,18 296,30 296,44" marker-end="url(#arrM)"/>
-<g class="loop-pill"><rect x="96" y="568" width="164" height="34" rx="17"/><text class="loop-t" x="178" y="591">↻ מערכת AI לומדת</text></g>
+<g class="loop-pill"><rect x="96" y="568" width="164" height="34" rx="17"/><text class="loop-t" x="178" y="591">מערכת AI לומדת</text></g>
 <path id="mIn1" class="wire" d="M296.0,126 C296.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
 <path id="mOut1" class="wire" d="M180,356 C180,390 296.0,390 296.0,426" marker-end="url(#arrWM)"/>
 <path id="mIn2" class="wire" d="M176.0,126 C176.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
@@ -330,7 +333,7 @@ section, [id] { scroll-margin-top: 68px; }
 <g class="node in n1"><rect x="244" y="44" width="104" height="82" rx="16"/><text class="t sm" x="296.0" y="81.0">פרופיל</text><text class="t sm" x="296.0" y="102.0">הארגון</text></g>
 <g class="node in n2"><rect x="124" y="44" width="104" height="82" rx="16"/><text class="t sm" x="176.0" y="81.0">דרישות</text><text class="t sm" x="176.0" y="102.0">הגוף המממן</text></g>
 <g class="node in n3"><rect x="4" y="44" width="104" height="82" rx="16"/><text class="t sm" x="56.0" y="81.0">סכום</text><text class="t sm" x="56.0" y="102.0">היעד</text></g>
-<g class="hub"><circle class="halo" cx="180" cy="290" r="80"/><circle cx="180" cy="290" r="64" fill="url(#hubGM)"/><text class="ht" x="180" y="284">סוכני</text><text class="ht" x="180" y="312">ה-AI</text></g>
+<g class="hub"><circle class="halo" cx="180" cy="290" r="80"/><circle cx="180" cy="290" r="64" fill="url(#hubGM)"/><g class="spark" transform="translate(180,260)"><path d="M0,-13 C1.248,-4.16 4.16,-1.248 13,0 C4.16,1.248 1.248,4.16 0,13 C-1.248,4.16 -4.16,1.248 -13,0 C-4.16,-1.248 -1.248,-4.16 0,-13 Z"/><path class="spark2" transform="translate(12.35,-11.049999999999999)" d="M0,-5.8500000000000005 C0.5616,-1.872 1.872,-0.5616 5.8500000000000005,0 C1.872,0.5616 0.5616,1.872 0,5.8500000000000005 C-0.5616,1.872 -1.872,0.5616 -5.8500000000000005,0 C-1.872,-0.5616 -0.5616,-1.872 0,-5.8500000000000005 Z"/></g><text class="ht" x="180" y="304">סוכני</text><text class="ht" x="180" y="330">ה-AI</text></g>
 <g class="node out o1"><rect x="244" y="430" width="104" height="90" rx="16"/><text class="t sm" x="296.0" y="471.0">הזדמנויות</text><text class="t sm" x="296.0" y="492.0">מותאמות</text></g>
 <g class="node out o2"><rect x="124" y="430" width="104" height="90" rx="16"/><text class="t sm" x="176.0" y="471.0">טיוטת</text><text class="t sm" x="176.0" y="492.0">הגשה</text></g>
 <g class="node out o3"><rect x="4" y="430" width="104" height="90" rx="16"/><text class="t sm" x="56.0" y="471.0">תובנות</text><text class="t sm" x="56.0" y="492.0">אסטרטגיות</text></g>
@@ -468,7 +471,7 @@ section, [id] { scroll-margin-top: 68px; }
     <details><summary>מה קורה אחרי 3 חודשים?</summary><p>ממשיכים חודש-בחודשו באותו מחיר, ואפשר להפסיק בכל חודש. אפשר גם לעבור למסלול השנתי.</p></details>
     <details><summary>צריך ידע טכני?</summary><p>לא. הכול מגיע אליכם במייל.</p></details>
     <details><summary>חותמים על הסכם סודיות (NDA)?</summary><p>כן, עם כל ארגון שרוצה, לפני שאתם שולחים חומר.</p></details>
-    <details><summary>איפה נשמר המידע שלנו?</summary><p>המסמכים נשמרים באחסון פרטי באירופה ומעובדים אצל ספק AI שמתחייב לא לאמן מודלים על המידע. החומרים שלכם לא משמשים אף ארגון אחר, וכל תוצר עובר בדיקה לפני שהוא מגיע אליכם.</p></details>
+    <details><summary>איך שומרים על המידע שלנו?</summary><p>המידע שלכם נשאר שלכם. אתם מחליטים אילו חומרים לשתף, וכל ארגון מבודד: סוכני ה-AI ניגשים רק לחומרים של הארגון שלכם, ורק למה שנדרש למשימה. המסמכים נשמרים באחסון פרטי באירופה ומעובדים אצל ספק AI שמתחייב לא לאמן מודלים על המידע. כל תוצר עובר בדיקת איכות לפני שהוא מגיע אליכם.</p></details>
     <details><summary>מה קורה למידע כשמסיימים?</summary><p>לפי בקשתכם, הכול נמחק.</p></details>
     <details><summary>לוקחים אחוזים מהכסף שגייסנו?</summary><p>לא. מחיר חודשי קבוע בלבד.</p></details>
   </div>
