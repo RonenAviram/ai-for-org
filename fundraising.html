@@ -173,6 +173,21 @@ footer a { color: var(--ink-2); text-decoration: none; }
   .sticky .btn-wa { flex: 0 0 52px; }
   footer { padding-bottom: 96px; }
 }
+
+/* anchors land below the sticky bar */
+section, [id] { scroll-margin-top: 68px; }
+
+/* value strip */
+.values { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+@media (max-width: 960px) { .values { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .values { grid-template-columns: 1fr; } }
+.value { background: var(--bg); border: 1px solid var(--border-light); border-radius: 16px; padding: 20px; }
+.value svg { width: 26px; height: 26px; color: var(--accent); margin-bottom: 10px; }
+.value h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; line-height: 1.35; }
+.value p { color: var(--ink-2); font-size: 14px; }
+.form-note a { color: var(--ink-2); }
+.done .ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 720px) { .bar-links { gap: 14px; } }
 </style>
 </head>
 <body>
@@ -185,10 +200,9 @@ footer a { color: var(--ink-2); text-decoration: none; }
     </a>
     <nav class="bar-links">
       <a class="hide-m" href="#demo">דמו</a>
-      <a class="hide-m" href="#pricing">מחיר</a>
+      <a href="#pricing">מחיר</a>
       <a class="hide-m" href="#faq">שאלות</a>
-      <a class="hide-m" href="#about">מי אני</a>
-      <a class="btn-sm" href="#signup">הצטרפות</a>
+      <a class="btn-sm" href="#pricing">להצטרפות</a>
     </nav>
   </div>
 </header>
@@ -197,14 +211,13 @@ footer a { color: var(--ink-2); text-decoration: none; }
 
 <div class="hero">
   <div class="wrap">
-    <span class="pill"><span class="dot"></span> מחזור מייסדים · 25 ארגונים</span>
+    <span class="pill"><span class="dot"></span> מחזור מייסדים · 25 מקומות</span>
     <h1>סוכני AI לגיוס משאבים<br><span>שעובדים בשבילכם <bdi dir="ltr">24/7</bdi></span></h1>
-    <p class="lead">סוכני AI מוצאים לארגון שלכם הזדמנויות מימון, ושולחים רק את מה שמתאים: מה לעשות, ועד מתי.</p>
+    <p class="lead">הסוכנים סורקים את כל מה שפתוח ברשת, בודקים כל הזדמנות מול הארגון שלכם, ושולחים רק את מה שבאמת מתאים: מה לעשות ועד מתי.</p>
     <div class="ctas">
-      <a class="btn btn-primary" href="#signup">להצטרפות</a>
-      <a class="btn btn-ghost" href="#demo">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>
-        לדמו
+      <a class="btn btn-primary" href="#signup">לקביעת שיחת היכרות קצרה</a>
+      <a class="btn btn-ghost" href="#demo">לדמו
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
       </a>
     </div>
     <div class="meta">החל מ-<bdi dir="ltr">₪165</bdi> לחודש · בלי אחוזים מהכסף שתגייסו</div>
@@ -216,68 +229,113 @@ footer a { color: var(--ink-2); text-decoration: none; }
     <div class="window">
       <div class="window-bar">
         <span class="dots"><i></i><i></i><i></i></span>
-        <span>דמו חי · ארגון לדוגמה</span>
-        <a id="demo-full" href="fundraising-demo.html" target="_blank" rel="noopener">מסך מלא ↗</a>
+        <span>דמו אינטראקטיבי · ארגון לדוגמה</span>
+        <a href="fundraising-demo.html" target="_blank" rel="noopener">מסך מלא</a>
       </div>
-      <iframe id="demo-frame" src="fundraising-demo.html" title="דמו: סוכן גיוס המשאבים" loading="lazy"></iframe>
+      <iframe src="fundraising-demo.html" title="דמו: סוכני AI לגיוס משאבים" loading="lazy"></iframe>
     </div>
-    <p class="demo-hint">לחצו "בנה פרופיל ארגוני" ועברו בין השלבים.</p>
+    <p class="demo-hint">לחצו "לבניית הפרופיל" ועברו בין השלבים.</p>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2>איך מתחילים</h2>
-    <p class="sub">שלושה צעדים, ואתם בפנים.</p>
-    <div class="steps">
-      <div class="step"><div class="n">01</div><h3>נרשמים</h3><p>ומעלים חומרים על הארגון.</p></div>
-      <div class="step"><div class="n">02</div><h3>סשן אחד איתי</h3><p>האסטרטגיה שלכם והמממנים הקיימים.</p></div>
-      <div class="step"><div class="n">03</div><h3>מתחילים לקבל הזדמנויות</h3><p>במייל, עם מה לעשות ומתי.</p></div>
+    <h2>מה זה נותן לכם</h2>
+    <p class="sub">פחות עבודה שחורה, יותר הגשות מדויקות.</p>
+    <div class="values">
+      <div class="value">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <h3>פחות זמן בחיפוש</h3><p>הסוכנים סורקים. אליכם מגיע רק מה שמתאים.</p>
+      </div>
+      <div class="value">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+        <h3>טיוטה, לא דף ריק</h3><p>מהקול הקורא לטיוטת הגשה בוורד. מה שחסר מסומן.</p>
+      </div>
+      <div class="value">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5"/></svg>
+        <h3>מגישים פחות, מדויק יותר</h3><p>רק הזדמנויות שמתאימות לפרופיל ולאסטרטגיה שלכם.</p>
+      </div>
+      <div class="value">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>
+        <h3>הנימוק כבר מוכן</h3><p>למה אתם מתאימים, מה חסר ועד מתי.</p>
+      </div>
+      <div class="value">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M6 16V10M11 16V6M16 16v-4M21 16V8"/></svg>
+        <h3>רואים את התמונה הגדולה</h3><p>איפה הגיוס תלוי במעטים, ואילו מממנים עוד לא פניתם אליהם.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="pricing">
+<section>
+  <div class="wrap">
+    <h2>איך מתחילים</h2>
+    <p class="sub">שלושה צעדים, ואתם בפנים.</p>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>נרשמים</h3><p>ושולחים חומרים על הארגון.</p></div>
+      <div class="step"><div class="n">02</div><h3>פגישת היכרות אחת</h3><p>על אסטרטגיית הגיוס והמממנים הקיימים.</p></div>
+      <div class="step"><div class="n">03</div><h3>תובנות ראשונות, ואז הזדמנויות</h3><p>מה כדאי לקדם קודם, ומשם מייל הזדמנויות קבוע.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="alt">
   <div class="wrap">
     <h2>בוחרים מסלול</h2>
-    <p class="sub">מחיר מייסדים, נעול ל-12 חודשים.</p>
+    <p class="sub">מחיר מייסדים ל-25 הארגונים הראשונים.</p>
     <div class="plans">
-      <div class="plan">
+      <div class="plan featured">
+        <span class="badge">מומלץ להתחלה</span>
         <h3>3 חודשים</h3>
         <div class="amount"><b><bdi dir="ltr">₪195</bdi></b><span>לחודש</span></div>
-        <div class="terms">התחייבות ל-3 חודשים</div>
-        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>סשן אישי ופרופיל ארגון</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות שבועי</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטות הגשה</li></ul>
-        <a class="btn btn-ghost" href="#signup" data-plan="3 חודשים">לבחירה</a>
+        <div class="terms">3 חודשים ראשונים, ואחר כך חודש-בחודשו</div>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת היכרות ופרופיל ארגון</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תובנות גיוס ראשונות</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות שבועי</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li>
+        </ul>
+        <a class="btn btn-primary" href="#signup" data-plan="3 חודשים">לבחירה</a>
       </div>
-      <div class="plan featured">
-        <span class="badge">הכי משתלם</span>
+      <div class="plan">
         <h3>שנתי</h3>
         <div class="amount"><b><bdi dir="ltr">₪165</bdi></b><span>לחודש</span></div>
-        <div class="terms">בתשלום שנתי · חיסכון של <bdi dir="ltr">₪360</bdi> בשנה</div>
-        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלול 3 חודשים</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>שנה שלמה של למידה על הארגון</li></ul>
-        <a class="btn btn-primary" href="#signup" data-plan="שנתי">לבחירה</a>
+        <div class="terms"><bdi dir="ltr">₪1,980</bdi> בתשלום שנתי · חיסכון של <bdi dir="ltr">₪360</bdi></div>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלול 3 חודשים</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>התאמות שמשתפרות לאורך כל השנה</li>
+        </ul>
+        <a class="btn btn-ghost" href="#signup" data-plan="שנתי">לבחירה</a>
       </div>
       <div class="plan">
         <h3>ליווי צמוד</h3>
         <div class="amount"><b><bdi dir="ltr">₪450</bdi></b><span>לחודש</span></div>
-        <div class="terms">ריטיינר חודשי</div>
-        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלולים האחרים</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>ליווי צמוד ופגישה חודשית</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>יכולות AI מתקדמות, מותאמות לארגון</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>קו ישיר אליי</li></ul>
+        <div class="terms">ריטיינר חודשי · מספר מקומות מוגבל</div>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלולים האחרים</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת עבודה חודשית</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>אסטרטגיית גיוס מלאה ועדכון רבעוני</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטות הגשה כלולות</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחקר על מממנים דומים לתומכים שלכם</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מענה תוך יום עסקים</li>
+        </ul>
         <a class="btn btn-ghost" href="#signup" data-plan="ליווי צמוד">לבחירה</a>
       </div>
     </div>
-    <p class="addons">בלי אחוזים מהכסף שתגייסו, בכל המסלולים.</p>
+    <p class="addons">טיוטות נוספות אפשר להוסיף בחבילות, בכל שלב · בלי אחוזים מהכסף שתגייסו</p>
   </div>
 </section>
 
-<section id="about" class="alt">
+<section id="about">
   <div class="wrap">
     <div class="about">
       <img src="assets/ronen.jpg" alt="רונן אבירם">
       <div>
         <h2>רונן אבירם</h2>
-        <div class="role">בן 34, מילואימניק, ואבא ל-3</div>
-        <p>שנים בהייטק כמנהל מוצר ומוביל תהליכי AI. היום אני מלווה עמותות.</p>
-        <p class="strong">ה-AI סורק. אני מוודא שכל מה שמגיע אליכם שווה את הזמן שלכם.</p>
+        <div class="role">בן 34, מילואימניק ואבא לשלושה</div>
+        <p>שנים בהייטק כמנהל מוצר, ובשנים האחרונות בונה מערכות AI. היום אני מביא אותן לעמותות.</p>
+        <p class="strong">כל תוצר עובר בדיקה לפני שהוא מגיע אליכם.</p>
         <div class="ctas">
           <button class="btn btn-primary" type="button" onclick="openCalendly()">לתיאום שיחה</button>
           <a class="btn btn-wa" href="https://wa.me/972542569556?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A0%D7%9F%21%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%93%D7%A3%20%D7%A1%D7%95%D7%9B%D7%9F%20%D7%94%D7%92%D7%99%D7%95%D7%A1" target="_blank" rel="noopener">
@@ -290,26 +348,28 @@ footer a { color: var(--ink-2); text-decoration: none; }
   </div>
 </section>
 
-<section id="faq">
+<section id="faq" class="alt">
   <div class="wrap faq">
     <h2>שאלות ותשובות</h2>
     <p class="sub">כולל סודיות ואבטחת מידע.</p>
-    <details><summary>מה המערכת עושה בפועל?</summary><p>סוכני AI סורקים קרנות, קולות קוראים, תוכניות ממשלתיות ותורמים, בודקים כל הזדמנות מול הפרופיל והאסטרטגיה שלכם, ושולחים רק את מה שמתאים: למה, מה חסר ועד מתי.</p></details>
-    <details><summary>מי מגיש בפועל?</summary><p>אתם. אנחנו מוצאים, מסננים ומכינים טיוטה. ההגשה והקשר עם המממן נשארים אצלכם.</p></details>
-    <details><summary>כמה טיוטות הגשה מקבלים?</summary><p>טיוטות הגשה כלולות באופן קבוע, לפי הסכם ההתקשרות. צריכים עוד? מבקשים ישירות מתוך המייל.</p></details>
-    <details><summary>כמה מיילים תקבלו?</summary><p>בהתחלה מייל בשבוע. אחר כך מייל יוצא כשיש משהו ששווה את הזמן שלכם.</p></details>
-    <details><summary>למה מינימום 3 חודשים?</summary><p>מערכת AI צריכה זמן ללמוד ארגון: מה רלוונטי לכם, אילו מממנים מתאימים ואיך אתם מציגים את עצמכם. ההתאמות מדייקות עם כל חודש.</p></details>
-    <details><summary>חותמים על הסכם סודיות (NDA)?</summary><p>כן, עם כל ארגון, לפני שאתם שולחים חומר כלשהו.</p></details>
-    <details><summary>איפה נשמר המידע שלנו ומי רואה אותו?</summary><p>בשרתים באירופה, באחסון פרטי. החומרים שלכם לא משמשים אף ארגון אחר ולא משמשים לאימון מודלי AI. כל מה שיוצא אליכם עובר בדיקה אנושית.</p></details>
-    <details><summary>מה קורה למידע כשמסיימים?</summary><p>נמחק כולו, לפי בקשה.</p></details>
+    <details><summary>מה ההבדל ממאגר קרנות?</summary><p>מאגר קרנות הוא רשימה קבועה, ואתם מחפשים ומסננים בעצמכם. כאן סוכני ה-AI מחפשים בשבילכם כל שבוע, בכל מה שפתוח ברשת: אתרי קרנות, קולות קוראים, משרדי ממשלה ורשויות, וגם מאגרים פתוחים. ובמקום רשימה, מקבלים רק את מה שמתאים לכם, עם מה לעשות ועד מתי.</p></details>
+    <details><summary>מי מגיש בפועל?</summary><p>אתם. סוכני ה-AI מוצאים ומכינים טיוטה, ואתם עוברים, מתקנים ומגישים. ההגשה והקשר עם המממן נשארים אצלכם.</p></details>
+    <details><summary>מה נותנת טיוטת ההגשה?</summary><p>הטיוטה עונה על שאלות הקול הקורא מתוך הפרופיל שלכם, בקובץ Word. כל פרט חסר מסומן, כדי שתשלימו. טיוטה ראשונה כלולה, ואפשר להוסיף חבילת טיוטות בכל שלב.</p></details>
+    <details><summary>כמה מיילים תקבלו?</summary><p>בהתחלה מייל בשבוע. בהמשך, מייל כשיש הזדמנויות ששוות את הזמן שלכם.</p></details>
+    <details><summary>למה מינימום 3 חודשים?</summary><p>לוקח זמן ללמוד את הארגון: מה רלוונטי לכם, אילו מממנים מתאימים ואיך אתם מציגים את עצמכם. ההתאמות משתפרות מחודש לחודש.</p></details>
+    <details><summary>מה קורה אחרי 3 חודשים?</summary><p>ממשיכים חודש-בחודשו באותו מחיר, ואפשר להפסיק בכל חודש. אפשר גם לעבור למסלול השנתי.</p></details>
+    <details><summary>צריך ידע טכני?</summary><p>לא. הכול מגיע אליכם במייל.</p></details>
+    <details><summary>חותמים על הסכם סודיות (NDA)?</summary><p>כן, עם כל ארגון שרוצה, לפני שאתם שולחים חומר.</p></details>
+    <details><summary>איפה נשמר המידע שלנו?</summary><p>המסמכים נשמרים באחסון פרטי באירופה. החומרים שלכם לא משמשים אף ארגון אחר ולא משמשים לאימון מודלי AI, וכל תוצר עובר בדיקה לפני שהוא מגיע אליכם.</p></details>
+    <details><summary>מה קורה למידע כשמסיימים?</summary><p>לפי בקשתכם, הכול נמחק.</p></details>
     <details><summary>לוקחים אחוזים מהכסף שגייסנו?</summary><p>לא. מחיר חודשי קבוע בלבד.</p></details>
   </div>
 </section>
 
-<section id="signup" class="alt">
+<section id="signup">
   <div class="wrap">
-    <h2>שריינו מקום</h2>
-    <p class="sub">אחזור אליכם לתיאום. אין התחייבות עד שנדבר.</p>
+    <h2>שיחת היכרות קצרה</h2>
+    <p class="sub">משאירים פרטים, ואחזור אליכם לתאם. בלי התחייבות.</p>
     <div class="form-card">
       <form id="signup-form" novalidate>
         <div class="row2">
@@ -317,23 +377,26 @@ footer a { color: var(--ink-2); text-decoration: none; }
           <div class="field" data-f="org"><label for="f-org">שם הארגון</label><input id="f-org" name="org" autocomplete="organization"><div class="err">נא למלא את שם הארגון</div></div>
         </div>
         <div class="row2">
-          <div class="field" data-f="email"><label for="f-email">מייל</label><input id="f-email" name="email" type="email" autocomplete="email"><div class="err">כתובת מייל לא תקינה</div></div>
-          <div class="field" data-f="phone"><label for="f-phone">טלפון</label><input id="f-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="05X-XXXXXXX"><div class="err">מספר טלפון של 10 ספרות</div></div>
+          <div class="field" data-f="email"><label for="f-email">מייל</label><input id="f-email" name="email" type="email" autocomplete="email"><div class="err">נא למלא כתובת מייל תקינה</div></div>
+          <div class="field" data-f="phone"><label for="f-phone">טלפון <small style="color:var(--ink-3);font-weight:400">(לא חובה)</small></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="05X-XXXXXXX"><div class="err">נא למלא מספר טלפון תקין</div></div>
         </div>
-        <div class="field" data-f="plan"><label>מסלול</label>
-          <div class="seg" id="plan-seg">
-            <label><input type="radio" name="plan" value="3 חודשים"><span>3 חודשים</span></label>
-            <label><input type="radio" name="plan" value="שנתי" checked><span>שנתי</span></label>
+        <div class="field" data-f="plan"><label>מסלול שמעניין אתכם</label>
+          <div class="seg">
+            <label><input type="radio" name="plan" value="3 חודשים" checked><span>3 חודשים</span></label>
+            <label><input type="radio" name="plan" value="שנתי"><span>שנתי</span></label>
             <label><input type="radio" name="plan" value="ליווי צמוד"><span>ליווי צמוד</span></label>
           </div>
         </div>
-        <button class="btn btn-primary" type="submit">לשריון מקום</button>
-        <div class="form-note">בלי ספאם. בהתחייבות.</div>
+        <button class="btn btn-primary" type="submit">לקביעת שיחה</button>
+        <div class="form-note">הפרטים משמשים רק כדי לחזור אליכם. <a href="privacy.html">מדיניות פרטיות</a></div>
       </form>
       <div class="done" id="signup-done">
         <h3>קיבלתי, תודה!</h3>
         <p>אחזור אליכם בהקדם. רוצים לקבוע כבר עכשיו?</p>
-        <button class="btn btn-primary" type="button" onclick="openCalendly(true)">לתיאום שיחה</button>
+        <div class="ctas">
+          <button class="btn btn-primary" type="button" onclick="openCalendly(true)">לתיאום שיחה</button>
+          <a class="btn btn-wa" href="https://wa.me/972542569556" target="_blank" rel="noopener">וואטסאפ</a>
+        </div>
       </div>
     </div>
   </div>
@@ -343,13 +406,13 @@ footer a { color: var(--ink-2); text-decoration: none; }
 
 <footer>
   <div class="wrap">
-    <div style="margin-bottom:6px"><a href="https://wa.me/972542569556" target="_blank" rel="noopener">וואטסאפ</a></div>
+    <div style="margin-bottom:6px"><a href="https://wa.me/972542569556" target="_blank" rel="noopener">וואטסאפ</a> · <a href="privacy.html">מדיניות פרטיות</a></div>
     © <span id="year">2026</span> רונן אבירם · כל הזכויות שמורות
   </div>
 </footer>
 
 <div class="sticky" id="sticky">
-  <a class="btn btn-primary" href="#signup">להצטרפות</a>
+  <a class="btn btn-primary" href="#signup">לקביעת שיחת היכרות</a>
   <a class="btn btn-wa" href="https://wa.me/972542569556" target="_blank" rel="noopener" aria-label="וואטסאפ">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8z"/></svg>
   </a>
@@ -361,6 +424,11 @@ footer a { color: var(--ink-2); text-decoration: none; }
   const CALENDLY_URL = 'https://calendly.com/ronen_aviram/ai_for_org';
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Where the lead came from (?utm_source=...&ref=...), so each webinar or partner link can be told apart.
+  const params = new URLSearchParams(location.search);
+  const leadSource = ['utm_source', 'utm_medium', 'utm_campaign', 'ref']
+    .filter((k) => params.get(k)).map((k) => k + '=' + params.get(k)).join('&');
 
   let lead = null;
   let calendlyClicked = false;
@@ -377,16 +445,23 @@ footer a { color: var(--ink-2); text-decoration: none; }
     else window.open(CALENDLY_URL, '_blank', 'noopener');
   }
 
+  // Israeli mobile or landline, local or +972; empty is fine (phone is optional).
+  function normalizePhone(raw) {
+    let d = raw.replace(/\D/g, '');
+    if (d.startsWith('972')) d = '0' + d.slice(3);
+    return d;
+  }
+
   const form = document.getElementById('signup-form');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const v = (n) => form.elements[n].value.trim();
-    const data = { name: v('name'), org: v('org'), email: v('email'), phone: v('phone').replace(/\D/g, '') };
+    const data = { name: v('name'), org: v('org'), email: v('email'), phone: normalizePhone(v('phone')) };
     const checks = {
       name: data.name.length > 1,
       org: data.org.length > 1,
       email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email),
-      phone: /^0\d{9}$/.test(data.phone)
+      phone: data.phone === '' || /^0\d{8,9}$/.test(data.phone)
     };
     let ok = true;
     Object.entries(checks).forEach(([k, good]) => {
@@ -396,12 +471,12 @@ footer a { color: var(--ink-2); text-decoration: none; }
     if (!ok) { form.querySelector('.bad input').focus(); return; }
 
     lead = data;
-    // Same sheet as the AI-for-Org quiz; q1 marks the source so these rows stand out.
+    // Same sheet as the AI-for-Org quiz: q1 marks the source page, q2 the plan, q3 the campaign link.
     fetch(SHEETS_URL, {
       method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: data.name, role: '', org: data.org, email: data.email, phone: data.phone,
-        q1: 'הרשמה: סוכן גיוס (מחזור מייסדים)', q2: form.elements.plan.value,
+        q1: 'הרשמה: סוכן גיוס (מחזור מייסדים)', q2: form.elements.plan.value, q3: leadSource,
         lang: 'he', timestamp: new Date().toISOString(), calendlyClicked: false, source: 'fundraising'
       })
     }).catch(() => {});

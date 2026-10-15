@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Fundraising Agent</title>
+<title>דמו: סוכני AI לגיוס משאבים</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -1054,14 +1054,14 @@ body.stage-4 .sidebar { display: none; }
       <div class="submission-list">
         <div class="submission-item">
           <div class="submission-item-top">
-            <div class="submission-item-name"><span class="submission-dot success"></span>קרן רש"י</div>
+            <div class="submission-item-name"><span class="submission-dot success"></span>קרן תלמים</div>
             <span class="submission-date">מאי 2026</span>
           </div>
           <div class="submission-result success">אושרה — 150,000 ש"ח</div>
         </div>
         <div class="submission-item">
           <div class="submission-item-top">
-            <div class="submission-item-name"><span class="submission-dot rejected"></span>קרן וקסנר</div>
+            <div class="submission-item-name"><span class="submission-dot rejected"></span>קרן ארגמן</div>
             <span class="submission-date">אפר׳ 2026</span>
           </div>
           <div class="submission-result rejected">נדחתה — "לא עמדנו בדרישת הניסיון"</div>
@@ -1074,15 +1074,15 @@ body.stage-4 .sidebar { display: none; }
           <div class="submission-result partial">חלקית — "אושר 60% מהתקציב"</div>
         </div>
       </div>
-      <div class="show-all-link"><span>הצג את כל ההגשות (20) <i class="ti ti-chevron-down" style="font-size:11px;"></i></span></div>
+      <div class="show-all-link"><span>לכל ההגשות (20) <i class="ti ti-chevron-down" style="font-size:11px;"></i></span></div>
 
       <div class="feedback-box">
-        <div class="feedback-title"><i class="ti ti-plus"></i>דווח על תוצאת הגשה</div>
+        <div class="feedback-title"><i class="ti ti-plus"></i>דיווח על תוצאת הגשה</div>
         <select class="feedback-select">
-          <option value="">בחר הגשה...</option>
-          <option>קרן משפחת שעשוע — יולי 2026</option>
-          <option>קרן תובענות ייצוגיות — יוני 2026</option>
-          <option>עיריית באר שבע — מאי 2026</option>
+          <option value="">בחירת הגשה...</option>
+          <option>קרן משפחת נחליאלי — יולי 2026</option>
+          <option>הקרן הציבורית לבריאות — יוני 2026</option>
+          <option>רשות מקומית בדרום — מאי 2026</option>
         </select>
         <div class="feedback-statuses">
           <button class="feedback-status-btn s-success" onclick="selectFeedbackStatus(this)"><i class="ti ti-check" style="font-size:13px;"></i> אושרה</button>
@@ -1092,7 +1092,7 @@ body.stage-4 .sidebar { display: none; }
         <textarea class="feedback-textarea" placeholder="מה אמרו? מה היה חסר? מה עבד?"></textarea>
         <button class="feedback-submit" onclick="submitFeedback()">
           <i class="ti ti-brain" style="font-size:16px;"></i>
-          למד מהתוצאה
+          שליחת התוצאה ללמידה
         </button>
       </div>
     </div>
@@ -1118,15 +1118,15 @@ body.stage-4 .sidebar { display: none; }
           <div class="pf-card run-head" id="runHead">
             <div class="run-head-text">
               <h2 id="runTitle">הפרופיל הארגוני של דרך הבריאות</h2>
-              <p id="runStatus">הסוכן יאסוף מידע מ-4 מקורות, יצליב ביניהם ויבנה את הפרופיל שמולו תדורג כל הזדמנות</p>
+              <p id="runStatus">סוכני ה-AI יאספו מידע מ-4 מקורות, יצליבו ביניהם ויבנו את הפרופיל שמולו תדורג כל הזדמנות</p>
               <div class="run-progress"><span id="runProgress"></span></div>
             </div>
             <button class="scan-btn" id="buildBtn" onclick="startProfileBuild()">
               <span class="pulse-dot"></span>
-              <span>בנה פרופיל ארגוני</span>
+              <span>לבניית הפרופיל</span>
               <i class="ti ti-id"></i>
             </button>
-            <button class="skip-link" onclick="skipProfileBuild()">דלג לסוף <i class="ti ti-player-skip-back"></i></button>
+            <button class="skip-link" onclick="skipProfileBuild()">דילוג לסוף <i class="ti ti-player-skip-back"></i></button>
             <button class="scan-btn" id="toProfileBtn" onclick="finishProfileBuild()">
               <span>לפרופיל הארגוני</span>
               <i class="ti ti-arrow-left"></i>
@@ -1401,7 +1401,7 @@ body.stage-4 .sidebar { display: none; }
 
             <!-- Open questions -->
             <div class="prof-sec span2 q-sec">
-              <h3><i class="ti ti-help-circle"></i> 2 נקודות לבירור בפגישת האונבורדינג <span class="h3-note">לא נמצאה להן תשובה באף מקור</span></h3>
+              <h3><i class="ti ti-help-circle"></i> 2 נקודות לבירור בפגישת ההיכרות <span class="h3-note">לא נמצאה להן תשובה באף מקור</span></h3>
               <div class="q">
                 <div class="q-text">מה העלות השנתית למוטב?</div>
                 <div class="q-why">נדרש בכ-40% מהקולות הקוראים. לפי הדוח הכספי, ההערכה היא כ-600 ₪ למוטב, אבל זה לא מופיע באף מסמך.</div>
@@ -1414,9 +1414,9 @@ body.stage-4 .sidebar { display: none; }
           </div>
 
           <div class="prof-cta">
-            <div class="prof-cta-text"><b>זה הבסיס לכל ההתאמות</b>טיוטה ראשונה שהסוכן בנה לבד. היא מחודדת יחד איתכם בפגישת האונבורדינג, ומולה תדורג כל הזדמנות מימון.</div>
+            <div class="prof-cta-text"><b>זה הבסיס לכל ההתאמות</b>טיוטה ראשונה שסוכני ה-AI בנו לבד. היא מחודדת יחד איתכם בפגישת ההיכרות, ומולה תדורג כל הזדמנות מימון.</div>
             <button class="scan-btn" id="approveBtn" onclick="approveProfile()">
-              <span id="approveLabel">המשך לסריקת הזדמנויות</span>
+              <span id="approveLabel">לסריקת ההזדמנויות</span>
               <i class="ti ti-arrow-left"></i>
             </button>
           </div>
@@ -1438,12 +1438,12 @@ body.stage-4 .sidebar { display: none; }
     <div class="scan-section">
       <button class="scan-btn" id="scanBtn" onclick="startScan()">
         <span class="pulse-dot"></span>
-        <span>סרוק הזדמנויות מימון</span>
+        <span>לסריקת הזדמנויות מימון</span>
         <i class="ti ti-radar-2"></i>
       </button>
       <button class="schedule-btn" id="scheduleBtn" onclick="toggleSchedule()">
         <i class="ti ti-clock-hour-9"></i>
-        <span>תזמן סריקה</span>
+        <span>תזמון סריקה</span>
       </button>
     </div>
 
@@ -1506,7 +1506,7 @@ body.stage-4 .sidebar { display: none; }
       </div>
       <div class="source-card" data-results="3">
         <div class="source-icon-wrap"><i class="ti ti-gavel"></i></div>
-        <div class="source-name">קרן תובענות ייצוגיות</div>
+        <div class="source-name">קרנות ציבוריות</div>
         <div class="source-status"><span class="source-spinner"></span>ממתין לסריקה</div>
       </div>
       <div class="source-card" data-results="4">
@@ -1539,16 +1539,16 @@ body.stage-4 .sidebar { display: none; }
     </div>
 
     <div class="results-section" id="resultsSection">
-      <!-- Result 1 — שעשוע מטלגרם (אמיתי) -->
+      <!-- Result 1 (fictional) -->
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">קרן משפחת שעשוע — קול קורא "מעגלי החיים": בריאות, ינקות ומוגבלות</div>
+            <div class="result-title">קרן משפחת נחליאלי — קול קורא "מעגלי החיים": בריאות, ינקות ומוגבלות</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-messages"></i> ערוץ טלגרם "שימושי לשלישי"</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">50,000–300,000 &#8362;</span></span>
               <span class="deadline-tag deadline-urgent"><i class="ti ti-alert-triangle"></i> 18 יום</span>
-              <a href="https://www.shashua-foundation.org.il/Application" class="source-link" target="_blank"><i class="ti ti-external-link"></i> לטופס ההגשה</a>
+              <a href="#" class="source-link" target="_blank"><i class="ti ti-external-link"></i> לטופס ההגשה</a>
             </div>
           </div>
           <span class="match-badge match-high">96% התאמה</span>
@@ -1567,8 +1567,8 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="result-actions">
           <button class="action-btn btn-draft" onclick="openRequest(0)"><i class="ti ti-pencil"></i> בניית הגשה</button>
-          <button class="action-btn btn-contact" onclick="showContactModal(0)"><i class="ti ti-mail"></i> צור קשר</button>
-          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
+          <button class="action-btn btn-contact" onclick="showContactModal(0)"><i class="ti ti-mail"></i> יצירת קשר</button>
+          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמירה למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
         </div>
       </div>
@@ -1577,7 +1577,7 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">קרן רש"י — מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות</div>
+            <div class="result-title">קרן תלמים — מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-heart-handshake"></i> קרן פילנתרופית</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">100,000–300,000 &#8362;</span></span>
@@ -1589,7 +1589,7 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="match-reason">
           <i class="ti ti-bulb"></i>
-          <span>קרן רש"י העניקה בשנתיים האחרונות 4 מענקים לארגוני בריאות בדרום. הפוקוס שלהם על "מודלים חדשניים" מתאים למודל הייחודי שפיתחתם. מומלץ להדגיש את הנתונים הכמותיים של ההשפעה.</span>
+          <span>קרן תלמים העניקה בשנתיים האחרונות 4 מענקים לארגוני בריאות בדרום. הפוקוס שלהם על "מודלים חדשניים" מתאים למודל הייחודי שפיתחתם. מומלץ להדגיש את הנתונים הכמותיים של ההשפעה.</span>
         </div>
         <div class="doc-readiness">
           <span class="doc-item doc-ready"><i class="ti ti-check"></i> דוח כספי 2025</span>
@@ -1600,8 +1600,8 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="result-actions">
           <button class="action-btn btn-draft" onclick="openRequest(1)"><i class="ti ti-pencil"></i> בניית הגשה</button>
-          <button class="action-btn btn-contact" onclick="showContactModal(1)"><i class="ti ti-mail"></i> צור קשר</button>
-          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
+          <button class="action-btn btn-contact" onclick="showContactModal(1)"><i class="ti ti-mail"></i> יצירת קשר</button>
+          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמירה למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
         </div>
       </div>
@@ -1610,7 +1610,7 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">גיידסטאר — קרן וקסנר — תכניות בריאות וחינוך בנגב</div>
+            <div class="result-title">גיידסטאר — קרן ארגמן — תכניות בריאות וחינוך בנגב</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-search"></i> גיידסטאר</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">150,000–400,000 &#8362;</span></span>
@@ -1622,7 +1622,7 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="match-reason">
           <i class="ti ti-bulb"></i>
-          <span>סריקת הפרופיל בגיידסטאר מראה שהקרן תמכה ב-12 ארגוני בריאות בנגב ב-3 השנים האחרונות. נמצא באתר הקרן ובלינקדאין: דנה כהן, Program Officer — תחום בריאות קהילתית.</span>
+          <span>סריקת הפרופיל בגיידסטאר מראה שהקרן תמכה ב-12 ארגוני בריאות בנגב ב-3 השנים האחרונות. נמצא באתר הקרן ובלינקדאין: מאיה אדר, Program Officer — תחום בריאות קהילתית.</span>
         </div>
         <div class="doc-readiness">
           <span class="doc-item doc-ready"><i class="ti ti-check"></i> דוח כספי 2025</span>
@@ -1630,8 +1630,8 @@ body.stage-4 .sidebar { display: none; }
           <span class="doc-item doc-ready"><i class="ti ti-check"></i> one-pager ארגוני</span>
         </div>
         <div class="result-actions">
-          <button class="action-btn btn-contact" onclick="showContactModal(2)"><i class="ti ti-mail"></i> נסח פנייה אישית</button>
-          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
+          <button class="action-btn btn-contact" onclick="showContactModal(2)"><i class="ti ti-mail"></i> ניסוח פנייה אישית</button>
+          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמירה למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
         </div>
       </div>
@@ -1640,9 +1640,9 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">קרן תובענות ייצוגיות — פרויקט בריאות ציבורית לאוכלוסיות מוחלשות</div>
+            <div class="result-title">הקרן הציבורית לבריאות — פרויקט בריאות ציבורית לאוכלוסיות מוחלשות</div>
             <div class="result-meta">
-              <span class="source-tag"><i class="ti ti-gavel"></i> קרן תובענות</span>
+              <span class="source-tag"><i class="ti ti-gavel"></i> קרן ציבורית</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">עד 350,000 &#8362; (70%)</span></span>
               <span class="deadline-tag deadline-soon"><i class="ti ti-clock"></i> 28 יום</span>
               <a href="#" class="source-link" onclick="return false;"><i class="ti ti-external-link"></i> לקול הקורא</a>
@@ -1662,8 +1662,8 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="result-actions">
           <button class="action-btn btn-draft" onclick="openRequest(3)"><i class="ti ti-pencil"></i> בניית הגשה</button>
-          <button class="action-btn btn-contact" onclick="showContactModal(3)"><i class="ti ti-mail"></i> צור קשר</button>
-          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
+          <button class="action-btn btn-contact" onclick="showContactModal(3)"><i class="ti ti-mail"></i> יצירת קשר</button>
+          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמירה למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
         </div>
       </div>
@@ -1672,7 +1672,7 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">עיריית באר שבע — מכרז הפעלת מרכז בריאות קהילתי שכונת נווה זאב</div>
+            <div class="result-title">רשות מקומית בדרום — מכרז הפעלת מרכז בריאות קהילתי שכונת נווה זאב</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-building-community"></i> רשות מקומית</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">600,000 &#8362; / שנה</span></span>
@@ -1695,8 +1695,8 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="result-actions">
           <button class="action-btn btn-draft" onclick="openRequest(4)"><i class="ti ti-pencil"></i> בניית הגשה</button>
-          <button class="action-btn btn-contact" onclick="showContactModal(4)"><i class="ti ti-mail"></i> צור קשר</button>
-          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמור למעקב</button>
+          <button class="action-btn btn-contact" onclick="showContactModal(4)"><i class="ti ti-mail"></i> יצירת קשר</button>
+          <button class="action-btn btn-save"><i class="ti ti-bookmark"></i> שמירה למעקב</button>
           <button class="action-btn btn-reject"><i class="ti ti-x"></i> לא רלוונטי</button>
         </div>
       </div>
@@ -1712,7 +1712,7 @@ body.stage-4 .sidebar { display: none; }
           <div class="rq-from"><i class="ti ti-target-arrow"></i><div>נפתח מתוך ההזדמנות: <b id="rqFunderLine"></b></div><span class="rq-match" id="rqMatch"></span></div>
 
           <h2>בקשה לבניית הגשה</h2>
-          <p class="rq-lead">ספרו לנו לאן אתם מגישים ומה אתם רוצים להשיג. סוכן ה-AI שלנו יבנה את ההגשה על בסיס החומרים שתצרפו והפרופיל שלכם שכבר שמור אצלנו.</p>
+          <p class="rq-lead">ספרו לנו לאן אתם מגישים ומה אתם רוצים להשיג. סוכני ה-AI שלנו יבנו את ההגשה על בסיס החומרים שתצרפו והפרופיל שלכם שכבר שמור אצלנו.</p>
 
           <div class="rq-card">
             <div class="rq-sec"><span class="rq-num">1</span> קריטריוני ההגשה</div>
@@ -1727,13 +1727,13 @@ body.stage-4 .sidebar { display: none; }
 
           <div class="rq-card">
             <div class="rq-sec"><span class="rq-num">2</span> מה אתם רוצים להשיג מההגשה הזו?</div>
-            <div class="rq-label">על מה הכסף ילך, כמה מבקשים, מה חשוב להדגיש. במילים שלכם — יותר פרטים = הגשה ברורה יותר.</div>
+            <div class="rq-label">על מה הכסף ילך, כמה מבקשים, מה חשוב להדגיש. במילים שלכם. ככל שתפרטו יותר, ההגשה תהיה מדויקת יותר.</div>
             <div class="rq-input rq-goal" id="rqGoal"></div>
           </div>
 
           <div class="rq-card">
             <div class="rq-sec"><span class="rq-num">3</span> מידע ארגוני נוסף <span class="rq-opt">(לא חובה)</span></div>
-            <div class="rq-label">תקציב, דוח כספי, נתוני פעילות, הגשות קודמות — כל מה שיעזר לסוכן לכתוב מדויק יותר.</div>
+            <div class="rq-label">תקציב, דוח כספי, נתוני פעילות, הגשות קודמות — כל מה שיעזור לסוכנים לכתוב מדויק יותר.</div>
             <div class="rq-drop"><i class="ti ti-paperclip"></i> בחירת קבצים</div>
             <div class="rq-files" id="rqOrgFiles"></div>
           </div>
@@ -1745,7 +1745,7 @@ body.stage-4 .sidebar { display: none; }
           <div class="rq-card rq-done">
             <div class="rq-check"><i class="ti ti-check"></i></div>
             <h2>קיבלנו את הבקשה</h2>
-            <p class="rq-lead">סוכן ה-AI שלנו כבר מתחיל לבנות עבורכם את ההגשה, ונשלח אותה אליכם במייל ברגע שתהיה מוכנה.</p>
+            <p class="rq-lead">הבקשה נכנסה לתור של סוכני ה-AI שלנו. הטיוטה תגיע אליכם במייל כשתהיה מוכנה.</p>
             <p class="rq-muted">משך הבנייה תלוי במורכבות ההגשה ובמידע שצירפתם.</p>
             <div class="rq-sent">
               <div class="rq-sent-title">מה שלחתם</div>
@@ -1761,9 +1761,9 @@ body.stage-4 .sidebar { display: none; }
             <div class="rq-sec"><i class="ti ti-route" style="color:var(--accent);font-size:17px;"></i> מה קורה עכשיו</div>
             <div class="rq-timeline">
               <div class="rq-tl ok"><div class="rq-dot"><i class="ti ti-check"></i></div><div><b>הבקשה התקבלה</b><span>היום</span></div></div>
-              <div class="rq-tl now"><div class="rq-dot"><i class="ti ti-pencil"></i></div><div><b>הסוכן בונה טיוטה</b><span>מול הקריטריונים של הקרן והפרופיל שלכם</span></div></div>
+              <div class="rq-tl now"><div class="rq-dot"><i class="ti ti-pencil"></i></div><div><b>סוכני ה-AI בונים טיוטה</b><span>מול הקריטריונים של הקרן והפרופיל שלכם</span></div></div>
               <div class="rq-tl"><div class="rq-dot"><i class="ti ti-file-type-doc"></i></div><div><b>מקבלים טיוטה מוכנה, ניתנת לעריכה</b><span>אתם מחליטים מה נשאר ומה משתנה</span></div></div>
-              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-brain"></i></div><div><b>מדווחים על התוצאה, והסוכן לומד</b><span>אושרה / חלקית / נדחתה, דרך "דווח על תוצאת הגשה"</span></div></div>
+              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-brain"></i></div><div><b>מדווחים על התוצאה, וסוכני ה-AI לומדים</b><span>אושרה / חלקית / נדחתה, דרך "דיווח על תוצאת הגשה"</span></div></div>
             </div>
           </div>
 
@@ -1792,8 +1792,8 @@ body.stage-4 .sidebar { display: none; }
       <div class="modal-content" id="modalContent"></div>
     </div>
     <div class="modal-actions">
-      <button class="modal-btn modal-btn-primary"><i class="ti ti-clipboard"></i> העתק</button>
-      <button class="modal-btn modal-btn-secondary" onclick="document.getElementById('modalOverlay').classList.remove('visible')">סגור</button>
+      <button class="modal-btn modal-btn-primary"><i class="ti ti-clipboard"></i> העתקה</button>
+      <button class="modal-btn modal-btn-secondary" onclick="document.getElementById('modalOverlay').classList.remove('visible')">סגירה</button>
     </div>
   </div>
 </div>
@@ -1840,7 +1840,7 @@ function startScan() {
 function showResults() {
   const btn = document.getElementById('scanBtn');
   btn.disabled = false;
-  btn.innerHTML = '<span class="pulse-dot"></span><span>סרוק שוב</span><i class="ti ti-radar-2" style="font-size:20px;"></i>';
+  btn.innerHTML = '<span class="pulse-dot"></span><span>סריקה חוזרת</span><i class="ti ti-radar-2" style="font-size:20px;"></i>';
 
   document.getElementById('totalScanned').textContent = totalFound;
   document.getElementById('resultsBar').classList.add('visible');
@@ -1858,26 +1858,26 @@ function showResults() {
 // Step 3 demo data: request prefilled from the opportunity the user picked in step 2
 const REQUESTS = [
   {
-    funder: 'קרן משפחת שעשוע', call: 'קול קורא "מעגלי החיים"', match: 96,
-    url: 'https://www.shashua-foundation.org.il/Application', criteriaFiles: [],
+    funder: 'קרן משפחת נחליאלי', call: 'קול קורא "מעגלי החיים"', match: 96,
+    url: '#', criteriaFiles: [],
     goal: 'מבקשים 250,000 ₪ ל-18 חודשים: שילוב אחות בריאות האישה בכל צוות נייד ותכנית חוסן לצוותים. להדגיש את הירידה של 27% בפניות למיון ואת זה שהמודל גדל מ-3 ל-12 יישובים.',
     orgFiles: ['תקציב מיזם גשר הבריאות.pdf', 'דוח השפעה 2025.pdf'],
   },
   {
-    funder: 'קרן רש"י', call: 'מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות', match: 91,
+    funder: 'קרן תלמים', call: 'מענקים לקידום בריאות בקרב אוכלוסיות מוחלשות', match: 91,
     url: '', criteriaFiles: ['הנחיות להגשה 2026.pdf'],
     goal: 'מבקשים 250,000 ₪ להרחבה ל-5 יישובים באזור ערד–תמר. להדגיש את נתוני ההשפעה הכמותיים ואת הצמיחה מ-3 ל-12 יישובים בתוך 4 שנים.',
     orgFiles: ['תכנית עבודה 2026.pdf'],
   },
   null,
   {
-    funder: 'קרן תובענות ייצוגיות', call: 'פרויקט בריאות ציבורית לאוכלוסיות מוחלשות', match: 85,
+    funder: 'הקרן הציבורית לבריאות', call: 'פרויקט בריאות ציבורית לאוכלוסיות מוחלשות', match: 85,
     url: '', criteriaFiles: ['קול קורא - נגישות לשירותי בריאות.pdf'],
     goal: 'מבקשים 350,000 ₪ (70% מהתקציב) להרחבת הצוותים הניידים לאזורים בלי גישה לשירותי בריאות. המאצ׳ינג (30%) ממקורות עצמיים ומתמיכת משרד הבריאות.',
     orgFiles: ['דוח כספי מבוקר 2025.pdf'],
   },
   {
-    funder: 'עיריית באר שבע', call: 'מכרז הפעלת מרכז בריאות קהילתי — נווה זאב', match: 79,
+    funder: 'רשות מקומית בדרום', call: 'מכרז הפעלת מרכז בריאות קהילתי — נווה זאב', match: 79,
     url: '', criteriaFiles: ['מסמכי המכרז.pdf'],
     goal: 'הגשה בשותפות עם ארגון בעל ניסיון בהפעלת מרכזים פיזיים. להדגיש 3 שנות פעילות קיימת בשכונה והיכרות עם האוכלוסייה.',
     orgFiles: [],
@@ -1886,11 +1886,11 @@ const REQUESTS = [
 
 const contacts = [
   {
-    title: 'יצירת קשר — קרן משפחת שעשוע',
+    title: 'יצירת קשר — קרן משפחת נחליאלי',
     subtitle: 'קול קורא "מעגלי החיים"',
-    content: `פרטי קשר: קרן משפחת שעשוע
-אתר: shashua-foundation.org.il
-טופס הגשה: shashua-foundation.org.il/Application
+    content: `פרטי קשר: קרן משפחת נחליאלי
+אתר: nahliely-fund.example
+טופס הגשה: nahliely-fund.example/apply
 
 הערת מערכת: הקרן קיימה וובינר מקוון למענה על שאלות. מומלץ לבדוק באתר האם ההקלטה זמינה לצפייה.
 
@@ -1910,14 +1910,14 @@ const contacts = [
 [שם]`
   },
   {
-    title: 'יצירת קשר — קרן רש"י',
+    title: 'יצירת קשר — קרן תלמים',
     subtitle: 'Program Officer — בריאות ורווחה',
-    content: `איש קשר: יואב שמעוני, Program Officer — בריאות ורווחה
-yoav@ryvf.org.il | 03-6091200
+    content: `איש קשר: נועם ברק, Program Officer — בריאות ורווחה
+programs@talmim.example | 03-0000000
 
 טיוטת פנייה:
 
-שלום יואב,
+שלום נועם,
 
 אני פונה מעמותת "דרך הבריאות" — אנו מפעילים מודל ייחודי של שירותי בריאות קהילתיים בפריפריה הדרומית.
 
@@ -1931,16 +1931,16 @@ yoav@ryvf.org.il | 03-6091200
 [שם]`
   },
   {
-    title: 'פנייה אישית — דנה כהן, קרן וקסנר',
+    title: 'פנייה אישית — מאיה אדר, קרן ארגמן',
     subtitle: 'Program Officer — בריאות קהילתית',
-    content: `איש קשר: דנה כהן, Program Officer — בריאות קהילתית
+    content: `איש קשר: מאיה אדר, Program Officer — בריאות קהילתית
 (נמצא דרך לינקדאין + אתר הקרן)
 
 טיוטת פנייה:
 
-שלום דנה,
+שלום מאיה,
 
-אני פונה אלייך כ-Program Officer בתחום הבריאות הקהילתית בקרן וקסנר.
+אני פונה אלייך כ-Program Officer בתחום הבריאות הקהילתית בקרן ארגמן.
 
 אני מעמותת "דרך הבריאות" — אנחנו מפעילים מודל ייחודי של שירותי בריאות ניידים בנגב ב-12 יישובים, עם תוצאות מוכחות של שיפור דרמטי בנגישות לשירותי בריאות.
 
@@ -1952,10 +1952,10 @@ yoav@ryvf.org.il | 03-6091200
 [שם]`
   },
   {
-    title: 'יצירת קשר — קרן תובענות ייצוגיות',
-    subtitle: 'האפוטרופוס הכללי, משרד המשפטים',
-    content: `גורם ממונה: אגף האפוטרופוס הכללי — יחידת הקרן
-toveanot@justice.gov.il | 02-6462222
+    title: 'יצירת קשר — הקרן הציבורית לבריאות',
+    subtitle: 'משרד ממשלתי',
+    content: `גורם ממונה: יחידת הקרן במשרד הממשלתי
+fund@gov-health.example | 02-0000000
 
 טיוטת פנייה:
 
@@ -1972,10 +1972,10 @@ toveanot@justice.gov.il | 02-6462222
 [שם]`
   },
   {
-    title: 'יצירת קשר — עיריית באר שבע',
+    title: 'יצירת קשר — רשות מקומית בדרום',
     subtitle: 'מחלקת רכש ומכרזים',
-    content: `גורם ממונה: מחלקת רכש ומכרזים, עיריית באר שבע
-michrazim@beer-sheva.muni.il | 08-6463722
+    content: `גורם ממונה: מחלקת רכש ומכרזים, רשות מקומית בדרום
+tenders@southern-town.example | 08-0000000
 
 טיוטת פנייה:
 
@@ -2099,7 +2099,7 @@ function toggleSchedule() {
     toastText.textContent = 'סריקה תוזמנה פעם בשבוע — סיכום יגיע למייל';
   } else {
     btn.classList.remove('active');
-    btn.innerHTML = '<i class="ti ti-clock-hour-9"></i><span>תזמן סריקה</span>';
+    btn.innerHTML = '<i class="ti ti-clock-hour-9"></i><span>תזמון סריקה</span>';
     toastText.textContent = 'סריקה שבועית בוטלה';
     toast.querySelector('i').style.color = 'var(--amber)';
   }
@@ -2130,7 +2130,7 @@ function submitFeedback() {
     const countEl = document.getElementById('learning-count');
     countEl.textContent = parseInt(countEl.textContent) + 1;
     setTimeout(() => {
-      btn.innerHTML = '<i class="ti ti-brain" style="font-size:16px;"></i> למד מהתוצאה';
+      btn.innerHTML = '<i class="ti ti-brain" style="font-size:16px;"></i> שליחת התוצאה ללמידה';
       btn.style.background = 'var(--accent)';
       btn.style.pointerEvents = '';
       select.value = '';
@@ -2261,7 +2261,7 @@ function startProfileBuild(speed = 1) {
   resetProfileRun();
   document.getElementById('runHead').classList.remove('complete');
   document.getElementById('runHead').classList.add('running');
-  document.getElementById('runTitle').textContent = 'הסוכן בונה את הפרופיל של דרך הבריאות';
+  document.getElementById('runTitle').textContent = 'סוכני ה-AI בונים את הפרופיל של דרך הבריאות';
   document.getElementById('runStatus').textContent = 'קורא מקורות · מצליב נתונים · מזהה פערים';
 
   const totals = {}, filled = {};
@@ -2332,7 +2332,7 @@ function completeProfileBuild(found, conflicts, gaps) {
 }
 
 function finishProfileBuild() {
-  document.getElementById('approveLabel').textContent = 'המשך לסריקת הזדמנויות';
+  document.getElementById('approveLabel').textContent = 'לסריקת ההזדמנויות';
   showPfView('pfProfile');
   setStep(1);
 }
