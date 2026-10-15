@@ -257,17 +257,14 @@ section, [id] { scroll-margin-top: 68px; }
 .flow .out .ico .blip { fill: var(--accent); }
 
 /* try it yourself */
-.try { margin-top: 24px; }
+.try { margin-top: 24px; padding-top: 8px; }
 .try-start { text-align: center; margin-top: 22px; }
-.try-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-@media (max-width: 760px) { .try-cards { grid-template-columns: 1fr; } }
-.try-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; text-decoration: none; color: var(--ink); transition: border-color .15s, box-shadow .15s; }
-.try-card:hover { border-color: var(--accent-border); box-shadow: 0 8px 24px rgba(79,70,229,.10); }
-.try-card .n { font-size: 26px; font-weight: 800; color: var(--accent); }
-.try-card h3 { font-size: 18px; font-weight: 700; margin: 6px 0 4px; }
-.try-card p { color: var(--ink-2); font-size: 15px; margin-bottom: 14px; }
-.try-card .go { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 700; }
-.try-card .go svg { width: 18px; height: 18px; }
+.tlink { display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.tlink small { color: var(--ink-2); font-size: 14px; max-width: 220px; line-height: 1.5; margin-top: -6px; }
+.try-line .tstep:last-child .tdot { background: var(--surface); border-color: var(--accent-border); color: var(--accent); }
+.try-line .tstep:last-child .tnum { background: var(--accent); }
+.tdot { transition: transform .15s, background-color .15s, color .15s; }
+.tlink:hover .tdot, .tlink:focus-visible .tdot { transform: scale(1.06); background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
 
 /* windows opened on the page: blurred backdrop */
 dialog.modal { margin: auto; inset: 0; width: min(1240px, 96vw); height: 92vh; max-height: none; padding: 0; border: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.25); }
@@ -290,7 +287,7 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
 .tstep:last-child .tnum { background: var(--green); }
 .tstep b { font-size: 17px; font-weight: 700; max-width: 240px; line-height: 1.4; }
 @media (max-width: 600px) {
-  .tstep b { font-size: 14px; max-width: none; } .tstep { padding: 0 4px; }
+  .tstep b { font-size: 14px; max-width: none; } .tstep { padding: 0 4px; } .tlink small { font-size: 12.5px; }
   .tdot { width: 64px; height: 64px; } .tdot svg { width: 26px; height: 26px; }
   .tstep:not(:last-child)::after { top: 32px; right: calc(50% + 40px); left: calc(-50% + 40px); }
   .tstep:not(:last-child)::before { top: 27px; left: calc(-50% + 34px); }
@@ -342,17 +339,11 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
     </div>
 
     <div id="try" class="try">
-      <div class="try-cards">
-        <a class="try-card" href="fundraising-demo.html#profile" data-modal="fundraising-demo.html#profile">
-          <span class="n">01</span><h3>בניית הפרופיל</h3><p>צפו בסוכנים לומדים ארגון לדוגמה.</p><span class="go">לנסות <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-        </a>
-        <a class="try-card" href="fundraising-demo.html#scan" data-modal="fundraising-demo.html#scan">
-          <span class="n">02</span><h3>סריקת הזדמנויות</h3><p>ראו אילו קולות קוראים מתאימים לו, ולמה.</p><span class="go">לנסות <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-        </a>
-        <a class="try-card" href="fundraising-demo.html#submit" data-modal="fundraising-demo.html#submit">
-          <span class="n">03</span><h3>בניית ההגשה</h3><p>מבקשים טיוטה, ורואים איך היא נבנית.</p><span class="go">לנסות <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-        </a>
-      </div>
+      <ol class="timeline try-line">
+        <li class="tstep"><a class="tlink" href="fundraising-demo.html#profile" data-modal="fundraising-demo.html#profile"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="11" r="2.5"/><path d="M5.5 17c.6-1.8 2-2.8 3.5-2.8s2.9 1 3.5 2.8M15 10h3M15 13.5h3"/></svg><span class="tnum">01</span></span><b>בניית הפרופיל</b><small>צפו בסוכנים לומדים ארגון לדוגמה</small></a></li>
+        <li class="tstep"><a class="tlink" href="fundraising-demo.html#scan" data-modal="fundraising-demo.html#scan"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3M8.5 11h5M11 8.5v5"/></svg><span class="tnum">02</span></span><b>סריקת הזדמנויות</b><small>אילו קולות קוראים מתאימים, ולמה</small></a></li>
+        <li class="tstep"><a class="tlink" href="fundraising-demo.html#submit" data-modal="fundraising-demo.html#submit"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span class="tnum">03</span></span><b>בניית ההגשה</b><small>מבקשים טיוטה, ורואים איך היא נבנית</small></a></li>
+      </ol>
       <div class="try-start"><a class="btn btn-primary" href="fundraising-demo.html#profile" data-modal="fundraising-demo.html#profile">נסו בעצמכם
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
     </div>
