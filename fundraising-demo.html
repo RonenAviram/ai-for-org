@@ -2469,7 +2469,7 @@ function approveProfile() {
       goStep(2);
       setTimeout(() => coach('#scanBtn', 'לחצו לסריקה. הסוכנים סורקים את הרשת מול הפרופיל של הארגון.'), 300);
       when(() => visible('.result-card .btn-draft'), () => {
-        setTimeout(() => coach('.result-card .btn-draft', 'אלה ההזדמנויות שמתאימות, עם הסבר למה. לחצו כדי לבנות טיוטת הגשה.'), 600);
+        setTimeout(() => coach('.result-card .btn-draft', 'לחצו כדי לבנות טיוטת הגשה.'), 600);
         when(() => visible('#rqSubmit'), () => run('submit'));
       });
     }
