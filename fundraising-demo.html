@@ -2455,7 +2455,14 @@ function approveProfile() {
       coach('#buildBtn', 'לחצו כאן, וצפו בסוכני ה-AI לומדים ארגון לדוגמה מארבעה מקורות.');
       when(() => visible('#toProfileBtn'), () => {
         coach('#toProfileBtn', 'הפרופיל מוכן. לחצו כדי לראות מה הסוכנים הבינו על הארגון.');
-        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן במערכת. עכשיו היא יכולה לחפש עבורכם הזדמנויות.', 'לשלב הבא: סריקת הזדמנויות', () => run('scan')), { once: true });
+        document.getElementById('toProfileBtn').addEventListener('click', () => {
+          nextBar('הפרופיל מוכן במערכת. עכשיו היא יכולה לחפש עבורכם הזדמנויות.', 'לשלב הבא: סריקת הזדמנויות', () => run('scan'));
+          // The page's own "next" button makes the bar redundant: drop the bar once it is on screen.
+          const approve = document.getElementById('approveBtn');
+          approve.addEventListener('click', () => setTimeout(() => run('scan'), 0), { once: true });
+          const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { clearBar(); io.disconnect(); } });
+          io.observe(approve);
+        }, { once: true });
       });
     }
     if (step === 'scan') {
