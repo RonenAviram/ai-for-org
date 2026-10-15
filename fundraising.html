@@ -228,7 +228,7 @@ section, [id] { scroll-margin-top: 68px; }
 .flow .spark .spark2 { fill: #C7D2FE; }
 .flow .loop-t { font-size: 16px; font-weight: 700; fill: var(--accent); }
 .flow .loop-pill rect { fill: #fff; stroke: #C7D2FE; stroke-width: 1.5; }
-.flow-m .loop-t { font-size: 15px; }
+.flow-m .loop-t { font-size: 13.5px; }
 .flow .dot { fill: var(--accent); }
 .flow .dot.g { fill: var(--green); }
 .flow .dot.l { fill: #818CF8; }
@@ -295,11 +295,11 @@ section, [id] { scroll-margin-top: 68px; }
 <section id="demo" class="demo-section">
   <div class="wrap">
     <h2>איך זה עובד</h2>
-    <div class="flow" role="img" aria-label="פרופיל הארגון, דרישות הגוף המממן וסכום היעד נכנסים לסוכני ה-AI. יוצאות הזדמנויות מותאמות, טיוטת הגשה ותובנות אסטרטגיות, ומערכת ה-AI לומדת מכל הגשה.">
+    <div class="flow" role="img" aria-label="פרופיל הארגון, דרישות הגוף המממן וסכום היעד נכנסים לסוכני ה-AI. יוצאות הזדמנויות מותאמות, טיוטת הגשה ותובנות אסטרטגיות, ומערכת ה-AI לומדת ומשתפרת מהזדמנות להזדמנות.">
       <!-- desktop: inputs on the right, outputs on the left -->
       <svg class="flow-d" viewBox="0 0 1040 540" aria-hidden="true"><defs><radialGradient id="hubG" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
 <path id="dLoop" class="wire loop" d="M150,92 C150,40 200,30 300,30 L820,30 C890,30 905,40 905,86" marker-end="url(#arrD)"/>
-<g class="loop-pill"><rect x="438" y="12" width="164" height="36" rx="18"/><text class="loop-t" x="520" y="36">מערכת AI לומדת</text></g>
+
 <path id="dIn1" class="wire" d="M780,134.0 C700,134.0 690,270 606,270" marker-end="url(#arrW)"/>
 <path id="dIn2" class="wire" d="M780,270.0 C700,270.0 690,270 606,270" marker-end="url(#arrW)"/>
 <path id="dIn3" class="wire" d="M780,406.0 C700,406.0 690,270 606,270" marker-end="url(#arrW)"/>
@@ -320,10 +320,10 @@ section, [id] { scroll-margin-top: 68px; }
 <circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.50;0.64;1" calcMode="linear"><mpath href="#dOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.50;0.63;0.65;1"/></circle>
 <circle class="dot g" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.68;1" calcMode="linear"><mpath href="#dOut3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.67;0.69;1"/></circle>
 <circle class="dot l" r="6"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.74;0.96;1" calcMode="linear"><mpath href="#dLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.74;0.95;0.97;1"/></circle>
-</svg>
+<g class="loop-pill"><rect x="345" y="12" width="350" height="36" rx="18"/><text class="loop-t" x="520" y="36">מערכת AI לומדת ומשתפרת מהזדמנות להזדמנות</text></g></svg>
 <svg class="flow-m" viewBox="0 0 360 640" aria-hidden="true"><defs><radialGradient id="hubGM" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#4338CA"/></radialGradient><marker id="arrM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A5B4FC"/></marker><marker id="arrWM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#C7D2FE"/></marker></defs>
 <path id="mLoop" class="wire loop" d="M176,520 C176,575 200,585 250,585 L330,585 C352,585 356,570 356,550 L356,40 C356,24 340,18 320,18 L300,18 C296,18 296,30 296,44" marker-end="url(#arrM)"/>
-<g class="loop-pill"><rect x="96" y="568" width="164" height="34" rx="17"/><text class="loop-t" x="178" y="591">מערכת AI לומדת</text></g>
+
 <path id="mIn1" class="wire" d="M296.0,126 C296.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
 <path id="mOut1" class="wire" d="M180,356 C180,390 296.0,390 296.0,426" marker-end="url(#arrWM)"/>
 <path id="mIn2" class="wire" d="M176.0,126 C176.0,180 180,190 180,224" marker-end="url(#arrWM)"/>
@@ -344,7 +344,7 @@ section, [id] { scroll-margin-top: 68px; }
 <circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.50;0.64;1" calcMode="linear"><mpath href="#mOut2"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.50;0.63;0.65;1"/></circle>
 <circle class="dot g" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.54;0.68;1" calcMode="linear"><mpath href="#mOut3"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.54;0.67;0.69;1"/></circle>
 <circle class="dot l" r="5"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.74;0.96;1" calcMode="linear"><mpath href="#mLoop"/></animateMotion><animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.74;0.95;0.97;1"/></circle>
-</svg>
+<g class="loop-pill"><rect x="18" y="568" width="320" height="34" rx="17"/><text class="loop-t" x="178" y="590">מערכת AI לומדת ומשתפרת מהזדמנות להזדמנות</text></g></svg>
     </div>
 
     <div id="try" class="try">
