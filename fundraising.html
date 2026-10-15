@@ -14,7 +14,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ronenaviram.github.io/ai-for-org/fundraising.html">
-<link rel="icon" href="assets/brand-logo.png">
+<link rel="icon" href="assets/brand-logo-navy.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -325,6 +325,55 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
   .tstep:not(:last-child)::after { top: 32px; right: calc(50% + 40px); left: calc(-50% + 40px); }
   .tstep:not(:last-child)::before { top: 27px; left: calc(-50% + 34px); }
 }
+/* palette "שמיים וחול" (Ronen, 15.10.2026): navy, sky blue, amber on warm sand */
+:root { --D:#1F3A5F; --M:#5B8DB8; --Mt:#2F5F8F; --W:#E8A33D; --L:#FAF7F2; --S:#EFE6D8; --Ws:#FBF1DF; }
+:root { color-scheme: light;
+  --bg: var(--L); --surface:#FFFFFF; --border: var(--S); --border-light: var(--S);
+  --ink: var(--D); --ink-2: color-mix(in srgb, var(--D) 72%, #fff); --ink-3: color-mix(in srgb, var(--D) 62%, #fff);
+  --accent: var(--Mt); --accent-hover: var(--D); --accent-soft: color-mix(in srgb, var(--M) 12%, #fff); --accent-border: color-mix(in srgb, var(--M) 40%, #fff);
+  --green: var(--Mt); --green-soft: color-mix(in srgb, var(--M) 12%, #fff); }
+body { background: var(--L); color: var(--D); }
+.alt { background: #FFFFFF; }
+.bar { background: var(--D); border-bottom: 0; }
+.bar .brand b, .bar .brand { color: #fff; } .bar .brand b span { color: var(--W); }
+.bar .bar-links a { color: color-mix(in srgb, #fff 78%, var(--D)); } .bar .bar-links a:hover { color: #fff; }
+.bar .bar-links a.btn-sm { background: var(--W); color: var(--D); }
+.btn-primary, .btn-primary:hover { background: var(--W); color: var(--D); box-shadow: 0 8px 20px color-mix(in srgb, var(--W) 35%, transparent); }
+.btn-primary:hover { filter: brightness(1.05); }
+.btn-ghost { background: #fff; color: var(--Mt); border-color: var(--accent-border); }
+.pill { background: var(--S); color: var(--D); border-color: transparent; } .dot { background: var(--W); }
+.hero { background: radial-gradient(700px 300px at 50% 0%, color-mix(in srgb, var(--M) 14%, transparent), transparent 70%), var(--L); }
+.hero h1 { color: var(--D); } .hero h1 span { color: var(--Mt); }
+.value { background: var(--L); border-color: var(--S); } .value svg { color: var(--Mt); } .value h3 em { color: var(--W); }
+.tdot { border-color: var(--accent-border); color: var(--Mt); background: #fff; }
+.tstep:last-child .tdot { background: var(--W); border-color: var(--W); color: var(--D); }
+.tnum { background: var(--Mt); border-color: var(--L); } .tstep:last-child .tnum { background: var(--D); }
+.try-line .tstep:last-child .tdot { background: #fff; border-color: var(--accent-border); color: var(--Mt); }
+.try-line .tstep:last-child .tnum { background: var(--Mt); }
+.tlink:hover .tdot { background: var(--Mt) !important; border-color: var(--Mt) !important; }
+.plan.featured { border: 2px solid var(--W); box-shadow: 0 12px 30px color-mix(in srgb, var(--W) 22%, transparent); }
+.plan .badge { background: var(--W); color: var(--D); }
+.checks svg { color: var(--Mt); }
+.roi-head em { color: var(--Mt); } .roi-track { background: color-mix(in srgb, var(--M) 10%, #fff); }
+.roi-fill { background: var(--Mt); } .roi-fill.cost { background: var(--W); }
+.faq details { border-color: var(--S); } .faq summary::after { color: var(--Mt); }
+.seg input:checked + span { border-color: var(--Mt); background: var(--accent-soft); color: var(--Mt); }
+footer { background: var(--D); color: color-mix(in srgb, #fff 70%, var(--D)); border-top: 0; }
+footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, var(--D)); }
+/* flow */
+.flow .wire { stroke: color-mix(in srgb, var(--M) 45%, #fff); } .flow .wire.loop { stroke: var(--W); }
+.flow marker path { fill: color-mix(in srgb, var(--M) 60%, #fff); }
+.flow .node rect { fill: #fff; stroke: var(--S); }
+.flow .t { fill: var(--D); } .flow .s { fill: color-mix(in srgb, var(--D) 70%, #fff); }
+.flow .loop-pill rect { fill: #fff; stroke: var(--W); } .flow .loop-t { fill: var(--D); }
+.flow .halo { fill: color-mix(in srgb, var(--M) 30%, #fff); }
+.flow stop:first-child { stop-color: var(--M); } .flow stop:last-child { stop-color: var(--D); }
+.flow .dot { fill: var(--Mt); } .flow .dot.g { fill: var(--W); } .flow .dot.l { fill: var(--W); }
+.flow .ico { stroke: var(--Mt); } .flow .ico .fill { fill: var(--Mt); } .flow .out .ico { stroke: color-mix(in srgb, var(--W) 80%, var(--D)); } .flow .ico .blip { fill: var(--Mt); }
+.flow .in rect { animation-name: inGlowP; } .flow .out rect { animation-name: outGlowP; }
+@keyframes inGlowP { 0%, 4% { stroke: var(--S); } 9%, 30% { stroke: var(--Mt); } 40%, 100% { stroke: var(--S); } }
+@keyframes outGlowP { 0%, 60% { stroke: var(--S); fill: #fff; } 66%, 88% { stroke: var(--W); fill: var(--Ws); } 96%, 100% { stroke: var(--S); fill: #fff; } }
+.bar .brand img { border-radius: 8px; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35); }
 </style>
 </head>
 <body>
@@ -332,7 +381,7 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="AI Fundraising Agent">
-      <img src="assets/brand-logo.png" alt="">
+      <img src="assets/brand-logo-navy.png" alt="">
       <b><span>AI</span> Fundraising Agent</b>
     </a>
     <nav class="bar-links">
