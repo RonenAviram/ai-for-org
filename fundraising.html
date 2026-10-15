@@ -623,6 +623,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
             <label><input type="radio" name="plan" value="ליווי צמוד"><span>ליווי צמוד</span></label>
           </div>
         </fieldset>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;border:0;padding:0">
         <button class="btn btn-primary" type="submit">שליחת פנייה</button>
         <div class="form-note">הפרטים משמשים רק כדי לחזור אליכם.</div>
       </form>
@@ -649,6 +650,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 <script>
   const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx6cGRWfyXonKIWVMtfYse0Rke_X_Ar14lAvbUFTZqjmptKMPgPKPH04FVIHbVprE3eZg/exec';
   const CALENDLY_URL = 'https://calendly.com/ronen_aviram/ai_for_org';
+  // Emails each lead to Ronen (fundraising-agent app, src/app/api/lead/route.ts).
+  const LEAD_URL = 'https://fundraising-agent-eight.vercel.app/api/lead';
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -743,13 +746,23 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
         q1: 'הרשמה: סוכן גיוס (מחזור מייסדים)', q2: form.elements.plan.value, q3: leadSource,
         lang: 'he', timestamp: new Date().toISOString(), calendlyClicked: false, source: 'fundraising'
       })
-    }).catch(() => {
-      document.getElementById('send-failed').hidden = false;
-      document.querySelector('#signup-done h3').textContent = 'משהו השתבש בשליחה';
-      document.getElementById('done-party').hidden = true;
-    });
-    form.style.display = 'none';
-    document.getElementById('signup-done').style.display = 'block';
+    }).catch(() => {});
+    const submit = form.querySelector('button[type=submit]');
+    submit.disabled = true; submit.textContent = 'שולחים…';
+    const showDone = (sent) => {
+      if (!sent) {
+        document.getElementById('send-failed').hidden = false;
+        document.querySelector('#signup-done h3').textContent = 'משהו השתבש בשליחה';
+        document.getElementById('done-party').hidden = true;
+      }
+      form.style.display = 'none';
+      document.getElementById('signup-done').style.display = 'block';
+    };
+    fetch(LEAD_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ name: data.name, org: data.org, email: data.email, phone: data.phone,
+        plan: form.elements.plan.value, source: leadSource, website: form.elements.website.value })
+    }).then((res) => showDone(res.ok)).catch(() => showDone(false));
   });
 
   form.querySelectorAll('input').forEach((el) => el.addEventListener('input', () => el.closest('.field').classList.remove('bad')));
