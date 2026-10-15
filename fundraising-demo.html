@@ -984,6 +984,7 @@ body.stage-4 .sidebar { display: none; }
   .hist-facts, .impact-grid { grid-template-columns: 1fr 1fr; }
   .run-head { flex-wrap: wrap; }
 }
+.embedded .header { display: none; }
 </style>
 </head>
 <body class="stage-1">
@@ -1074,15 +1075,15 @@ body.stage-4 .sidebar { display: none; }
           <div class="submission-result partial">חלקית — "אושר 60% מהתקציב"</div>
         </div>
       </div>
-      <div class="show-all-link"><span>לכל ההגשות (20) <i class="ti ti-chevron-down" style="font-size:11px;"></i></span></div>
+      <div class="show-all-link"><span>ועוד 17 הגשות קודמות</span></div>
 
       <div class="feedback-box">
         <div class="feedback-title"><i class="ti ti-plus"></i>דיווח על תוצאת הגשה</div>
         <select class="feedback-select">
           <option value="">בחירת הגשה...</option>
-          <option>קרן משפחת נחליאלי — יולי 2026</option>
-          <option>הקרן הציבורית לבריאות — יוני 2026</option>
-          <option>רשות מקומית בדרום — מאי 2026</option>
+          <option>קרן משפחת דקל — יולי 2026</option>
+          <option>קרן גשר לקהילה — יוני 2026</option>
+          <option>רשות מקומית במרכז — מאי 2026</option>
         </select>
         <div class="feedback-statuses">
           <button class="feedback-status-btn s-success" onclick="selectFeedbackStatus(this)"><i class="ti ti-check" style="font-size:13px;"></i> אושרה</button>
@@ -1104,7 +1105,7 @@ body.stage-4 .sidebar { display: none; }
       <span class="step-line"></span>
       <button class="step" data-step="2" onclick="goStep(2)"><span class="step-num">2</span><span class="step-label">סריקת הזדמנויות</span></button>
       <span class="step-line"></span>
-      <button class="step" data-step="3" onclick="goStep(3)"><span class="step-num">3</span><span class="step-label">הגשה ולמידה</span></button>
+      <button class="step" data-step="3" onclick="goStep(3)"><span class="step-num">3</span><span class="step-label">בקשת הגשה</span></button>
       <span class="step-line"></span>
       <button class="step" data-step="4" onclick="goStep(4)"><span class="step-num">4</span><span class="step-label">מאחורי הקלעים</span></button>
     </div>
@@ -1430,7 +1431,7 @@ body.stage-4 .sidebar { display: none; }
     <div class="greeting-bar">
       <div class="greeting-icon"><i class="ti ti-sparkles"></i></div>
       <div>
-        <div class="greeting-text">בוקר טוב, <strong>דרך הבריאות</strong> — נמצאו <span class="g-highlight">3 הזדמנויות חדשות</span> מאז הסריקה האחרונה</div>
+        <div class="greeting-text">בוקר טוב, <strong>דרך הבריאות</strong> — נמצאו <span class="g-highlight">5 הזדמנויות שמתאימות לכם</span></div>
         <div class="greeting-sub">סריקה אחרונה: היום, 09:00</div>
       </div>
     </div>
@@ -1533,7 +1534,7 @@ body.stage-4 .sidebar { display: none; }
 
     <div class="results-bar" id="resultsBar">
       <div>
-        <div class="total"><span class="highlight" id="totalScanned">93</span> הזדמנויות נסרקו &larr; <span class="highlight" id="totalRelevant">18</span> רלוונטיות לפרופיל שלכם</div>
+        <div class="total"><span class="highlight" id="totalScanned">93</span> הזדמנויות נסרקו &larr; <span class="highlight" id="totalRelevant">5</span> מתאימות לכם עכשיו</div>
         <div class="filter-info"><i class="ti ti-filter" style="font-size:14px;"></i> סוננו לפי הפרופיל שלכם: בריאות קהילתית, פריפריה דרום, מודל ייחודי</div>
       </div>
     </div>
@@ -1547,7 +1548,7 @@ body.stage-4 .sidebar { display: none; }
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-messages"></i> ערוץ טלגרם "שימושי לשלישי"</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">50,000–300,000 &#8362;</span></span>
-              <span class="deadline-tag deadline-urgent"><i class="ti ti-alert-triangle"></i> 18 יום</span>
+              <span class="deadline-tag deadline-soon"><i class="ti ti-clock"></i> 18 יום</span>
             </div>
           </div>
           <span class="match-badge match-high">96% התאמה</span>
@@ -1602,7 +1603,7 @@ body.stage-4 .sidebar { display: none; }
       <div class="result-card">
         <div class="result-header">
           <div>
-            <div class="result-title">גיידסטאר — קרן ארגמן — תכניות בריאות וחינוך בנגב</div>
+            <div class="result-title">קרן ארגמן — תכניות בריאות וחינוך בנגב</div>
             <div class="result-meta">
               <span class="source-tag"><i class="ti ti-search"></i> גיידסטאר</span>
               <span class="result-meta-item"><i class="ti ti-coins"></i> סכום: <span class="value">150,000–400,000 &#8362;</span></span>
@@ -1613,7 +1614,7 @@ body.stage-4 .sidebar { display: none; }
         </div>
         <div class="match-reason">
           <i class="ti ti-bulb"></i>
-          <span>סריקת הפרופיל בגיידסטאר מראה שהקרן תמכה ב-12 ארגוני בריאות בנגב ב-3 השנים האחרונות. נמצא באתר הקרן ובלינקדאין: מאיה אדר, Program Officer — תחום בריאות קהילתית.</span>
+          <span>סריקת הפרופיל בגיידסטאר מראה שהקרן תמכה ב-12 ארגוני בריאות בנגב ב-3 השנים האחרונות. נמצא באתר הקרן: רכזת תחום בריאות קהילתית.</span>
         </div>
         <div class="doc-readiness">
           <span class="doc-item doc-ready"><i class="ti ti-check"></i> דוח כספי 2025</span>
@@ -1742,8 +1743,8 @@ body.stage-4 .sidebar { display: none; }
             <div class="rq-sec"><i class="ti ti-route" style="color:var(--accent);font-size:17px;"></i> מה קורה עכשיו</div>
             <div class="rq-timeline">
               <div class="rq-tl ok"><div class="rq-dot"><i class="ti ti-check"></i></div><div><b>הבקשה התקבלה</b><span>היום</span></div></div>
-              <div class="rq-tl now"><div class="rq-dot"><i class="ti ti-pencil"></i></div><div><b>סוכני ה-AI בונים טיוטה</b><span>מול הקריטריונים של הקרן והפרופיל שלכם</span></div></div>
-              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-file-type-doc"></i></div><div><b>מקבלים טיוטה מוכנה, ניתנת לעריכה</b><span>אתם מחליטים מה נשאר ומה משתנה</span></div></div>
+              <div class="rq-tl now"><div class="rq-dot"><i class="ti ti-pencil"></i></div><div><b>בתור לבנייה</b><span>סוכני ה-AI יבנו טיוטה מול הקריטריונים של הקרן והפרופיל שלכם</span></div></div>
+              <div class="rq-tl"><div class="rq-dot"><i class="ti ti-file-type-doc"></i></div><div><b>מקבלים טיוטה מוכנה, ניתנת לעריכה</b><span>אחרי בדיקה. אתם מחליטים מה נשאר ומה משתנה</span></div></div>
               <div class="rq-tl"><div class="rq-dot"><i class="ti ti-send"></i></div><div><b>משלימים, מלטשים ומגישים</b><span>ההגשה יוצאת מכם, בשם הארגון</span></div></div>
             </div>
           </div>
@@ -1853,7 +1854,7 @@ const REQUESTS = [
   {
     funder: 'קרן ארגמן', call: 'תכניות בריאות וחינוך בנגב', match: 88,
     url: '', criteriaFiles: [],
-    goal: 'פנייה ראשונה לקרן: מבקשים 200,000 ₪ לצוות נייד נוסף בנגב. להדגיש את הפעילות ב-12 יישובים ואת נתוני ההשפעה.',
+    goal: 'פנייה חוזרת אחרי הדחייה באפריל, הפעם עם נתוני ניסיון מ-8 שנות פעילות: מבקשים 200,000 ₪ לצוות נייד נוסף בנגב. להדגיש את הפעילות ב-12 יישובים ואת נתוני ההשפעה.',
     orgFiles: ['מצגת ארגונית 2026.pdf'],
   },
   {
@@ -2347,5 +2348,6 @@ function approveProfile() {
   }
 }
 </script>
+<script>if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
 </body>
 </html>

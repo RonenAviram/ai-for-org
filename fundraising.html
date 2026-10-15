@@ -8,11 +8,16 @@
 <meta property="og:title" content="סוכני AI לגיוס משאבים, לארגון שלכם">
 <meta property="og:description" content="הזדמנויות מימון שמתאימות לארגון שלכם. מחזור מייסדים, החל מ-₪165 לחודש.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://ronenaviram.github.io/ai-for-org/fundraising.html">
+<meta property="og:image" content="https://ronenaviram.github.io/ai-for-org/assets/og-fundraising.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ronenaviram.github.io/ai-for-org/fundraising.html">
 <link rel="icon" href="assets/brand-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <style>
 :root {
   --bg: #F8F9FB;
@@ -88,6 +93,8 @@ h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; line-height: 1.25; tex
 .window-bar a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .window iframe { display: block; width: 100%; height: 760px; border: 0; }
 @media (max-width: 720px) { .window iframe { height: 620px; } }
+.demo-full-m { display: none; }
+@media (max-width: 720px) { .demo-full-m { display: flex; width: 100%; margin-top: 12px; } }
 .demo-hint { text-align: center; color: var(--ink-3); font-size: 14px; margin-top: 12px; }
 
 /* steps */
@@ -189,6 +196,18 @@ section, [id] { scroll-margin-top: 68px; }
 .form-note a { color: var(--ink-2); }
 .done .ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 @media (max-width: 720px) { .bar-links { gap: 14px; } }
+
+/* ROI strip */
+.roi { max-width: 760px; margin: 24px auto 0; background: var(--green-soft); border: 1px solid #A7F3D0; border-radius: 20px; padding: 22px; text-align: center; }
+.roi-head { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
+.roi-nums { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.roi-nums > div:not(.roi-op) { background: var(--surface); border: 1px solid #D1FAE5; border-radius: 14px; padding: 12px 18px; min-width: 130px; }
+.roi-nums b { display: block; font-size: 26px; font-weight: 800; line-height: 1.2; }
+.roi-nums span { font-size: 13px; color: var(--ink-2); }
+.roi-x b { color: var(--green); }
+.roi-op { font-weight: 700; color: var(--ink-3); }
+.roi p { color: var(--ink-2); font-size: 14px; margin-top: 14px; }
+@media (max-width: 560px) { .roi-op { width: 100%; } .roi-nums > div:not(.roi-op) { width: 100%; } }
 </style>
 </head>
 <body>
@@ -221,7 +240,7 @@ section, [id] { scroll-margin-top: 68px; }
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
       </a>
     </div>
-    <div class="meta">החל מ-<bdi dir="ltr">₪165</bdi> לחודש · בלי אחוזים מהכסף שתגייסו</div>
+    <div class="meta"><bdi dir="ltr">₪195</bdi> לחודש, או <bdi dir="ltr">₪165</bdi> בתשלום שנתי · בלי אחוזים מהכסף שתגייסו</div>
   </div>
 </div>
 
@@ -235,6 +254,7 @@ section, [id] { scroll-margin-top: 68px; }
       </div>
       <iframe src="fundraising-demo.html" title="דמו: סוכני AI לגיוס משאבים" loading="lazy"></iframe>
     </div>
+    <a class="btn btn-ghost demo-full-m" href="fundraising-demo.html" target="_blank" rel="noopener">בנייד: לפתיחת הדמו במסך מלא</a>
     <p class="demo-hint">לחצו "לבניית הפרופיל" ועברו בין השלבים. בפועל, הכול מגיע אליכם במייל.</p>
   </div>
 </section>
@@ -274,8 +294,8 @@ section, [id] { scroll-margin-top: 68px; }
     <p class="sub">שלושה צעדים, ואתם בפנים.</p>
     <div class="steps">
       <div class="step"><div class="n">01</div><h3>נרשמים</h3><p>ושולחים חומרים על הארגון.</p></div>
-      <div class="step"><div class="n">02</div><h3>פגישת היכרות אחת</h3><p>על אסטרטגיית הגיוס והמממנים הקיימים.</p></div>
-      <div class="step"><div class="n">03</div><h3>תובנות ראשונות, ואז הזדמנויות</h3><p>מה כדאי לקדם קודם, ומשם מייל הזדמנויות קבוע.</p></div>
+      <div class="step"><div class="n">02</div><h3>פגישת אפיון</h3><p>על אסטרטגיית הגיוס והמממנים הקיימים.</p></div>
+      <div class="step"><div class="n">03</div><h3>תובנות ראשונות, ואז מייל קבוע</h3><p>תוך ימים ספורים, לפעמים כבר באותו יום.</p></div>
     </div>
   </div>
 </section>
@@ -291,7 +311,7 @@ section, [id] { scroll-margin-top: 68px; }
         <div class="amount"><b><bdi dir="ltr">₪195</bdi></b><span>לחודש</span></div>
         <div class="terms">3 חודשים ראשונים, ואחר כך חודש-בחודשו</div>
         <ul class="checks">
-          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת היכרות ופרופיל ארגון</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת אפיון ופרופיל ארגון</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תובנות גיוס ראשונות</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות קבוע</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li>
@@ -304,8 +324,7 @@ section, [id] { scroll-margin-top: 68px; }
         <div class="amount"><b><bdi dir="ltr">₪165</bdi></b><span>לחודש</span></div>
         <div class="terms"><bdi dir="ltr">₪1,980</bdi> בתשלום שנתי · חיסכון של <bdi dir="ltr">₪360</bdi></div>
         <ul class="checks">
-          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלול 3 חודשים</li>
-          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחיר נעול לשנה</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת אפיון ופרופיל ארגון</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תובנות גיוס ראשונות</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות קבוע</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחיר נעול לשנה</li>
         </ul>
         <a class="btn btn-ghost" href="#signup" data-plan="שנתי">לבחירה</a>
       </div>
@@ -323,6 +342,17 @@ section, [id] { scroll-margin-top: 68px; }
         </ul>
         <a class="btn btn-ghost" href="#signup" data-plan="ליווי צמוד">לבחירה</a>
       </div>
+    </div>
+    <div class="roi">
+      <div class="roi-head">מענק אחד מכסה את כל השנה</div>
+      <div class="roi-nums">
+        <div><b><bdi dir="ltr">₪1,980</bdi></b><span>מנוי שנתי</span></div>
+        <div class="roi-op">מול</div>
+        <div><b><bdi dir="ltr">₪50,000</bdi></b><span>מענק אחד, לדוגמה</span></div>
+        <div class="roi-op">=</div>
+        <div class="roi-x"><b>פי 25</b><span>מההשקעה</span></div>
+      </div>
+      <p>מענקים מקרנות בישראל נעים בדרך כלל בין עשרות למאות אלפי שקלים. גם הזדמנות אחת שמתממשת מחזירה את המנוי כמה מונים.</p>
     </div>
     <p class="addons">טיוטות נוספות אפשר להוסיף בחבילות, בכל שלב · בלי אחוזים מהכסף שתגייסו</p>
   </div>
@@ -356,6 +386,7 @@ section, [id] { scroll-margin-top: 68px; }
     <details><summary>מה ההבדל ממאגר קרנות?</summary><p>מאגר קרנות הוא רשימה קבועה, ואתם מחפשים ומסננים בעצמכם. כאן סוכני ה-AI מחפשים בשבילכם כל שבוע: באתרי קרנות, בקולות קוראים, במשרדי ממשלה וברשויות, וגם במאגרים פתוחים. ובמקום רשימה, מקבלים רק את מה שמתאים לכם, עם מה לעשות ועד מתי.</p></details>
     <details><summary>מי מגיש בפועל?</summary><p>אתם. סוכני ה-AI מוצאים ומכינים טיוטה, ואתם עוברים, מתקנים ומגישים. ההגשה והקשר עם המממן נשארים אצלכם.</p></details>
     <details><summary>מה נותנת טיוטת ההגשה?</summary><p>הטיוטה עונה על שאלות הקול הקורא מתוך הפרופיל שלכם, בקובץ Word. כל פרט חסר מסומן, כדי שתשלימו. טיוטה ראשונה כלולה, ואפשר להוסיף חבילת טיוטות בכל שלב.</p></details>
+    <details><summary>מתי מקבלים משהו?</summary><p>תוך ימים ספורים מפגישת האפיון, לפעמים כבר באותו יום: קודם תובנות ראשונות, ואחריהן מייל ההזדמנויות הראשון.</p></details>
     <details><summary>כמה מיילים תקבלו?</summary><p>בהתחלה מייל בשבוע. בהמשך, מייל כשיש הזדמנויות ששוות את הזמן שלכם.</p></details>
     <details><summary>למה מינימום 3 חודשים?</summary><p>לוקח זמן ללמוד את הארגון: מה רלוונטי לכם, אילו מממנים מתאימים ואיך אתם מציגים את עצמכם. ההתאמות משתפרות מחודש לחודש.</p></details>
     <details><summary>מה קורה אחרי 3 חודשים?</summary><p>ממשיכים חודש-בחודשו באותו מחיר, ואפשר להפסיק בכל חודש. אפשר גם לעבור למסלול השנתי.</p></details>
@@ -420,7 +451,6 @@ section, [id] { scroll-margin-top: 68px; }
   </a>
 </div>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
   const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx6cGRWfyXonKIWVMtfYse0Rke_X_Ar14lAvbUFTZqjmptKMPgPKPH04FVIHbVprE3eZg/exec';
   const CALENDLY_URL = 'https://calendly.com/ronen_aviram/ai_for_org';
@@ -443,8 +473,16 @@ section, [id] { scroll-margin-top: 68px; }
         body: JSON.stringify({ type: 'calendly_update', email: lead.email, phone: lead.phone })
       }).catch(() => {});
     }
-    if (typeof Calendly !== 'undefined') Calendly.initPopupWidget({ url: CALENDLY_URL });
-    else window.open(CALENDLY_URL, '_blank', 'noopener');
+    // Calendly loads only when someone asks to book (privacy page: "if you chose to book a call").
+    if (typeof Calendly !== 'undefined') { Calendly.initPopupWidget({ url: CALENDLY_URL }); return; }
+    const css = document.createElement('link');
+    css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(css);
+    const js = document.createElement('script');
+    js.src = 'https://assets.calendly.com/assets/external/widget.js';
+    js.onload = () => Calendly.initPopupWidget({ url: CALENDLY_URL });
+    js.onerror = () => window.open(CALENDLY_URL, '_blank', 'noopener');
+    document.head.appendChild(js);
   }
 
   // Israeli mobile or landline, local or +972; empty is fine (phone is optional).
@@ -482,7 +520,10 @@ section, [id] { scroll-margin-top: 68px; }
         q1: 'הרשמה: סוכן גיוס (מחזור מייסדים)', q2: form.elements.plan.value, q3: leadSource,
         lang: 'he', timestamp: new Date().toISOString(), calendlyClicked: false, source: 'fundraising'
       })
-    }).catch(() => { document.getElementById('send-failed').hidden = false; });
+    }).catch(() => {
+      document.getElementById('send-failed').hidden = false;
+      document.querySelector('#signup-done h3').textContent = 'משהו השתבש בשליחה';
+    });
     form.style.display = 'none';
     document.getElementById('signup-done').style.display = 'block';
   });
