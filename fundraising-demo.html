@@ -2401,7 +2401,7 @@ function approveProfile() {
     target = t; t.classList.add('coach-target');
     bubble = document.createElement('div');
     bubble.className = 'coach';
-    bubble.innerHTML = '<small>שלב ' + (idx + 1) + ' מתוך 3</small>' + text;
+    bubble.textContent = text;
     document.body.appendChild(bubble);
     requestAnimationFrame(track);
   }
