@@ -191,6 +191,9 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 14px; min-width: 0; }
 .form-note { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 12px; }
 .done { display: none; text-align: center; }
 .done h3 { font-size: 22px; margin-bottom: 6px; }
+.done .party { font-size: 54px; line-height: 1; margin-bottom: 8px; animation: pop .6s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes pop { from { transform: scale(.3) rotate(-20deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .done .party { animation: none; } }
 .done p { color: var(--ink-2); margin-bottom: 16px; }
 
 footer { text-align: center; padding: 28px 0 40px; color: var(--ink-3); font-size: 13px; border-top: 1px solid var(--border); background: var(--surface); }
@@ -552,7 +555,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
         <p>שנים בהייטק כמנהל מוצר, ובשנים האחרונות בונה מערכות AI. היום אני מביא אותן לעמותות.</p>
         <p class="strong">כל תוצר עובר בדיקה לפני שהוא מגיע אליכם.</p>
         <div class="ctas">
-          <button class="btn btn-primary" type="button" onclick="openCalendly()">לתיאום שיחה</button>
+          <button class="btn btn-primary" type="button" onclick="openSignup()">לתיאום שיחה</button>
           <a class="btn btn-wa" href="https://wa.me/972542569556?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A0%D7%9F%21%20%D7%9C%D7%92%D7%91%D7%99%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%94-AI%20%D7%9C%D7%92%D7%99%D7%95%D7%A1%20%D7%9E%D7%A9%D7%90%D7%91%D7%99%D7%9D" target="_blank" rel="noopener">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8z"/></svg>
             וואטסאפ
@@ -598,11 +601,12 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
             <label><input type="radio" name="plan" value="ליווי צמוד"><span>ליווי צמוד</span></label>
           </div>
         </fieldset>
-        <button class="btn btn-primary" type="submit">לקביעת שיחה</button>
+        <button class="btn btn-primary" type="submit">שליחת פנייה</button>
         <div class="form-note">הפרטים משמשים רק כדי לחזור אליכם.</div>
       </form>
       <div class="done" id="signup-done">
-        <h3>קיבלתי, תודה!</h3>
+        <div class="party" id="done-party" aria-hidden="true">🎉</div>
+        <h3>נשלח בהצלחה</h3>
         <p>אחזור אליכם בהקדם. רוצים לקבוע כבר עכשיו?</p>
         <p id="send-failed" hidden style="color:#B91C1C">נראה שהשליחה לא עברה. כתבו לי בוואטסאפ ואחזור אליכם.</p>
         <div class="ctas">
@@ -720,6 +724,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     }).catch(() => {
       document.getElementById('send-failed').hidden = false;
       document.querySelector('#signup-done h3').textContent = 'משהו השתבש בשליחה';
+      document.getElementById('done-party').hidden = true;
     });
     form.style.display = 'none';
     document.getElementById('signup-done').style.display = 'block';
