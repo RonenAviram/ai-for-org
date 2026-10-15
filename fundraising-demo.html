@@ -1840,7 +1840,7 @@ function showResults() {
 const REQUESTS = [
   {
     funder: 'קרן משפחת נחליאלי', call: 'קול קורא "מעגלי החיים"', match: 96,
-    url: '#', criteriaFiles: [],
+    url: 'https://nahliely-fund.example/apply', criteriaFiles: [],
     goal: 'מבקשים 250,000 ₪ ל-18 חודשים: שילוב אחות בריאות האישה בכל צוות נייד ותכנית חוסן לצוותים. להדגיש את הירידה של 27% בפניות למיון ואת זה שהמודל גדל מ-3 ל-12 יישובים.',
     orgFiles: ['תקציב מיזם גשר הבריאות.pdf', 'דוח השפעה 2025.pdf'],
   },
@@ -2033,7 +2033,7 @@ function submitRequest() {
     document.getElementById('rqSent').innerHTML =
       '<dt>גוף מממן</dt><dd>' + r.funder + '</dd>' + criteria +
       (files.length ? '<dt>קבצים</dt><dd class="rq-chips">' + files.map(f => '<span><i class="ti ti-file-type-pdf"></i> ' + fileLabel(f) + '</span>').join('') + '</dd>' : '');
-    document.getElementById('btsBtn').hidden = r !== REQUESTS[0]; // behind-the-scenes view is built for the Shashua request
+    document.getElementById('btsBtn').hidden = r !== REQUESTS[0]; // behind-the-scenes view is built for the first request
     document.getElementById('rqForm').hidden = true;
     document.getElementById('rqDone').hidden = false;
     document.getElementById('main').scrollTop = 0;
