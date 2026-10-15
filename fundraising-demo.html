@@ -2205,7 +2205,7 @@ function goStep(n) {
   if (n === 4) {
     showStage(4);
     setStep(4);
-    document.getElementById('btsFrame').src = 'fundraising-behind-scenes.html#play'; // fresh load, plays by itself
+    document.getElementById('btsFrame').src = 'fundraising-behind-scenes.html'; // fresh load, waits for a click on its centre
     requestAnimationFrame(sizeBtsFrame);
   }
 }
@@ -2476,6 +2476,10 @@ function approveProfile() {
     if (step === 'submit') {
       if (!visible('#rqSubmit')) openRequest(0);
       setTimeout(() => coach('#rqSubmit', 'זו בקשת הגשה, כבר מלאה בשבילכם. לחצו כדי לייצר טיוטת הגשה.'), 300);
+      // Behind the scenes waits for a click: point at its centre once the frame is ready.
+      const bts = document.getElementById('btsFrame');
+      when(() => { const d = document.getElementById('stage4').classList.contains('active') && bts.contentDocument; const c = d && d.querySelector('#core.idle'); return !!c && d.readyState === 'complete'; },
+        () => setTimeout(() => coachInFrame(bts, '#core', 'לחצו כאן, וצפו בסוכני ה-AI בונים את טיוטת ההגשה.'), 400));
     }
   }
   window.addEventListener('load', () => run(first));
