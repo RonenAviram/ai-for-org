@@ -2415,7 +2415,7 @@ function approveProfile() {
       coach('#buildBtn', 'לחצו כאן, וצפו בסוכני ה-AI לומדים ארגון לדוגמה מארבעה מקורות.');
       when(() => visible('#toProfileBtn'), () => {
         coach('#toProfileBtn', 'הפרופיל מוכן. לחצו כדי לראות מה הסוכנים הבינו על הארגון.');
-        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן. עכשיו מחפשים לו כסף.', 'לשלב הבא: סריקת הזדמנויות', '#scan'), { once: true });
+        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן במערכת. עכשיו היא יכולה לחפש עבורכם הזדמנויות.', 'לשלב הבא: סריקת הזדמנויות', '#scan'), { once: true });
       });
     }
     if (entry === 'scan') {
