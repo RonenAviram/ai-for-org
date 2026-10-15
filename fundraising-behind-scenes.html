@@ -313,7 +313,10 @@ function idle(){
 function start(){document.getElementById('core').classList.remove('idle');document.getElementById('replay').style.visibility='visible';play()}
 document.getElementById('core').onclick=()=>{if(document.getElementById('core').classList.contains('idle'))start()};
 document.getElementById('replay').onclick=start;
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{idle();fit()});else{idle();fit()}
+// Opened from the demo (#play): start by itself, no click needed.
+const autoplay=location.hash==='#play';
+const boot=()=>{idle();fit();if(autoplay)setTimeout(start,600)};
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(boot);else boot();
 tick();
 </script>
 </body>

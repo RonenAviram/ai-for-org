@@ -2026,6 +2026,8 @@ function submitRequest() {
   btn.disabled = true;
   btn.innerHTML = '<i class="ti ti-loader-2" style="animation:spin 1s linear infinite;"></i> שולחים…';
   setTimeout(() => {
+    // The first request has its behind-the-scenes view: go straight there, no confirmation page.
+    if (r === REQUESTS[0]) { btn.disabled = false; btn.innerHTML = '<i class="ti ti-send"></i> שליחת הבקשה'; goStep(4); document.getElementById('main').scrollTop = 0; return; }
     let criteria = '';
     if (r.url) {
       const u = new URL(r.url);
@@ -2203,7 +2205,7 @@ function goStep(n) {
   if (n === 4) {
     showStage(4);
     setStep(4);
-    document.getElementById('btsFrame').src = 'fundraising-behind-scenes.html'; // fresh load = idle state
+    document.getElementById('btsFrame').src = 'fundraising-behind-scenes.html#play'; // fresh load, plays by itself
     requestAnimationFrame(sizeBtsFrame);
   }
 }
@@ -2367,20 +2369,24 @@ function approveProfile() {
   const STEPS = ['profile', 'scan', 'submit'];
   const first = location.hash.slice(1);
   if (!STEPS.includes(first)) return;
-  let idx = 0, bubble = null, target = null;
+  let idx = 0, bubble = null, target = null, targetFrame = null;
   const timers = [];
 
   function clearCoach() {
     if (bubble) bubble.remove();
     if (target) target.classList.remove('coach-target');
-    bubble = target = null;
+    bubble = target = targetFrame = null;
   }
   // The bubble follows its button every frame, hides when the button is off screen or gone,
   // and any click anywhere dismisses it (the next bubble comes from the flow itself).
   function track() {
     if (!bubble || !target) return;
-    const r = target.getBoundingClientRect();
-    const shown = target.offsetParent !== null && r.bottom > 0 && r.top < innerHeight;
+    let r = target.getBoundingClientRect();
+    if (targetFrame) {
+      const fr = targetFrame.getBoundingClientRect();
+      r = { left: fr.left + r.left, right: fr.left + r.right, top: fr.top + r.top, bottom: fr.top + r.bottom, width: r.width, height: r.height };
+    }
+    const shown = (targetFrame || target.offsetParent !== null) && r.bottom > 0 && r.top < innerHeight;
     bubble.style.visibility = shown ? 'visible' : 'hidden';
     if (shown) {
       const left = Math.max(12, Math.min(innerWidth - bubble.offsetWidth - 12, r.left + r.width / 2 - bubble.offsetWidth / 2));
@@ -2403,6 +2409,21 @@ function approveProfile() {
     bubble.className = 'coach';
     bubble.textContent = text;
     document.body.appendChild(bubble);
+    requestAnimationFrame(track);
+  }
+  // Same bubble, for a button inside the behind-the-scenes frame.
+  function coachInFrame(frame, sel, text) {
+    clearCoach();
+    const doc = frame.contentDocument;
+    const t = doc && doc.querySelector(sel);
+    if (!t) return;
+    target = t; targetFrame = frame;
+    t.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    bubble = document.createElement('div');
+    bubble.className = 'coach';
+    bubble.textContent = text;
+    document.body.appendChild(bubble);
+    doc.addEventListener('pointerdown', clearCoach, { once: true, capture: true });
     requestAnimationFrame(track);
   }
   function clearBar() { const old = document.querySelector('.next-bar'); if (old) old.remove(); }
@@ -2447,11 +2468,7 @@ function approveProfile() {
     }
     if (step === 'submit') {
       if (!visible('#rqSubmit')) openRequest(0);
-      setTimeout(() => coach('#rqSubmit', 'זו בקשת הגשה, כבר מלאה בשבילכם. לחצו לשליחה.'), 300);
-      when(() => visible('#btsBtn'), () => {
-        coach('#btsBtn', 'הבקשה נשלחה. לחצו כדי לראות איך הטיוטה נבנית.');
-        document.getElementById('btsBtn').addEventListener('click', () => nextBar('רוצים את זה לארגון שלכם?', 'לקביעת שיחת היכרות', signup), { once: true });
-      });
+      setTimeout(() => coach('#rqSubmit', 'זו בקשת הגשה, כבר מלאה בשבילכם. לחצו כדי לייצר טיוטת הגשה.'), 300);
     }
   }
   window.addEventListener('load', () => run(first));
