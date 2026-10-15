@@ -200,17 +200,20 @@ section, [id] { scroll-margin-top: 68px; }
 @media (max-width: 720px) { .bar-links { gap: 14px; } }
 
 /* ROI strip */
-.roi { max-width: 760px; margin: 24px auto 0; background: var(--green-soft); border: 1px solid #A7F3D0; border-radius: 20px; padding: 22px; text-align: center; }
-.roi-head { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
-.roi-head .extra { color: var(--green); }
-.roi-nums { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
-.roi-nums > div:not(.roi-op) { background: var(--surface); border: 1px solid #D1FAE5; border-radius: 14px; padding: 12px 18px; min-width: 130px; }
-.roi-nums b { display: block; font-size: 26px; font-weight: 800; line-height: 1.2; }
-.roi-nums span { font-size: 13px; color: var(--ink-2); }
-.roi-x b { color: var(--green); }
-.roi-op { font-weight: 700; color: var(--ink-3); }
-.roi p { color: var(--ink-2); font-size: 14px; margin-top: 14px; }
-@media (max-width: 560px) { .roi-op { width: 100%; } .roi-nums > div:not(.roi-op) { width: 100%; } }
+.roi { max-width: 760px; margin: 28px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px 28px; }
+.roi-head { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 20px; }
+.roi-head em { font-style: normal; color: var(--accent); }
+.roi-row { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 14px; margin-bottom: 12px; }
+.roi-row:last-child { margin-bottom: 0; }
+.roi-lbl { font-size: 14px; color: var(--ink-2); }
+.roi-lbl b { display: block; font-size: 20px; color: var(--ink); font-weight: 800; line-height: 1.2; }
+.roi-track { height: 28px; background: var(--accent-soft); border-radius: 8px; overflow: hidden; }
+.roi-fill { height: 100%; width: 0; border-radius: 8px; background: var(--accent); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.roi-fill.cost { background: #A5B4FC; }
+.roi.go .grant { width: 100%; } .roi.go .cost { width: 19.8%; }
+@media (prefers-reduced-motion: reduce) { .roi-fill { transition: none; } }
+.roi-note { max-width: 760px; margin: 12px auto 0; text-align: center; color: var(--ink-2); font-size: 14px; }
+@media (max-width: 560px) { .roi { padding: 22px 18px; } .roi-head { font-size: 19px; } .roi-row { grid-template-columns: 96px 1fr; gap: 10px; } .roi-lbl b { font-size: 17px; } .roi-lbl { font-size: 12.5px; } }
 
 /* how it works: flow animation */
 .flow { max-width: 1040px; margin: 0 auto; }
@@ -433,17 +436,12 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
         <button type="button" class="btn btn-ghost" data-plan="ליווי צמוד">לבחירה</button>
       </div>
     </div>
-    <div class="roi">
-      <div class="roi-head">מענק אחד מחזיר את כל השנה <span class="extra">עם עודף</span></div>
-      <div class="roi-nums">
-        <div><b><bdi dir="ltr">₪1,980</bdi></b><span>מנוי שנתי</span></div>
-        <div class="roi-op">מול</div>
-        <div><b><bdi dir="ltr">₪50,000</bdi></b><span>מענק אחד, לדוגמה</span></div>
-        <div class="roi-op">=</div>
-        <div class="roi-x"><b>פי 25</b><span>מההשקעה</span></div>
-      </div>
-      <p>מענקים מקרנות בישראל נעים בדרך כלל בין עשרות למאות אלפי שקלים. גם הזדמנות אחת שמתממשת מחזירה את המנוי כמה מונים.</p>
+    <div class="roi" id="roi">
+      <div class="roi-head">מענק אחד מחזיר את המנוי <em>פי 5</em></div>
+      <div class="roi-row"><div class="roi-lbl"><b><bdi dir="ltr">₪10,000</bdi></b>מענק אחד, לדוגמה</div><div class="roi-track"><div class="roi-fill grant"></div></div></div>
+      <div class="roi-row"><div class="roi-lbl"><b><bdi dir="ltr">₪1,980</bdi></b>מנוי שנתי</div><div class="roi-track"><div class="roi-fill cost"></div></div></div>
     </div>
+    <p class="roi-note">מענקים מקרנות בישראל נעים בדרך כלל בין עשרות למאות אלפי שקלים. גם מענק קטן מחזיר את המנוי.</p>
   </div>
 </section>
 
@@ -659,6 +657,11 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
   document.querySelectorAll('[data-plan]').forEach((b) => b.addEventListener('click', () => choosePlan(b.dataset.plan)));
   form.querySelectorAll('input[name=plan]').forEach((r) => r.addEventListener('change', () => choosePlan(r.value)));
   choosePlan(form.elements.plan.value);
+
+  // ROI bars fill when they scroll into view.
+  const roi = document.getElementById('roi');
+  if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es.some((e) => e.isIntersecting)) { roi.classList.add('go'); o.disconnect(); } }, { threshold: 0.4 }).observe(roi);
+  else roi.classList.add('go');
 
   // Mobile sticky CTA: show after the hero, hide over the sign-up form.
   const sticky = document.getElementById('sticky');
