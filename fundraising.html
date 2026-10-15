@@ -110,7 +110,8 @@ h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 800; line-height: 1.25; tex
 .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
 @media (max-width: 860px) { .plans { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
 .plan { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px; }
-.plan.featured { border: 2px solid var(--accent); box-shadow: 0 10px 30px rgba(79,70,229,0.12); }
+.plan.chosen { border: 2px solid var(--accent); box-shadow: 0 10px 30px rgba(79,70,229,0.12); }
+.plan:not(.chosen) { margin: 1px; }
 .plan .badge { position: absolute; top: -13px; right: 24px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
 .plan h3 { font-size: 19px; font-weight: 700; }
 .amount { display: flex; align-items: baseline; gap: 8px; margin: 10px 0 4px; }
@@ -201,6 +202,7 @@ section, [id] { scroll-margin-top: 68px; }
 /* ROI strip */
 .roi { max-width: 760px; margin: 24px auto 0; background: var(--green-soft); border: 1px solid #A7F3D0; border-radius: 20px; padding: 22px; text-align: center; }
 .roi-head { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
+.roi-head .extra { color: var(--green); }
 .roi-nums { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .roi-nums > div:not(.roi-op) { background: var(--surface); border: 1px solid #D1FAE5; border-radius: 14px; padding: 12px 18px; min-width: 130px; }
 .roi-nums b { display: block; font-size: 26px; font-weight: 800; line-height: 1.2; }
@@ -275,6 +277,24 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
 .modal-close { position: absolute; top: 12px; left: 12px; z-index: 2; font: inherit; font-weight: 600; border: 1px solid var(--border); background: #fff; border-radius: 10px; padding: 6px 14px; cursor: pointer; min-height: 40px; }
 @media (max-width: 720px) { dialog.modal, dialog.modal.narrow { width: 100vw; height: 100dvh; max-width: none; border-radius: 0; } }
 .calendly-overlay { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+/* how to start: schematic timeline */
+.timeline { list-style: none; display: flex; justify-content: center; gap: 0; max-width: 900px; margin: 0 auto; padding: 0; }
+.tstep { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 0 10px; }
+.tstep:not(:last-child)::after { content: ''; position: absolute; top: 40px; right: calc(50% + 52px); left: calc(-50% + 52px); border-top: 2px dashed var(--accent-border); }
+.tstep:not(:last-child)::before { content: ''; position: absolute; top: 35px; left: calc(-50% + 46px); border: 6px solid transparent; border-right: 9px solid var(--accent-border); }
+.tdot { position: relative; width: 80px; height: 80px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent-border); color: var(--accent); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(79,70,229,.10); }
+.tstep:last-child .tdot { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tdot svg { width: 32px; height: 32px; }
+.tnum { position: absolute; top: -6px; right: -6px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 8px; border: 2px solid var(--bg); }
+.tstep:last-child .tnum { background: var(--green); }
+.tstep b { font-size: 17px; font-weight: 700; max-width: 240px; line-height: 1.4; }
+@media (max-width: 600px) {
+  .tstep b { font-size: 14px; max-width: none; } .tstep { padding: 0 4px; }
+  .tdot { width: 64px; height: 64px; } .tdot svg { width: 26px; height: 26px; }
+  .tstep:not(:last-child)::after { top: 32px; right: calc(50% + 40px); left: calc(-50% + 40px); }
+  .tstep:not(:last-child)::before { top: 27px; left: calc(-50% + 34px); }
+}
 </style>
 </head>
 <body>
@@ -370,10 +390,11 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
 <section>
   <div class="wrap">
     <h2>איך מתחילים</h2>
-    <div class="steps">
-      <div class="step"><div class="n">01</div><h3>נרשמים</h3><p>ושולחים חומרים על הארגון.</p></div>
-      <div class="step"><div class="n">02</div><h3>פגישת אפיון</h3><p>על אסטרטגיית הגיוס והמממנים הקיימים.</p></div>
-      <div class="step"><div class="n">03</div><h3>תובנות ראשונות, ואז מייל קבוע</h3><p>תוך ימים ספורים, לפעמים כבר באותו יום.</p></div>
+    <ol class="timeline">
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5M19 8v6M16 11h6"/></svg><span class="tnum">01</span></span><b>נרשמים</b></li>
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span class="tnum">02</span></span><b>פגישת אפיון</b></li>
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span class="tnum">03</span></span><b>תובנות ראשונות + הזדמנויות ראשונות נוחתות אצלכם</b></li>
+    </ol>
     </div>
   </div>
 </section>
@@ -382,7 +403,7 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
   <div class="wrap">
     <h2>בוחרים מסלול</h2>
     <div class="plans">
-      <div class="plan featured">
+      <div class="plan featured chosen" data-card="3 חודשים">
         <span class="badge">מומלץ להתחלה</span>
         <h3>3 חודשים</h3>
         <div class="amount"><b><bdi dir="ltr">₪195</bdi></b><span>לחודש</span></div>
@@ -394,20 +415,20 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li>
         </ul>
-        <a class="btn btn-primary" href="#signup" data-plan="3 חודשים">לבחירה</a>
+        <button type="button" class="btn btn-primary" data-plan="3 חודשים">לבחירה</button>
       </div>
-      <div class="plan">
+      <div class="plan" data-card="שנתי">
         <h3>שנתי</h3>
         <div class="amount"><b><bdi dir="ltr">₪165</bdi></b><span>לחודש</span></div>
-        <div class="terms"><bdi dir="ltr">₪1,980</bdi> בתשלום שנתי · חיסכון של <bdi dir="ltr">₪360</bdi></div>
+        <div class="terms">&nbsp;</div>
         <ul class="checks">
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת אפיון ופרופיל ארגון</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תובנות גיוס ראשונות</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות קבוע</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחיר נעול לשנה</li>
         </ul>
-        <a class="btn btn-ghost" href="#signup" data-plan="שנתי">לבחירה</a>
+        <button type="button" class="btn btn-ghost" data-plan="שנתי">לבחירה</button>
       </div>
-      <div class="plan">
+      <div class="plan" data-card="ליווי צמוד">
         <h3>ליווי צמוד</h3>
-        <div class="amount"><b><bdi dir="ltr">₪450</bdi></b><span>לחודש</span></div>
+        <div class="amount"><b><bdi dir="ltr">₪440</bdi></b><span>לחודש</span></div>
         <div class="terms">ריטיינר חודשי · מספר מקומות מוגבל</div>
         <ul class="checks">
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלולים האחרים</li>
@@ -417,11 +438,11 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחקר עומק רבעוני על מממנים חדשים</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מענה מהיר בימי עבודה</li>
         </ul>
-        <a class="btn btn-ghost" href="#signup" data-plan="ליווי צמוד">לבחירה</a>
+        <button type="button" class="btn btn-ghost" data-plan="ליווי צמוד">לבחירה</button>
       </div>
     </div>
     <div class="roi">
-      <div class="roi-head">מענק אחד מכסה את כל השנה</div>
+      <div class="roi-head">מענק אחד מחזיר את כל השנה <span class="extra">עם עודף</span></div>
       <div class="roi-nums">
         <div><b><bdi dir="ltr">₪1,980</bdi></b><span>מנוי שנתי</span></div>
         <div class="roi-op">מול</div>
@@ -631,11 +652,21 @@ dialog.modal iframe { display: block; width: 100%; height: 100%; border: 0; }
 
   form.querySelectorAll('input').forEach((el) => el.addEventListener('input', () => el.closest('.field').classList.remove('bad')));
 
-  // Plan buttons preselect the plan in the form.
-  document.querySelectorAll('[data-plan]').forEach((a) => a.addEventListener('click', () => {
-    const r = form.querySelector('input[name=plan][value="' + a.dataset.plan + '"]');
+  // Choosing a plan marks its card and the form's plan field, without scrolling away.
+  function choosePlan(v) {
+    document.querySelectorAll('.plan[data-card]').forEach((c) => {
+      const on = c.dataset.card === v, b = c.querySelector('[data-plan]');
+      c.classList.toggle('chosen', on);
+      b.classList.toggle('btn-primary', on); b.classList.toggle('btn-ghost', !on);
+      b.textContent = on ? 'נבחר ✓' : 'לבחירה';
+      b.setAttribute('aria-pressed', on);
+    });
+    const r = form.querySelector('input[name=plan][value="' + v + '"]');
     if (r) r.checked = true;
-  }));
+  }
+  document.querySelectorAll('[data-plan]').forEach((b) => b.addEventListener('click', () => choosePlan(b.dataset.plan)));
+  form.querySelectorAll('input[name=plan]').forEach((r) => r.addEventListener('change', () => choosePlan(r.value)));
+  choosePlan(form.elements.plan.value);
 
   // Mobile sticky CTA: show after the hero, hide over the sign-up form.
   const sticky = document.getElementById('sticky');
