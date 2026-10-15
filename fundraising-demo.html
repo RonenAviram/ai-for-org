@@ -2349,5 +2349,95 @@ function approveProfile() {
 }
 </script>
 <script>if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
+<style>
+.coach { position: fixed; z-index: 9000; max-width: 280px; background: #1A1D23; color: #fff; font: 600 15px/1.45 'Heebo', sans-serif; padding: 12px 16px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); direction: rtl; text-align: right; }
+.coach::before { content: ''; position: absolute; top: -7px; right: var(--tip, 50%); width: 14px; height: 14px; background: #1A1D23; transform: translateX(50%) rotate(45deg); border-radius: 2px; }
+.coach small { display: block; color: #A5B4FC; font-weight: 700; font-size: 12px; margin-bottom: 2px; }
+.coach-target { position: relative; z-index: 2; animation: coachPulse 1.6s infinite; }
+@keyframes coachPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(79,70,229,.55); } 60% { box-shadow: 0 0 0 12px rgba(79,70,229,0); } }
+.next-bar { position: fixed; z-index: 9000; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #C7D2FE; box-shadow: 0 12px 34px rgba(79,70,229,.18); border-radius: 16px; padding: 12px 14px 12px 18px; font: 600 15px 'Heebo', sans-serif; color: #1A1D23; direction: rtl; max-width: calc(100vw - 24px); }
+.next-bar a { flex: none; background: #4F46E5; color: #fff; text-decoration: none; font-weight: 700; padding: 10px 18px; border-radius: 12px; }
+</style>
+<script>
+/* Guided entry from the landing page: fundraising-demo.html#profile | #scan | #submit */
+(function () {
+  const STEPS = ['profile', 'scan', 'submit'];
+  const entry = location.hash.slice(1);
+  if (!STEPS.includes(entry)) return;
+  const idx = STEPS.indexOf(entry);
+  let bubble = null, target = null;
+
+  function clearCoach() {
+    if (bubble) bubble.remove();
+    if (target) target.classList.remove('coach-target');
+    bubble = target = null;
+  }
+  function coach(sel, text) {
+    clearCoach();
+    const t = document.querySelector(sel);
+    if (!t) return;
+    t.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    target = t; t.classList.add('coach-target');
+    bubble = document.createElement('div');
+    bubble.className = 'coach';
+    bubble.innerHTML = '<small>שלב ' + (idx + 1) + ' מתוך 3</small>' + text;
+    document.body.appendChild(bubble);
+    const place = () => {
+      if (!bubble) return;
+      const r = t.getBoundingClientRect();
+      const left = Math.max(12, Math.min(innerWidth - bubble.offsetWidth - 12, r.left + r.width / 2 - bubble.offsetWidth / 2));
+      bubble.style.left = left + 'px';
+      bubble.style.top = (r.bottom + 14) + 'px';
+      bubble.style.setProperty('--tip', Math.max(16, Math.min(bubble.offsetWidth - 16, left + bubble.offsetWidth - (r.left + r.width / 2))) + 'px');
+    };
+    place(); setTimeout(place, 400);
+    addEventListener('resize', place);
+    document.querySelector('.main').addEventListener('scroll', place, { passive: true });
+    t.addEventListener('click', clearCoach, { once: true });
+  }
+  function nextBar(text, label, href) {
+    const old = document.querySelector('.next-bar'); if (old) old.remove();
+    const b = document.createElement('div');
+    b.className = 'next-bar';
+    b.innerHTML = '<span>' + text + '</span>';
+    const a = document.createElement('a');
+    a.textContent = label; a.href = href;
+    if (href.startsWith('#')) a.addEventListener('click', e => { e.preventDefault(); location.hash = href; location.reload(); });
+    else a.target = '_top';
+    b.appendChild(a); document.body.appendChild(b);
+  }
+  // Run fn once when test() becomes true.
+  function when(test, fn) { const iv = setInterval(() => { if (test()) { clearInterval(iv); fn(); } }, 300); }
+  const visible = sel => { const el = document.querySelector(sel); return !!(el && el.offsetParent !== null); };
+
+  window.addEventListener('load', () => {
+    if (entry === 'profile') {
+      coach('#buildBtn', 'לחצו כאן, וצפו בסוכני ה-AI לומדים ארגון לדוגמה מארבעה מקורות.');
+      when(() => visible('#toProfileBtn'), () => {
+        coach('#toProfileBtn', 'הפרופיל מוכן. לחצו כדי לראות מה הסוכנים הבינו על הארגון.');
+        document.getElementById('toProfileBtn').addEventListener('click', () => nextBar('הפרופיל מוכן. עכשיו מחפשים לו כסף.', 'לשלב הבא: סריקת הזדמנויות', '#scan'), { once: true });
+      });
+    }
+    if (entry === 'scan') {
+      goStep(2);
+      setTimeout(() => coach('#scanBtn', 'לחצו לסריקה. הסוכנים בודקים עשרות מקורות מול הפרופיל של הארגון.'), 300);
+      when(() => visible('.result-card .btn-draft'), () => {
+        setTimeout(() => {
+          coach('.result-card .btn-draft', 'אלה ההזדמנויות שמתאימות, עם הסבר למה. לחצו כדי לבקש טיוטת הגשה.');
+          nextBar('מצאנו הזדמנויות. עכשיו בונים הגשה.', 'לשלב הבא: בניית ההגשה', '#submit');
+        }, 600);
+      });
+    }
+    if (entry === 'submit') {
+      openRequest(0);
+      setTimeout(() => coach('#rqSubmit', 'זו בקשת הגשה, כבר מלאה בשבילכם. לחצו לשליחה.'), 300);
+      when(() => visible('#btsBtn'), () => {
+        coach('#btsBtn', 'הבקשה נשלחה. לחצו כדי לראות איך הטיוטה נבנית.');
+        document.getElementById('btsBtn').addEventListener('click', () => nextBar('רוצים את זה לארגון שלכם?', 'לקביעת שיחת היכרות', 'fundraising.html#signup'), { once: true });
+      });
+    }
+  });
+})();
+</script>
 </body>
 </html>
