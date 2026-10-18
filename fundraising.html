@@ -578,13 +578,12 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
   <div class="wrap">
     <h2>בוחרים מסלול</h2>
     <div class="plan-tabs" role="tablist" aria-label="מסלולים">
-      <button type="button" role="tab" data-i="0" aria-selected="true">3 חודשים</button>
-      <button type="button" role="tab" data-i="1" aria-selected="false">שנתי</button>
+      <button type="button" role="tab" data-i="0" aria-selected="false">3 חודשים</button>
+      <button type="button" role="tab" data-i="1" aria-selected="true">שנתי</button>
       <button type="button" role="tab" data-i="2" aria-selected="false">ליווי צמוד</button>
     </div>
     <div class="plans">
-      <div class="plan featured">
-        <span class="badge">מומלץ להתחלה</span>
+      <div class="plan">
         <h3>3 חודשים</h3>
         <div class="amount"><b><bdi dir="ltr">₪225</bdi></b><span>לחודש</span></div>
         <div class="terms">3 חודשים ראשונים, ואחר כך חודש-בחודשו</div>
@@ -595,16 +594,19 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li>
         </ul>
-        <a class="btn btn-primary" href="#signup" data-buy="3 חודשים">לרכישה</a>
+        <a class="btn btn-ghost" href="#signup" data-buy="3 חודשים">לרכישה</a>
       </div>
-      <div class="plan">
+      <div class="plan featured">
+        <span class="badge">מומלץ</span>
         <h3>שנתי</h3>
         <div class="amount"><b><bdi dir="ltr">₪165</bdi></b><span>לחודש</span></div>
         <div class="terms">חוסכים <bdi dir="ltr">₪720</bdi> בשנה</div>
         <ul class="checks">
-          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת אפיון ופרופיל ארגון</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תובנות גיוס ראשונות</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מייל הזדמנויות קבוע</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מפת מממנים וגופים דומים</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>טיוטת הגשה ראשונה כלולה</li><li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחיר נעול לשנה</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלול 3 חודשים</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>מחיר נעול לשנה</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>שנה שלמה של למידה: ככל שהמערכת מכירה אתכם יותר, ההתאמות מדויקות יותר</li>
         </ul>
-        <a class="btn btn-ghost" href="#signup" data-buy="שנתי">לרכישה</a>
+        <a class="btn btn-primary" href="#signup" data-buy="שנתי">לרכישה</a>
       </div>
       <div class="plan">
         <h3>ליווי צמוד</h3>
@@ -703,8 +705,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
         </div>
         <fieldset class="field" data-f="plan"><legend style="font-weight:600;font-size:14px;margin-bottom:6px">מסלול שמעניין אתכם</legend>
           <div class="seg">
-            <label><input type="radio" name="plan" value="3 חודשים" checked><span>3 חודשים</span></label>
-            <label><input type="radio" name="plan" value="שנתי"><span>שנתי</span></label>
+            <label><input type="radio" name="plan" value="3 חודשים"><span>3 חודשים</span></label>
+            <label><input type="radio" name="plan" value="שנתי" checked><span>שנתי</span></label>
             <label><input type="radio" name="plan" value="ליווי צמוד"><span>ליווי צמוד</span></label>
           </div>
         </fieldset>
@@ -883,7 +885,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     planTabs.forEach((t, k) => t.setAttribute('aria-selected', k === i));
   }
   planTabs.forEach((t) => t.addEventListener('click', () => showPlan(+t.dataset.i)));
-  showPlan(0);
+  showPlan(1);
 
   // Mobile sticky CTA: show after the hero.
   const sticky = document.getElementById('sticky');
