@@ -616,7 +616,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
       <div class="plan">
         <h3>ליווי צמוד</h3>
         <div class="amount"><b><bdi dir="ltr">₪440</bdi></b><span>לחודש</span></div>
-        <div class="terms">ריטיינר חודשי · מספר מקומות מוגבל</div>
+        <div class="terms">התחייבות ל-6 חודשים · מספר מקומות מוגבל</div>
         <ul class="checks">
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>כל מה שבמסלולים האחרים</li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>פגישת עבודה חודשית</li>
@@ -866,6 +866,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
   const PAY_URLS = {
     'שנתי': 'https://pay.grow.link/MTAxNjkw~653b2a188f291f845633f7a7a01908bc-NDE1MTMyNg',
     '3 חודשים': 'https://pay.grow.link/MTAxNjkw~0b419062fa6bb493d4cc4cf0d80d576c-NDE1MTM0OQ',
+    'ליווי צמוד': 'https://pay.grow.link/MTAxNjkw~0bb82e4eb35d1c14e4372d998d0fc3ea-NDE1MTM1OQ',
   };
   document.querySelectorAll('[data-buy]').forEach((a) => a.addEventListener('click', (e) => {
     const url = PAY_URLS[a.dataset.buy];
