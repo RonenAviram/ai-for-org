@@ -6,7 +6,7 @@
 <title>Vista.AI · מערכת AI לגיוס משאבים</title>
 <meta name="description" content="סוכני AI שמוצאים לארגון שלכם הזדמנויות מימון, ושולחים רק את מה שמתאים: מה לעשות ועד מתי.">
 <meta property="og:title" content="Vista.AI · מערכת AI לגיוס משאבים, בארץ ובחו״ל">
-<meta property="og:description" content="הזדמנויות מימון שמתאימות לארגון שלכם. מחזור מייסדים, החל מ-₪165 לחודש.">
+<meta property="og:description" content="הזדמנויות מימון שמתאימות לארגון שלכם, בארץ ובחו״ל. החל מ-₪165 לחודש.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ronenaviram.github.io/ai-for-org/fundraising.html">
 <meta property="og:image" content="https://ronenaviram.github.io/ai-for-org/assets/og-vista.png">
@@ -486,7 +486,6 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 
 <div class="hero">
   <div class="wrap">
-    <span class="pill"><span class="dot"></span> מחיר מייסדים</span>
     <svg class="intro-mark" viewBox="0 0 100 100" aria-hidden="true"><circle class="im-sun" cx="50" cy="28" r="11"/><path class="im-l" d="M4 20 H30 L51 66 V92 H43 Z"/><path class="im-r" d="M96 20 H70 L49 66 V92 H57 Z"/></svg>
     <h1 class="intro-name"><bdi dir="ltr">Vista<span>.AI</span></bdi></h1>
     <p class="intro-tag">מערכת AI לגיוס משאבים, בארץ ובחו״ל</p>
@@ -835,7 +834,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
       method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: data.name, role: '', org: data.org, email: data.email, phone: data.phone,
-        q1: 'הרשמה: סוכן גיוס (מחזור מייסדים)', q2: form.elements.plan.value, q3: leadSource,
+        q1: 'הרשמה: Vista.AI', q2: form.elements.plan.value, q3: leadSource,
         lang: 'he', timestamp: new Date().toISOString(), calendlyClicked: false, source: 'fundraising'
       })
     }).catch(() => {});
