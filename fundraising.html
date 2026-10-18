@@ -862,7 +862,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
   form.querySelectorAll('input').forEach((el) => el.addEventListener('input', () => el.closest('.field').classList.remove('bad')));
 
   // "לרכישה": goes to the payment page once it exists; until then it opens the call form with the plan chosen.
-  const PAY_URLS = {}; // e.g. { 'שנתי': 'https://…' }
+  // Grow (Meshulam) payment pages per plan; a plan without one opens the signup form instead.
+  const PAY_URLS = { 'שנתי': 'https://pay.grow.link/MTAxNjkw~653b2a188f291f845633f7a7a01908bc-NDE1MTMyNg' };
   document.querySelectorAll('[data-buy]').forEach((a) => a.addEventListener('click', (e) => {
     const url = PAY_URLS[a.dataset.buy];
     if (url) { a.href = url; return; }
