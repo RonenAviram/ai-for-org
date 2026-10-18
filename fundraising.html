@@ -426,7 +426,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .rotator { display: grid; justify-items: center; margin: 0 auto 22px; font-size: clamp(22px, 4.2vw, 34px); font-weight: 800; color: var(--Mt); line-height: 1.25; }
 .rotator .rot { grid-area: 1 / 1; padding-bottom: 8px; position: relative; opacity: 0; transform: translateY(60%); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
 .rotator .rot::after { content: ""; position: absolute; inset: auto 15% 0; height: 4px; border-radius: 4px; background: var(--W); transform: scaleX(0); transition: transform .7s .25s cubic-bezier(.2,.8,.2,1); }
-.rotator .rot em { font-style: normal; color: var(--D); }
+.rotator .rot em { font-style: normal; color: var(--W); }
 .rotator .rot.on { opacity: 1; transform: none; }
 .rotator .rot.on::after { transform: scaleX(1); }
 .rotator .rot.out { opacity: 0; transform: translateY(-60%); }
@@ -567,8 +567,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     <h2>איך מתחילים</h2>
     <ol class="timeline">
       <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5M19 8v6M16 11h6"/></svg><span class="tnum">01</span></span><b>נרשמים</b></li>
-      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span class="tnum">02</span></span><b>פגישת אפיון אחת</b></li>
-      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span class="tnum">03</span></span><b>תובנות ראשונות<br><span class="tplus">+</span><br>הזדמנויות ראשונות<br>נוחתות אצלכם</b></li>
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg><span class="tnum">02</span></span><b>משתפים חומרים,<br>כמה שנוח לכם</b></li>
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span class="tnum">03</span></span><b>הזדמנויות ראשונות<br>נוחתות אצלכם</b></li>
     </ol>
     </div>
   </div>
@@ -639,7 +639,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     <details><summary>האם מערכת ה-AI תחליף את מגייסי המשאבים?</summary><p>לא. אין תחליף לקשר האנושי. היא פשוט תפנה להם את הזמן והראש להתעסק במהות התפקיד.</p></details>
     <details><summary>מי מגיש בפועל?</summary><p>אתם. סוכני ה-AI מוצאים ומכינים טיוטה, ואתם עוברים, מתקנים ומגישים. ההגשה והקשר עם המממן נשארים אצלכם.</p></details>
     <details><summary>איך שומרים על המידע שלנו?</summary><p>המידע שלכם נשאר שלכם. אתם מחליטים אילו חומרים לשתף, וכל ארגון מבודד: סוכני ה-AI ניגשים רק לחומרים של הארגון שלכם, ורק למה שנדרש למשימה. המסמכים נשמרים באחסון פרטי באירופה ומעובדים אצל ספק AI שמתחייב לא לאמן מודלים על המידע. כל תוצר עובר בדיקת איכות לפני שהוא מגיע אליכם.</p></details>
-    <details><summary>מתי מקבלים משהו?</summary><p>תוך ימים ספורים מפגישת האפיון, לפעמים כבר באותו יום: קודם תובנות ראשונות, ואחריהן מייל ההזדמנויות הראשון.</p></details>
+    <details><summary>מתי מקבלים משהו?</summary><p>תוך ימים ספורים מההרשמה, לפעמים כבר באותו יום: מייל ההזדמנויות הראשון.</p></details>
     <div class="faq-more" id="faqMore" hidden>
       <details><summary>מה נותנת טיוטת ההגשה?</summary><p>הטיוטה עונה על שאלות הקול הקורא מתוך הפרופיל שלכם, ומנוסחת כמו שהארגון שלכם כותב: בשפה רשמית, עם הנוסחים הקבועים שלכם, או לפי התבנית שאתם עובדים איתה. כל פרט חסר מסומן, כדי שתשלימו. טיוטה ראשונה כלולה, ואפשר להוסיף חבילת טיוטות בכל שלב.</p></details>
       <details><summary>כמה מיילים תקבלו?</summary><p>בממוצע מייל בשבוע, כשיש הזדמנויות ששוות את הזמן שלכם.</p></details>
