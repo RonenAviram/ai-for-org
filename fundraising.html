@@ -400,6 +400,22 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .value .v-m li { position: relative; padding-right: 14px; margin-top: 4px; }
 .value .v-m li::before { content: ""; position: absolute; right: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--Mt); }
 @media (max-width: 720px) { .value .v-d { display: none; } .value .v-m { display: block; } }
+/* videos: Ronen's 4 short guides, above "how it works" */
+.videos-section { padding-top: 8px; }
+.videos-section + .demo-section { padding-top: 24px; }
+.videos-section h2 { margin-bottom: 8px; }
+.vid-sub { text-align: center; color: var(--ink-2); margin: 0 auto 24px; }
+.vids { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 960px) { .vids { grid-template-columns: repeat(2, 1fr); } }
+.vid { background: var(--L); border: 1px solid var(--S); border-radius: 16px; padding: 10px 10px 14px; text-align: right; font: inherit; color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.vid:focus-visible { outline: 3px solid var(--M); outline-offset: 2px; }
+.vid-poster { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; background: radial-gradient(120% 90% at 85% 0%, color-mix(in srgb, var(--M) 30%, transparent), transparent 70%), var(--S); display: grid; place-items: center; }
+.vid-play { width: 48px; height: 48px; border-radius: 50%; background: var(--W); display: grid; place-items: center; transition: transform .2s; }
+.vid-play svg { width: 18px; height: 18px; margin-right: -3px; color: var(--D); }
+.vid:hover .vid-play { transform: scale(1.08); }
+.vid .tnum { top: 8px; right: 8px; }
+.vid h3 { font-size: 16px; font-weight: 700; line-height: 1.3; padding: 0 4px; }
+.vid p { font-size: 13px; color: var(--ink-2); padding: 0 4px; }
 </style>
 </head>
 <body>
@@ -433,6 +449,19 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     </div>
   </div>
 </div>
+
+<section id="videos" class="videos-section">
+  <div class="wrap">
+    <h2>הכירו את המערכת</h2>
+    <p class="vid-sub">ארבעה סרטונים קצרים, אחד לכל שלב.</p>
+    <div class="vids">
+      <button type="button" class="vid" data-video="1"><span class="vid-poster"><span class="tnum">01</span><span class="vid-play"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg></span></span><h3>בניית הפרופיל</h3><p>איך הסוכנים לומדים את הארגון שלכם</p></button>
+      <button type="button" class="vid" data-video="2"><span class="vid-poster"><span class="tnum">02</span><span class="vid-play"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg></span></span><h3>סריקת ההזדמנויות</h3><p>אילו קולות קוראים מתאימים, ולמה</p></button>
+      <button type="button" class="vid" data-video="3"><span class="vid-poster"><span class="tnum">03</span><span class="vid-play"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg></span></span><h3>בניית ההגשה</h3><p>מהקול הקורא לטיוטת הגשה</p></button>
+      <button type="button" class="vid" data-video="4"><span class="vid-poster"><span class="tnum">04</span><span class="vid-play"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg></span></span><h3>מאחורי הקלעים</h3><p>מה הסוכנים עושים בזמן שאתם עובדים</p></button>
+    </div>
+  </div>
+</section>
 
 <section id="demo" class="demo-section">
   <div class="wrap">
