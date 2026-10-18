@@ -709,10 +709,9 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
       <div class="done" id="signup-done">
         <div class="party" id="done-party" aria-hidden="true">🎉</div>
         <h3>נשלח בהצלחה</h3>
-        <p>אחזור אליכם בהקדם. רוצים לקבוע כבר עכשיו?</p>
+        <p id="send-ok">אחזור אליכם בהקדם.</p>
         <p id="send-failed" hidden style="color:#B91C1C">נראה שהשליחה לא עברה. כתבו לי בוואטסאפ ואחזור אליכם.</p>
-        <div class="ctas">
-          <button class="btn btn-primary" type="button" onclick="openCalendly(true)">לתיאום שיחה</button>
+        <div class="ctas" id="send-failed-cta" hidden>
           <a class="btn btn-wa" href="https://wa.me/972542569556?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%A0%D7%9F%21%20%D7%9C%D7%92%D7%91%D7%99%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%94-AI%20%D7%9C%D7%92%D7%99%D7%95%D7%A1%20%D7%9E%D7%A9%D7%90%D7%91%D7%99%D7%9D" target="_blank" rel="noopener">וואטסאפ</a>
         </div>
       </div>
@@ -831,6 +830,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     const showDone = (sent) => {
       if (!sent) {
         document.getElementById('send-failed').hidden = false;
+        document.getElementById('send-failed-cta').hidden = false;
+        document.getElementById('send-ok').hidden = true;
         document.querySelector('#signup-done h3').textContent = 'משהו השתבש בשליחה';
         document.getElementById('done-party').hidden = true;
       }
