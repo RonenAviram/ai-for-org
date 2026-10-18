@@ -461,6 +461,11 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .hero .no-sys { display: inline-flex; align-items: center; gap: 8px; font-size: clamp(12.5px, 3.4vw, 15px); white-space: nowrap; max-width: 100%; font-weight: 600; color: var(--D); background: #fff; border: 1px solid var(--S); border-radius: 999px; padding: 6px clamp(10px, 3vw, 16px); margin: -8px auto 24px; animation: upIn .6s 1.42s both; }
 @media (prefers-reduced-motion: reduce) { .hero .no-sys { animation: none; } }
 @media (max-width: 720px) { .bar-links .faq-link { font-size: 13.5px; white-space: nowrap; } }
+/* getting started: the payoff (step 2) is highlighted, not the optional last step */
+.timeline:not(.try-line) .tstep:last-child .tdot { background: #fff; border-color: var(--accent-border); color: var(--Mt); }
+.timeline:not(.try-line) .tstep:last-child .tnum { background: var(--Mt); }
+.timeline:not(.try-line) .tstep.hi .tdot { background: var(--W); border-color: var(--W); color: var(--D); }
+.timeline:not(.try-line) .tstep.hi .tnum { background: var(--D); }
 </style>
 </head>
 <body>
@@ -571,8 +576,8 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
     <h2>איך מתחילים</h2>
     <ol class="timeline">
       <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5M19 8v6M16 11h6"/></svg><span class="tnum">01</span></span><b>נרשמים</b></li>
-      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg><span class="tnum">02</span></span><b>משתפים חומרים</b><span class="pill opt-tag">לבחירתכם</span></li>
-      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span class="tnum">03</span></span><b>הזדמנויות ראשונות<br>נוחתות אצלכם</b></li>
+      <li class="tstep hi"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span class="tnum">02</span></span><b>הזדמנויות ראשונות<br>נוחתות אצלכם במייל</b></li>
+      <li class="tstep"><span class="tdot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5L12 11l2.5 2.5"/></svg><span class="tnum">03</span></span><b>משתפים חומרים,<br>וההזדמנויות מדויקות יותר</b><span class="pill opt-tag">לבחירתכם</span></li>
     </ol>
     </div>
   </div>
