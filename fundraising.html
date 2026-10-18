@@ -425,9 +425,10 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .intro-tag { font-size: clamp(18px, 2.6vw, 22px); font-weight: 600; color: var(--D); margin: 0 auto 18px; }
 .rotator { display: grid; justify-items: center; margin: 0 auto 22px; font-size: clamp(22px, 4.2vw, 34px); font-weight: 800; color: var(--Mt); line-height: 1.25; }
 .rotator .rot { grid-area: 1 / 1; padding-bottom: 8px; position: relative; opacity: 0; transform: translateY(60%); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
-.rotator .rot em { font-style: normal; color: var(--D); background: linear-gradient(var(--W), var(--W)) no-repeat right bottom / 0% 5px; padding-bottom: 4px; transition: background-size .7s .3s cubic-bezier(.2,.8,.2,1); }
+.rotator .rot::after { content: ""; position: absolute; inset: auto 15% 0; height: 4px; border-radius: 4px; background: var(--W); transform: scaleX(0); transition: transform .7s .25s cubic-bezier(.2,.8,.2,1); }
+.rotator .rot em { font-style: normal; color: var(--D); }
 .rotator .rot.on { opacity: 1; transform: none; }
-.rotator .rot.on em { background-size: 100% 5px; }
+.rotator .rot.on::after { transform: scaleX(1); }
 .rotator .rot.out { opacity: 0; transform: translateY(-60%); }
 @keyframes imL { from { transform: translateX(-34px); opacity: 0; } }
 @keyframes imR { from { transform: translateX(34px); opacity: 0; } }
@@ -447,7 +448,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .rv.pre { opacity: 0; transform: translateY(24px); }
 @media (prefers-reduced-motion: reduce) {
   .intro-mark *, .hero .intro-name, .hero .intro-tag, .hero .rotator, .hero .lead, .hero .ctas { animation: none; }
-  .rotator .rot, .rotator .rot em, .rv { transition: none; }
+  .rotator .rot, .rotator .rot::after, .rv { transition: none; }
   .rv.pre { opacity: 1; transform: none; }
 }
 /* the flow loop starts when the diagram comes into view, so the first thing seen is the inputs moving in */
