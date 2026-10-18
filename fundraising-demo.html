@@ -2353,7 +2353,8 @@ function approveProfile() {
   stage2Visited = true;
   showStage(2);
   setStep(2);
-  if (firstTime) {
+  // "Profile saved" only when the visitor built the profile in step 1, not when they jump straight to step 2 or 3.
+  if (firstTime && pfBuilt) {
     const banner = document.querySelector('.org-banner');
     banner.classList.remove('just-built');
     void banner.offsetWidth;
