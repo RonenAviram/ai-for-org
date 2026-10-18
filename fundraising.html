@@ -460,6 +460,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
 .opt-tag { font-size: 12px; padding: 2px 10px; margin-top: -8px; }
 .hero .no-sys { display: inline-flex; align-items: center; gap: 8px; font-size: clamp(12.5px, 3.4vw, 15px); white-space: nowrap; max-width: 100%; font-weight: 600; color: var(--D); background: #fff; border: 1px solid var(--S); border-radius: 999px; padding: 6px clamp(10px, 3vw, 16px); margin: -8px auto 24px; animation: upIn .6s 1.42s both; }
 @media (prefers-reduced-motion: reduce) { .hero .no-sys { animation: none; } }
+@media (max-width: 720px) { .bar-links .faq-link { font-size: 13.5px; white-space: nowrap; } }
 </style>
 </head>
 <body>
@@ -474,7 +475,7 @@ footer a { color: #fff; } footer .legal a { color: color-mix(in srgb, #fff 70%, 
       <a class="hide-m" href="#demo">איך זה עובד</a>
       <a class="hide-m" href="#try">נסו בעצמכם</a>
       <a class="hide-m" href="#pricing">מחיר</a>
-      <a class="hide-m" href="#faq">שאלות</a>
+      <a class="faq-link" href="#faq">שאלות ותשובות</a>
       <a class="hide-m" href="#about">מי אני</a>
       <a class="btn-sm" href="#pricing">להצטרפות</a>
     </nav>
